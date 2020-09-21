@@ -1,11 +1,11 @@
 <template>
   <div>
     <v-container>
-      <v-row>
-        <v-col v-for="n in 8" :key="n" xl3 sm12 lg3>
-          <Products />
-        </v-col>
-      </v-row>
+      <v-layout row wrap>
+        <v-flex x12 md6 lg4 xl3>
+
+        </v-flex>
+      </v-layout>
     </v-container>
   </div>
 </template>
