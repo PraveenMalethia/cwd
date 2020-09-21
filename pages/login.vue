@@ -134,9 +134,8 @@ export default {
         this.$auth.setUserToken(response.data.key)
         this.$toast.success('Successfully authenticated')
         this.dialog = false
-      } catch (err) {
-        this.$toast.error('Invalid')
-        console.log(err)
+      } catch (err){
+        this.$toast.error("Please use valid credentials")
       }
     },
     submit() {

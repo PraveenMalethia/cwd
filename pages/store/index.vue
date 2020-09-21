@@ -24,28 +24,17 @@
                 </v-sheet>
               </v-carousel-item>
             </v-carousel>
-            <v-card-title>{{ product.product.name}}</v-card-title>
-            <v-card-subtitle class="pb-0">quantity - {{ product.product.size }}</v-card-subtitle>
+            <v-card-title>{{ product.name}}</v-card-title>
+            <v-card-subtitle class="pb-0">quantity - {{ product.size }}</v-card-subtitle>
             <v-card-text class="text--primary">
-              <div>Brand - {{product.product.brand}}</div>
-              <div>Category - {{product.product.category}}</div>
+              <div>Brand - {{product.brand}}</div>
+              <div>Category - {{product.category}}</div>
             </v-card-text>
             <v-card-actions>
-              <v-btn icon color="yellow" @click="DecreaseQuantity(product.product.slug)">
-                <v-icon>mdi-minus</v-icon>
-              </v-btn>
-              <v-btn class="ma-2" outlined disabled small fab color="indigo">
-                <h2>
-                {{product.quantity}}
-                </h2>
-              </v-btn>
-              <v-btn icon color="green" @click="IncreaseQuantity(product.product.slug)">
-                <v-icon>mdi-plus</v-icon>
-              </v-btn>
-              <v-spacer></v-spacer>
-              <v-btn icon color="red">
-                <v-icon>mdi-delete</v-icon>
-              </v-btn>
+              <nuxt-link :to="'/store/'+product.slug">
+                <v-btn color="orange" text>View</v-btn>
+              </nuxt-link>
+              <v-btn @click="AddtoCart(product.slug)" color="orange" text>Add to cart</v-btn>
             </v-card-actions>
           </v-card>
         </v-flex>
@@ -56,6 +45,7 @@
 
 <script>
 export default {
+  auth: false,
   data() {
     return {
       colors: [
@@ -71,43 +61,29 @@ export default {
     }
   },
   methods: {
-    getProducts() {
-      this.$axios
-        .get('http://127.0.0.1:8000/store/cart')
-        .then((response) => (this.products = response.data))
-    },
-    IncreaseQuantity(slug) {
+    AddtoCart(slug) {
       if (this.$auth.loggedIn) {
         this.$axios
           .post('http://127.0.0.1:8000/store/add-to-cart/' + slug + '/', {
             slug: slug,
           })
           .then((response) => {
-            this.getProducts()
+            this.$toast.success(response.data.detail)
           })
       } else {
         this.$toast.error('Please login to add products to cart')
       }
     },
-    DecreaseQuantity(slug) {
-      this.$axios
-        .post('http://127.0.0.1:8000/store/remove-cart/' + slug + '/')
-        .then((response) => {
-          this.$toast.success(response.data.detail)
-          this.getProducts()
-        })
-    },
   },
   mounted() {
-    this.$axios.get('http://127.0.0.1:8000/store/cart').then(
-      (response) => (this.products = response.data)
-      //console.log(response.data)
-    )
+    this.$axios
+      .get('http://127.0.0.1:8000/store/')
+      .then((response) => (this.products = response.data))
   },
   computed: {
     filteredProducts: function () {
       return this.products.filter((product) => {
-        return product.product.name.match(this.query)
+        return product.name.match(this.query)
       })
     },
   },

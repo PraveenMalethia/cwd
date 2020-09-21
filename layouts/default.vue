@@ -65,7 +65,7 @@
 <script>
 import Logout from '~/components/Logout.vue'
 export default {
-  components: { Logout },
+  components: { Logout},
   data() {
     return {
       loader: null,
@@ -143,6 +143,7 @@ export default {
   methods: {
     async logout() {
       await this.$auth.logout()
+      await this.$toast.success('Logged Out')
     },
   },
 }
