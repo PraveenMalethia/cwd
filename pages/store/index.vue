@@ -16,13 +16,10 @@
               hide-delimiter-background
               show-arrows-on-hover
             >
-              <v-carousel-item v-for="(slide, i) in slides" :key="i">
-                <v-sheet :color="colors[i]" height="100%">
-                  <v-row class="fill-height" align="center" justify="center">
-                    <div class="display-3">{{ slide }}</div>
-                  </v-row>
-                </v-sheet>
-              </v-carousel-item>
+              <v-carousel-item :src="'http://127.0.0.1:8000'+product.featured_image"></v-carousel-item>
+              <v-carousel-item :src="'http://127.0.0.1:8000'+product.image1"></v-carousel-item>
+              <v-carousel-item :src="'http://127.0.0.1:8000'+product.image2"></v-carousel-item>
+              <v-carousel-item :src="'http://127.0.0.1:8000'+product.image3"></v-carousel-item>
             </v-carousel>
             <v-card-title>{{ product.name}}</v-card-title>
             <v-card-subtitle class="pb-0">quantity - {{ product.size }}</v-card-subtitle>
@@ -32,9 +29,14 @@
             </v-card-text>
             <v-card-actions>
               <nuxt-link :to="'/store/'+product.slug">
-                <v-btn color="orange" text>View</v-btn>
+                <v-btn color="purple" text outlined>
+                  <v-icon left dark>mdi-eye</v-icon>View
+                </v-btn>
               </nuxt-link>
-              <v-btn @click="AddtoCart(product.slug)" color="orange" text>Add to cart</v-btn>
+              <v-spacer></v-spacer>
+              <v-btn @click="AddtoCart(product.slug)" color="deep-purple darken-1">
+                <v-icon left dark>mdi-plus</v-icon>Add to cart
+              </v-btn>
             </v-card-actions>
           </v-card>
         </v-flex>
@@ -48,14 +50,20 @@ export default {
   auth: false,
   data() {
     return {
-      colors: [
-        'blue',
-        'warning',
-        'pink darken-2',
-        'red lighten-1',
-        'deep-purple accent-4',
+      items: [
+        {
+          src: 'https://cdn.vuetifyjs.com/images/carousel/squirrel.jpg',
+        },
+        {
+          src: 'https://cdn.vuetifyjs.com/images/carousel/sky.jpg',
+        },
+        {
+          src: 'https://cdn.vuetifyjs.com/images/carousel/bird.jpg',
+        },
+        {
+          src: 'https://cdn.vuetifyjs.com/images/carousel/planet.jpg',
+        },
       ],
-      slides: ['First', 'Second', 'Third', 'Fourth', 'Fifth'],
       query: '',
       products: [],
     }
@@ -83,12 +91,9 @@ export default {
   computed: {
     filteredProducts: function () {
       return this.products.filter((product) => {
-        return product.name.match(this.query)
+        return product.name.toLowerCase().match(this.query)
       })
     },
   },
 }
 </script>
-
-<style>
-</style>

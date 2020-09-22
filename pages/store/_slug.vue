@@ -1,7 +1,21 @@
 <template>
   <div>
     <v-card :loading="loading" class="mx-auto" max-width="374">
-      <v-img height="250" src="https://cdn.vuetifyjs.com/images/cards/cooking.png"></v-img>
+      <v-carousel
+              hide-delimiters
+              cycle
+              height="260"
+              hide-delimiter-background
+              show-arrows-on-hover>
+              <v-carousel-item
+                :src="'http://127.0.0.1:8000'+product.featured_image"></v-carousel-item>
+            <v-carousel-item
+                :src="'http://127.0.0.1:8000'+product.image1"></v-carousel-item>
+            <v-carousel-item
+                :src="'http://127.0.0.1:8000'+product.image2"></v-carousel-item>
+            <v-carousel-item
+                :src="'http://127.0.0.1:8000'+product.image3"></v-carousel-item>
+            </v-carousel>
       <v-card-title> {{ product.name }}</v-card-title>
       <v-card-text>
         <v-row align="center" class="mx-0">

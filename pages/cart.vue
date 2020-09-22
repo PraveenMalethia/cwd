@@ -107,7 +107,7 @@ export default {
   computed: {
     filteredProducts: function () {
       return this.products.filter((product) => {
-        return product.product.name.match(this.query)
+        return product.product.name.toLowerCase().match(this.query)
       })
     },
   },

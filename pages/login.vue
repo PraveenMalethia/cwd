@@ -57,7 +57,9 @@
                   @blur="$v.password.$touch()"
                 ></v-text-field>
                 <v-btn class="mr-4" @click="userLogin">submit</v-btn>
-                <v-btn @click="clear">close</v-btn>
+                <v-btn @click="clear">
+                  <v-icon left dark>mdi-close</v-icon>close
+                </v-btn>
               </form>
             </v-card-text>
           </v-card>
