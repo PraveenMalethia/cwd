@@ -5,12 +5,13 @@
         class="ma-2"
         :loading="loading"
         :disabled="loading"
-        color="red"
+        color="green"
         v-bind="attrs"
         v-on="on"
         @click="loader = 'loading'"
       >
-        Create Account
+        Create
+        <v-icon right dark>mdi-account</v-icon> ?
         <template v-slot:loader>
           <span class="custom-loader">
             <v-icon light>mdi-loading</v-icon>
@@ -19,39 +20,51 @@
       </v-btn>
     </template>
     <v-card>
-      <v-card-title>
-        <span class="headline">Register Account</span>
-      </v-card-title>
+      <v-toolbar color="deep-purple darken-2" dark flat>
+        <v-toolbar-title >Create Account form</v-toolbar-title>
+      </v-toolbar>
       <v-card-text>
         <v-container>
           <v-row>
             <v-col cols="12" sm="6" md="6">
-              <v-text-field label="first name*" required></v-text-field>
+              <v-text-field 
+              prepend-icon="mdi-account" outlined label="first name*" color="green" required></v-text-field>
             </v-col>
             <v-col cols="12" sm="6" md="6">
-              <v-text-field label="last name*"></v-text-field>
+              <v-text-field prepend-icon="mdi-account" outlined color="green" label="last name*"></v-text-field>
             </v-col>
             <v-col cols="12">
-              <v-text-field type="email" label="Email*" required></v-text-field>
+              <v-text-field prepend-icon="mdi-email" outlined color="green" type="email" label="Email*" required></v-text-field>
             </v-col>
-            <v-col cols="12" sm="6" md="6">
-              <v-text-field label="Password*" type="password" required></v-text-field>
-            </v-col>
-            <v-col cols="12" sm="6" md="6">
-              <v-text-field label="Confirm Password*" type="password" required></v-text-field>
-            </v-col>
-            <v-col cols="12" sm="6" md="6">
-             <v-switch inset v-model="switch1" :label="`Show Password`"></v-switch>
-            </v-col>
+              <v-col cols="12" sm="6" md="6">
+                <div v-if="!showpassword" >
+                  <v-text-field prepend-icon="mdi-lock" outlined color="green" label="Password*" type="password" required></v-text-field>
+                </div>
+                <div v-else>
+                  <v-text-field prepend-icon="mdi-lock" outlined color="green" label="Password*" type="text" required></v-text-field>
+                </div>
+              </v-col>
+              <v-col cols="12" sm="6" md="6">
+                <div v-if="!showpassword" >
+                  <v-text-field prepend-icon="mdi-lock" outlined color="green" label="Confirm Password*" type="password" required></v-text-field>
+                </div>
+                <div v-else>
+                  <v-text-field prepend-icon="mdi-lock" outlined color="green" label="Confirm Password*" type="text" required></v-text-field>
+                </div>
+              </v-col>
+              <v-col cols="12" sm="6" md="6">
+                <v-switch color="green" inset v-model="showpassword" label="Show Password"></v-switch>
+              </v-col>
           </v-row>
         </v-container>
       </v-card-text>
       <v-card-actions>
+        <v-btn class="mr-4 ml-4 mb-4" color="blue darken-1" text @click="dialog = false">
+          <v-icon left dark>mdi-chevron-left</v-icon>Close
+        </v-btn>
         <v-spacer></v-spacer>
-        <v-btn color="blue darken-1" text @click="dialog = false">
-          <v-icon left dark>mdi-chevron-left</v-icon>
-          Close</v-btn>
-        <v-btn color="primary darken-1" @click="dialog = false">Create
+        <v-btn class="mr-4 mb-4" color="primary darken-1" @click="dialog = false">
+          Create
           <v-icon right dark>mdi-plus</v-icon>
         </v-btn>
       </v-card-actions>
@@ -67,7 +80,7 @@ export default {
       loader: null,
       loading: false,
       dialog: false,
-      switch1: false,
+      showpassword: false,
     }
   },
   watch: {
