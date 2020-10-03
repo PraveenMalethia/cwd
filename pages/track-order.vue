@@ -4,6 +4,12 @@
 
 <script>
 export default {
+  created() {
+    document.title = 'CWD : Tracker'
+  },
+  mounted() {
+    document.title = 'CWD : Tracker'
+  }
 
 }
 </script>

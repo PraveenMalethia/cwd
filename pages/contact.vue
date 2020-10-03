@@ -4,7 +4,13 @@
 
 <script>
 export default {
-  auth: false
+  auth: false,
+  created() {
+    document.title = 'CWD : Contact Us'
+  },
+  mounted() {
+    document.title = 'CWD : Contact Us'
+  }
 }
 </script>
 

@@ -88,12 +88,16 @@ export default {
     },
   },
   mounted() {
+    document.title = 'CWD : Store'
     this.$axios
       .get('http://127.0.0.1:8000/store/')
       .then((response) => {
         this.products = response.data
         this.loading = false
         })
+  },
+  created(){
+    document.title = 'CWD : Store'
   },
   computed: {
     filteredProducts: function () {
@@ -104,3 +108,11 @@ export default {
   },
 }
 </script>
+<style>
+a{
+  text-decoration:none
+}
+.v-card__title{
+  color:white
+}
+</style>

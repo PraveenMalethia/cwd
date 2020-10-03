@@ -144,6 +144,9 @@ export default {
       this.select = null
     },
   },
+  created() {
+    document.title = 'Login : CWD Account'
+  }
 }
 </script>
 

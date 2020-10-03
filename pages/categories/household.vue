@@ -114,6 +114,7 @@ export default {
     },
   },
   mounted(){
+    document.title = 'CWD : Household'
     this.$axios
       .get('http://127.0.0.1:8000/store/household')
       .then((response) => (this.products = response.data))
@@ -125,6 +126,9 @@ export default {
       })
     },
   },
+  created() {
+    document.title = 'CWD : Household'
+  }
 }
 </script>
 

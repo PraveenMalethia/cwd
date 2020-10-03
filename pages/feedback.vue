@@ -15,7 +15,13 @@
 
 <script>
 export default {
-  auth: false
+  auth: false,
+  created(){
+    document.title = 'CWD : Feedback'
+  },
+  mounted() {
+    document.title = 'CWD : Feedback'
+  }
 }
 </script>
 

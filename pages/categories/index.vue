@@ -26,6 +26,12 @@
         { text: 'Fast Food', icon: 'mdi-food', to: '/categories/fast-food', },
       ],
     }),
+    created(){
+      document.title = 'CWD : Categories'
+    },
+    mounted(){
+      document.title = 'CWD : Categories'
+    }
   }
 </script>
 

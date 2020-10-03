@@ -84,6 +84,7 @@ export default {
     },
   },
   mounted() {
+    document.title = 'CWD : Kitchen'
     this.$axios
       .get('http://127.0.0.1:8000/store/kitchen')
       .then((response) => (this.products = response.data))
@@ -94,6 +95,9 @@ export default {
         return product.name.toLowerCase().match(this.query)
       })
     },
+  },
+  created(){
+    document.title = 'CWD : Kitchen'
   },
 }
 </script>

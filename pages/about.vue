@@ -19,6 +19,12 @@
 </template>
 <script>
 export default {
-  auth: false
+  auth: false,
+  created() {
+    document.title = 'CWD : About Us'
+  },
+  mounted() {
+    document.title = 'CWD : About Us'
+  }
 }
 </script>

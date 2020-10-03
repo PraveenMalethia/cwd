@@ -73,7 +73,10 @@ export default {
       slug: this.$route.params.slug,
     }
   },
-  created: function () {
+  mounted() {
+    document.title = `CWD : ${this.slug}`
+  },
+  created() {
     this.$axios
       .get('http://127.0.0.1:8000/store/' + this.$route.params.slug)
       .then((response) => {

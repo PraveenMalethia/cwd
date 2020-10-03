@@ -71,5 +71,11 @@ export default {
       ],
     }
   },
+  created() {
+    document.title = 'CWD : Home'
+  },
+  mounted() {
+    document.title = 'CWD : Home'
+  }
 }
 </script>

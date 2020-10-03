@@ -181,6 +181,9 @@ export default {
       await this.$toast.success('Logged Out')
     },
   },
+  created(){
+    document.title = 'CWD Store'
+  },
   mounted() {
     if (this.$auth.loggedIn) {
       this.$axios
