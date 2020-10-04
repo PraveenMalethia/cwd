@@ -27,7 +27,7 @@
             </v-carousel>
             <router-link class="router-link" :to="'/store/'+product.slug">
             <v-card-title>{{ product.name }}</v-card-title>
-            <v-card-subtitle class="pb-0">quantity - {{ product.size }}</v-card-subtitle>
+            <v-card-subtitle class="pb-0">Size - {{ product.size }}</v-card-subtitle>
             <v-card-text class="text--primary">
               <div>Category - {{ product.category }}</div>
             </v-card-text>
