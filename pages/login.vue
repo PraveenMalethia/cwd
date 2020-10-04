@@ -51,9 +51,7 @@
                   </form>
                 </v-card-text>
                 <v-card-actions>
-                  <div class="">
-                    <SignUp />
-                  </div>
+                    <SignUp/>
                   <v-spacer></v-spacer>
                   <v-btn @click="userLogin" class="mr-2" color="deep-purple darken-3">Login</v-btn>
                 </v-card-actions>
