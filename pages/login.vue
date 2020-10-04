@@ -40,8 +40,10 @@
                       label="Password"
                       required
                       outlined
+                      :append-icon="show ? 'mdi-eye' : 'mdi-eye-off'"
+                      :type="show ? 'text' : 'password'"
+                      @click:append="show = !show"
                       color="green"
-                      type="password"
                       prepend-icon="mdi-lock"
                       @input="$v.password.$touch()"
                       @blur="$v.password.$touch()"
@@ -79,6 +81,7 @@ export default {
   },
   data() {
     return {
+      show: false,
       loader: null,
       loading: false,
       username: '',

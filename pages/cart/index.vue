@@ -1,17 +1,12 @@
 <template>
   <div>
-    <v-card>
-      <v-toolbar color="deep-purple darken-1" dark flat>
-        <v-text-field v-model="query" class="mx-4" flat hide-details label="Search" solo-inverted>
-        </v-text-field>
-      </v-toolbar>
-    </v-card>
     <div v-if="products.length">
       <v-layout v-if="cartLoading" row wrap>
         <v-flex xs12 sm12 md12 lg12>
           <v-skeleton-loader
             class="max-auto my-2 pa-2 mb-2 mr-4 ml-4"
-            type="card-heading , list-item-three-line">
+            type="card-heading , list-item-three-line"
+          >
           </v-skeleton-loader>
         </v-flex>
       </v-layout>
@@ -32,39 +27,88 @@
             </v-card-text>
             <v-divider class="mx-2"></v-divider>
             <v-card-actions>
-              <v-btn color="deep-purple lighten-1" block to="/cart/checkout" router>Checkout</v-btn>
+              <v-btn
+                color="deep-purple lighten-1"
+                block
+                to="/cart/checkout"
+                router
+                >Checkout</v-btn
+              >
             </v-card-actions>
           </v-card>
         </v-flex>
       </v-layout>
+      <v-card small>
+        <v-toolbar color="deep-purple darken-1" dark flat>
+          <v-text-field
+            v-model="query"
+            class="mx-4"
+            flat
+            hide-details
+            label="Search"
+            solo-inverted
+          >
+          </v-text-field>
+        </v-toolbar>
+      </v-card>
       <v-container>
         <v-layout v-if="loading" row wrap>
           <v-flex v-for="n in 8" :key="n" xs12 sm6 md4 lg3 xl2>
-            <v-skeleton-loader class="pa-1 mx-2" height="270" type="image , actions">
+            <v-skeleton-loader
+              class="pa-1 mx-2"
+              height="270"
+              type="image , actions"
+            >
             </v-skeleton-loader>
           </v-flex>
         </v-layout>
         <v-layout v-else row wrap>
-          <v-flex v-for="product in filteredProducts" :key="product.id" xs12 sm6 md4 lg3>
-            <v-card small class="max-auto pa-1 mx-1" max-width="390">
-              <v-carousel hide-delimiters height="260" hide-delimiter-background :next-icon="false" :prev-icon="false">
-                <v-carousel-item :src="
-                    'http://127.0.0.1:8000' + product.product.featured_image">
+          <v-flex
+            v-for="product in filteredProducts"
+            :key="product.id"
+            xs12
+            sm6
+            md4
+            lg3
+          >
+            <v-card class="max-auto pa-1 mx-1 mb-2" max-width="390">
+              <v-carousel
+                hide-delimiters
+                height="260"
+                hide-delimiter-background
+                :next-icon="false"
+                :prev-icon="false"
+              >
+                <v-carousel-item
+                  :src="
+                    'http://127.0.0.1:8000' + product.product.featured_image
+                  "
+                >
                 </v-carousel-item>
               </v-carousel>
               <v-card-title>{{ product.product.name }}</v-card-title>
-              <v-card-subtitle class="pb-0">Size - {{ product.product.size }}</v-card-subtitle>
+              <v-card-subtitle class="pb-0"
+                >Size - {{ product.product.size }}</v-card-subtitle
+              >
               <v-card-text class="text--primary">
                 <div>Brand - {{ product.product.brand }}</div>
               </v-card-text>
               <v-card-actions>
-                <v-btn icon color="yellow" @click="DecreaseQuantity(product.product.slug)">
+                <v-btn
+                  icon
+                  color="yellow"
+                  @click="DecreaseQuantity(product.product.slug)"
+                >
                   <v-icon>mdi-minus</v-icon>
                 </v-btn>
                 <v-btn class="ma-2" outlined disabled small fab color="indigo">
                   <h2>{{ product.quantity }}</h2>
                 </v-btn>
-                <v-btn icon color="green" @click="IncreaseQuantity(product.product.slug)">
+                <v-btn
+                  icon
+                  color="green"
+                  @click="IncreaseQuantity(product.product.slug)"
+                >
                   <v-icon>mdi-plus</v-icon>
                 </v-btn>
                 <v-spacer></v-spacer>
@@ -167,6 +211,6 @@ export default {
   },
   created() {
     document.title = 'CWD : Cart'
-  }
+  },
 }
 </script>
