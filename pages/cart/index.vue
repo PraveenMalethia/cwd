@@ -86,13 +86,15 @@
                 >
                 </v-carousel-item>
               </v-carousel>
+              <router-link class="router-link" :to="'/store/' + product.slug">
               <v-card-title>{{ product.product.name }}</v-card-title>
               <v-card-subtitle class="pb-0"
                 >Size - {{ product.product.size }}</v-card-subtitle
               >
               <v-card-text class="text--primary">
-                <div>Brand - {{ product.product.brand }}</div>
+                <h2>$ {{ product.product.price }}</h2>
               </v-card-text>
+              </router-link>
               <v-card-actions>
                 <v-btn
                   icon

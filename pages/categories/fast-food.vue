@@ -41,6 +41,7 @@
             >
             <v-card-text class="text--primary">
               <div>Category - {{ product.category }}</div>
+            <h2>$ {{ product.price }}</h2>
             </v-card-text>
             </router-link>
             <v-card-actions>
@@ -114,4 +115,11 @@ export default {
 </script>
 
 <style>
+a {
+  text-decoration: none;
+  color:white;
+}
+.v-card__title {
+  color: white;
+}
 </style>

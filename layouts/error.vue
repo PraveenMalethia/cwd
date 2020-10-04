@@ -19,7 +19,7 @@
     <div class="d-flex justify-center">
       <NuxtLink to="/">
       <v-btn outlined x-large rounded depressed>
-      <glitch text="Home page" :background="false">
+      <glitch text="Home page" background="none">
       </glitch>
       </v-btn>
       </NuxtLink>

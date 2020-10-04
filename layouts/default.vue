@@ -78,7 +78,6 @@
       <v-text-field
         solo-inverted
         flat
-        v-if="storePage"
         hide-details
         label="Search"
         class="hidden-sm-and-down"
@@ -87,6 +86,7 @@
 
       <v-spacer></v-spacer>
       <v-toolbar-items class="hidden-sm-and-down">
+        <Community/>
         <v-divider inset vertical></v-divider>
         <v-btn v-if="$auth.loggedIn" @click="logout" text>Logout</v-btn>
         <v-btn v-else text router to="/login">Login</v-btn>
@@ -105,6 +105,7 @@
 
 <script>
 import Footer from '~/components/Footer'
+import Community from '~/components/Community'
 export default {
   components: { Footer },
   data() {
