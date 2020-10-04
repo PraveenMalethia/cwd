@@ -1,6 +1,7 @@
 import colors from 'vuetify/es5/util/colors'
 
 export default {
+  css: ['~/assets/main.css'],
   middleware: 'auth',
   router: {
     middleware: ['auth']
@@ -20,8 +21,8 @@ export default {
    ** See https://nuxtjs.org/api/configuration-head
    */
   head: {
-    titleTemplate: '%s - ' + process.env.npm_package_name,
-    title: process.env.npm_package_name || '',
+    titleTemplate: '%s : ' + "Home",
+    title: "CWD" || '',
     meta: [{
         charset: 'utf-8'
       },

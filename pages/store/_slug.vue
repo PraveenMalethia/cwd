@@ -77,10 +77,15 @@ export default {
     document.title = `CWD : ${this.slug}`
   },
   created() {
-    this.$axios
+      this.$axios
       .get('http://127.0.0.1:8000/store/' + this.$route.params.slug)
       .then((response) => {
         this.product = response.data
+      })
+      .catch((error) =>{
+        if (error.response.status == 404){
+          this.$router.push('/store')
+        }
       })
   },
   methods: {
