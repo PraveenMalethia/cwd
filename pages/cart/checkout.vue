@@ -3,8 +3,8 @@
     <v-container>
       <v-layout row wrap>
         <v-flex xs12 sm12 md7 lg7>
-          <v-card>
-            <v-toolbar color="deep-purple darken-2" dark flat>
+          <v-card shaped>
+            <v-toolbar color="deep-purple darken-2" dark shaped>
               <v-toolbar-title>Checkout Form</v-toolbar-title>
             </v-toolbar>
             <v-card-text class="pa-7">
@@ -78,21 +78,18 @@
                     shaped
                     prepend-icon="mdi-information"
                   ></v-textarea>
-                  <v-btn
-                    class="mr-4"
-                    @click="submit"
-                    color="deep-purple darken-1"
-                  >
-                    Place Order
-                  </v-btn>
-                  <v-btn @click="clear"> clear </v-btn>
+                  <v-btn @click="clear" outlined> clear </v-btn>
+                  <v-btn class="mr-4" @click="submit" color="deep-purple darken-1"> Place Order</v-btn>
                 </form>
               </validation-observer>
             </v-card-text>
           </v-card>
         </v-flex>
         <v-flex xs12 sm12 md4 lg4>
-          <v-card class="mx-auto" max-width="344" outlined>
+          <v-card class="mx-auto" max-width="344" shaped>
+              <v-toolbar color="deep-purple darken-2" dark flat shaped>
+              <v-toolbar-title>Checkout Details</v-toolbar-title>
+            </v-toolbar>
             <v-card-text>
               <div class="font-weight-bold ml-8 mb-2">Today</div>
 
