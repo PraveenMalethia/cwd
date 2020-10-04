@@ -93,22 +93,25 @@
         </v-flex>
         <v-flex xs12 sm12 md4 lg4>
           <v-card class="mx-auto" max-width="344" outlined>
-            <v-list-item three-line>
-              <v-list-item-content>
-                <div class="overline mb-4">OVERLINE</div>
-                <v-list-item-title class="headline mb-1">
-                  Headline 5
-                </v-list-item-title>
-                <v-list-item-subtitle
-                  >Greyhound divisely hello coldly
-                  fonwderfully</v-list-item-subtitle>
-              </v-list-item-content>
-              <v-list-item-avatar tile size="80" color="grey"
-              ></v-list-item-avatar>
-            </v-list-item>
-            <v-card-actions>
-              <v-btn outlined rounded text> Button </v-btn>
-            </v-card-actions>
+            <v-card-text>
+              <div class="font-weight-bold ml-8 mb-2">Today</div>
+
+              <v-timeline align-top dense>
+                <v-timeline-item
+                  v-for="message in messages"
+                  :key="message.time"
+                  :color="message.color"
+                  small
+                >
+                  <div>
+                    <div class="font-weight-normal">
+                      <strong>{{ message.from }}</strong> @{{ message.time }}
+                    </div>
+                    <div>{{ message.message }}</div>
+                  </div>
+                </v-timeline-item>
+              </v-timeline>
+            </v-card-text>
           </v-card>
         </v-flex>
       </v-layout>
@@ -141,6 +144,26 @@ export default {
     phonenumber: '',
     village: null,
     errors: null,
+    messages: [
+        {
+          from: 'You',
+          message: 'Sure, I\'ll see you later.',
+          time: '10:42am',
+          color: 'deep-purple lighten-1',
+        },
+        {
+          from: 'John Doe',
+          message: 'Yeah, sure. Does 1:00pm work?',
+          time: '10:37am',
+          color: 'green',
+        },
+        {
+          from: 'You',
+          message: 'Did you still want to grab lunch today?',
+          time: '9:47am',
+          color: 'deep-purple lighten-1',
+        },
+      ],
     villages: [
       'Churriwala Dhanna',
       'Nihal Khera',
