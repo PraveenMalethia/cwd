@@ -1,80 +1,120 @@
 <template>
   <div>
-    <v-card>
-      <v-toolbar color="deep-purple darken-2" dark flat>
-        <v-toolbar-title>Checkout Form</v-toolbar-title>
-      </v-toolbar>
-      <v-card-text class="pa-7">
-        <validation-observer ref="observer">
-          <form>
-            <validation-provider
-              v-slot="{ errors }"
-              name="address"
-              rules="required">
-              <v-text-field
-                outlined
-                shaped
-                v-model="address"
-                prepend-icon="mdi-map-marker"
-                :error-messages="errors"
-                label="Address"
-                required></v-text-field>
-            </validation-provider>
-            <validation-provider v-slot="{ errors }">
-              <v-text-field
-                outlined
-                v-model="housenumber"
-                prepend-icon="mdi-home"
-                :error-messages="errors"
-                label="House Number"
-                required></v-text-field>
-            </validation-provider>
-            <validation-provider
-              v-slot="{ errors }"
-              name="Phone Number"
-              rules="required|min:10">
-              <v-text-field
-                type="text"
-                outlined
-                prepend-icon="mdi-phone"
-                v-model="phonenumber"
-                :rules="[rules.required, rules.min]"
-                :counter="10"
-                :error-messages="errors"
-                label="Phone Number"
-                required></v-text-field>
-            </validation-provider>
-            <validation-provider
-              v-slot="{ errors }"
-              name="select"
-              rules="required">
-              <v-select
-                outlined
-                v-model="village"
-                prepend-icon="mdi-city"
-                :items="villages"
-                :error-messages="errors"
-                label="Select Village"
-                data-vv-name="select"
-                required></v-select>
-            </validation-provider>
-            <v-textarea
-              label="Special Instructions"
-              auto-grow
-              outlined
-              required
-              rows="3"
-              row-height="25"
-              shaped
-              prepend-icon="mdi-information"></v-textarea>
-            <v-btn class="mr-4" @click="submit" color="deep-purple darken-1">
-              Place Order
-            </v-btn>
-            <v-btn @click="clear"> clear </v-btn>
-          </form>
-        </validation-observer>
-      </v-card-text>
-    </v-card>
+    <v-container>
+      <v-layout row wrap>
+        <v-flex xs12 sm12 md7 lg7>
+          <v-card>
+            <v-toolbar color="deep-purple darken-2" dark flat>
+              <v-toolbar-title>Checkout Form</v-toolbar-title>
+            </v-toolbar>
+            <v-card-text class="pa-7">
+              <validation-observer ref="observer">
+                <form>
+                  <validation-provider
+                    v-slot="{ errors }"
+                    name="address"
+                    rules="required"
+                  >
+                    <v-text-field
+                      outlined
+                      shaped
+                      v-model="address"
+                      prepend-icon="mdi-map-marker"
+                      :error-messages="errors"
+                      label="Address"
+                      required
+                    ></v-text-field>
+                  </validation-provider>
+                  <validation-provider v-slot="{ errors }">
+                    <v-text-field
+                      outlined
+                      v-model="housenumber"
+                      prepend-icon="mdi-home"
+                      :error-messages="errors"
+                      label="House Number"
+                      required
+                    ></v-text-field>
+                  </validation-provider>
+                  <validation-provider
+                    v-slot="{ errors }"
+                    name="Phone Number"
+                    rules="required|min:10"
+                  >
+                    <v-text-field
+                      type="text"
+                      outlined
+                      prepend-icon="mdi-phone"
+                      v-model="phonenumber"
+                      :rules="[rules.required, rules.min]"
+                      :counter="10"
+                      :error-messages="errors"
+                      label="Phone Number"
+                      required
+                    ></v-text-field>
+                  </validation-provider>
+                  <validation-provider
+                    v-slot="{ errors }"
+                    name="select"
+                    rules="required"
+                  >
+                    <v-select
+                      outlined
+                      v-model="village"
+                      prepend-icon="mdi-city"
+                      :items="villages"
+                      :error-messages="errors"
+                      label="Select Village"
+                      data-vv-name="select"
+                      required
+                    ></v-select>
+                  </validation-provider>
+                  <v-textarea
+                    label="Special Instructions"
+                    auto-grow
+                    outlined
+                    required
+                    rows="3"
+                    row-height="25"
+                    shaped
+                    prepend-icon="mdi-information"
+                  ></v-textarea>
+                  <v-btn
+                    class="mr-4"
+                    @click="submit"
+                    color="deep-purple darken-1"
+                  >
+                    Place Order
+                  </v-btn>
+                  <v-btn @click="clear"> clear </v-btn>
+                </form>
+              </validation-observer>
+            </v-card-text>
+          </v-card>
+        </v-flex>
+      </v-layout>
+      <v-layout row wrap>
+        <v-flex xs12 sm12 md5 lg5>
+          <v-card class="mx-auto" max-width="344" outlined>
+            <v-list-item three-line>
+              <v-list-item-content>
+                <div class="overline mb-4">OVERLINE</div>
+                <v-list-item-title class="headline mb-1">
+                  Headline 5
+                </v-list-item-title>
+                <v-list-item-subtitle
+                  >Greyhound divisely hello coldly
+                  fonwderfully</v-list-item-subtitle>
+              </v-list-item-content>
+              <v-list-item-avatar tile size="80" color="grey"
+              ></v-list-item-avatar>
+            </v-list-item>
+            <v-card-actions>
+              <v-btn outlined rounded text> Button </v-btn>
+            </v-card-actions>
+          </v-card>
+        </v-flex>
+      </v-layout>
+    </v-container>
   </div>
 </template>
 
@@ -110,9 +150,9 @@ export default {
       'Killian wali',
     ],
     rules: {
-          required: value => !!value || 'Required.',
-          min: v => v.length >= 10 || 'Min 10 Digits',
-        },
+      required: (value) => !!value || 'Required.',
+      min: (v) => v.length >= 10 || 'Min 10 Digits',
+    },
   }),
 
   methods: {
