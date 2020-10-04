@@ -46,13 +46,13 @@
         </v-layout>
         <v-layout v-else row wrap>
           <v-flex v-for="product in filteredProducts" :key="product.id" xs12 sm6 md4 lg3>
-            <v-card small class="max-auto pa-1 mx-1 mb-2" max-width="390">
+            <v-card small class="max-auto pa-1 mx-1" max-width="390">
               <v-carousel hide-delimiters height="260" hide-delimiter-background :next-icon="false" :prev-icon="false">
                 <v-carousel-item :src="
                     'http://127.0.0.1:8000' + product.product.featured_image">
                 </v-carousel-item>
               </v-carousel>
-              <v-card-title class="text-sm-left">{{ product.product.name }}</v-card-title>
+              <v-card-title>{{ product.product.name }}</v-card-title>
               <v-card-subtitle class="pb-0">Size - {{ product.product.size }}</v-card-subtitle>
               <v-card-text class="text--primary">
                 <div>Brand - {{ product.product.brand }}</div>
