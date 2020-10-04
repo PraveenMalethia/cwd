@@ -91,9 +91,7 @@
             </v-card-text>
           </v-card>
         </v-flex>
-      </v-layout>
-      <v-layout row wrap>
-        <v-flex xs12 sm12 md5 lg5>
+        <v-flex xs12 sm12 md4 lg4>
           <v-card class="mx-auto" max-width="344" outlined>
             <v-list-item three-line>
               <v-list-item-content>
