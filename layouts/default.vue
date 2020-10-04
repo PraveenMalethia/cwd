@@ -88,7 +88,7 @@
       <v-toolbar-items class="hidden-sm-and-down">
         <Community/>
         <v-divider inset vertical></v-divider>
-        <v-btn v-if="$auth.loggedIn" @click="logout" text>Log</v-btn>
+        <v-btn v-if="$auth.loggedIn" @click="logout" text>Logout</v-btn>
         <v-btn v-else text router to="/login">Login</v-btn>
         <v-divider inset vertical></v-divider>
         <v-btn text router to="/cart">Cart</v-btn>
