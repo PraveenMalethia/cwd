@@ -86,7 +86,7 @@
           </v-card>
         </v-flex>
         <v-flex xs12 sm12 md4 lg4>
-          <v-card class="mx-auto" max-width="344" shaped>
+          <v-card class="mx-auto" max-width="344" shaped elevation="23">
               <v-toolbar color="deep-purple darken-2" dark flat shaped>
               <v-toolbar-title>Checkout Details</v-toolbar-title>
             </v-toolbar>

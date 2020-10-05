@@ -1,5 +1,5 @@
 <template>
-  <v-carousel rounded cycle height="400" hide-delimiter-background show-arrows-on-hover>
+  <v-carousel delimiter-icon="mdi-minus" rounded cycle height="400" hide-delimiter-background>
     <v-carousel-item v-for="(slide, i) in slides" :key="i">
       <v-sheet :color="colors[i]" height="100%">
         <v-row class="fill-height" align="center" justify="center">
@@ -17,7 +17,7 @@ export default {
     return {
       colors: [
         'indigo',
-        'warning',
+        'blue',
         'pink darken-2',
         'red lighten-1',
         'deep-purple accent-4',
