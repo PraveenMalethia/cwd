@@ -4,8 +4,9 @@
       :rules="rules"
       type="file"
       hide-input
+      id="files" ref="files"
       placeholder="Profile Pic"
-      @change="uploadImage($event)"
+      @change="handleFilesUpload(),submitFiles()"
       accept="image/png, image/jpeg"
       prepend-icon="mdi-camera">
     </v-file-input>
@@ -15,6 +16,7 @@
 export default {
   name: 'ProfilePicUpload',
   data: () => ({
+    files: '',
     rules: [
       (value) =>
         !value ||
@@ -23,21 +25,48 @@ export default {
     ],
   }),
   methods: {
-    uploadImage(event) {
-      const URL = 'http://127.0.0.1:8000/api/auth/customer/'
-      let data = new FormData()
-      data.append('name', 'profile-picture')
-      data.append('file', event.target.files[0])
-      let config = {
-        header: {
-          'Content-Type': 'image/png',
-        },
+      /*
+        Submits all of the files to the server
+      */
+      submitFiles(){
+        /*
+          Initialize the form data
+        */
+        let formData = new FormData();
+        /*
+          Iteate over any file sent over appending the files
+          to the form data.
+        */
+        for( var i = 0; i < this.files.length; i++ ){
+          let file = this.files[i];
+
+          formData.append('files[' + i + ']', file);
+        }
+        /*
+          Make the request to the POST /multiple-files URL
+        */
+        this.$axios.post('http://127.0.0.1:8000/api/auth/customer/uplad-profile-pic/',
+          formData,
+          {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+          }
+        ).then(function(){
+          console.log('SUCCESS!!');
+        })
+        .catch(function(){
+          console.log('FAILURE!!');
+        });
+      },
+
+      /*
+        Handles a change on the file upload
+      */
+      handleFilesUpload(){
+        this.files = this.$refs.files.files;
       }
-      axios.put(URL, data, config).then((response) => {
-        console.log('image upload response > ', response.data)
-      })
-    },
-  },
+    }
 }
 </script>
 

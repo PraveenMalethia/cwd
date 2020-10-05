@@ -6,11 +6,7 @@
           <v-row>
             <v-col>
               <v-progress-circular
-                class="ml-14 mt-10 mb-10 justify-center"
-                :size="200"
-                :value="100"
-                color="green"
-              >
+                class="ml-7 mt-5 mb-5 justify-center" :size="200" :value="100" color="green">
                 <div v-if="customer.profile_pic">
                   <img
                     height="180"
@@ -23,6 +19,12 @@
                   <ProfilePicUpload />
                 </div>
               </v-progress-circular>
+              <v-divider></v-divider><br>
+              <v-row align="center" justify="center">
+                <v-btn large outlined icon @click="edit = !edit">
+                <v-icon large>mdi-account-edit</v-icon>
+                </v-btn>
+              </v-row>
             </v-col>
             <v-col>
               <div v-if="!edit">
@@ -44,23 +46,20 @@
                   <v-text-field v-model="user.first_name" prepend-icon="mdi-account" label="First Name" :placeholder="this.$auth.user.first_name"></v-text-field>
                   <v-text-field v-model="user.last_name" prepend-icon="mdi-account" label="Last Name" :placeholder="this.$auth.user.last_name"></v-text-field>
                   <v-text-field v-model="UpdateCustomer.phone_number" prepend-icon="mdi-phone" label="Contact" :placeholder="customer.phone_number"></v-text-field>
-                  <v-btn color="primary" @click="UpdateUser()">Update
-                    <v-icon>mdi-update</v-icon>
+                  <v-btn color="deep-purple darken-1" @click="UpdateUser()">Update
+                    <v-icon right>mdi-update</v-icon>
                   </v-btn>
                 </div>
               </div>
             </v-col>
           </v-row>
           <v-card-actions>
-            <v-btn icon @click="edit = !edit">
-              <v-icon right>mdi-account-edit</v-icon>
-            </v-btn>
           </v-card-actions>
         </v-card>
       </v-flex>
       <v-flex class="pa-1" xs12 sm12 md6>
         <v-card>
-          <v-toolbar color="purple" dark flat prominent>
+          <v-toolbar color="deep-purple darken-1" dark flat prominent>
             <v-text-field
               class="mx-4"
               flat
@@ -70,7 +69,7 @@
             >
             </v-text-field>
           </v-toolbar>
-          <v-tabs v-model="tab" background-color="primary" dark>
+          <v-tabs v-model="tab" background-color="deep-purple darken-3" dark>
             <v-tab v-for="order in filteredOrders" :key="order.order_id">
               Order Id: {{ order.order_id }}
             </v-tab>
@@ -78,7 +77,7 @@
           <v-tabs-items v-model="tab">
             <v-tab-item v-for="order in filteredOrders" :key="order.order_id">
               <v-card flat>
-                <v-card-text>{{ order.content }} {{user}}</v-card-text>
+                <v-card-text>{{ order.content }}</v-card-text>
               </v-card>
             </v-tab-item>
           </v-tabs-items>
