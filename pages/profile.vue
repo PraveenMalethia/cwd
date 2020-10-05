@@ -6,13 +6,21 @@
           <v-row>
             <v-col>
               <v-progress-circular
-                class="ml-14 mt-10 mb-10 justify-center" :size="200" :value="100" color="green">
+                class="ml-14 mt-10 mb-10 justify-center"
+                :size="200"
+                :value="100"
+                color="green"
+              >
                 <div v-if="customer.profile_pic">
-                <img height="180" width="180"
-                  :src="'http://127.0.0.1:8000' + customer.profile_pic" alt="John"/>
+                  <img
+                    height="180"
+                    width="180"
+                    :src="'http://127.0.0.1:8000' + customer.profile_pic"
+                    alt="John"
+                  />
                 </div>
                 <div v-else>
-                  <p>Upload Profile Pic</p>
+                  <ProfilePicUpload />
                 </div>
               </v-progress-circular>
             </v-col>
@@ -27,16 +35,21 @@
               </div>
             </v-col>
           </v-row>
-           <v-card-actions>
-      <v-btn outlined rounded icon><v-icon>mdi-edit</v-icon>
-      </v-btn>
-    </v-card-actions>
+          <v-card-actions>
+            <UpdateUser/>
+          </v-card-actions>
         </v-card>
       </v-flex>
       <v-flex class="pa-1" xs12 sm12 md6>
         <v-card>
           <v-toolbar color="purple" dark flat prominent>
-            <v-text-field class="mx-4" flat label="Search by Order ID" v-model="query" solo-inverted>
+            <v-text-field
+              class="mx-4"
+              flat
+              label="Search by Order ID"
+              v-model="query"
+              solo-inverted
+            >
             </v-text-field>
           </v-toolbar>
           <v-tabs v-model="tab" background-color="primary" dark>
@@ -58,11 +71,15 @@
 </template>
 
 <script>
+import ProfilePicUpload from '~/components/ProfilePicUpload'
+import UpdateUser from '~/components/UpdateUser'
+
 export default {
-  data:() => ({
+  data: () => ({
+    dialog: false,
     customer: {},
     tab: null,
-    query:'',
+    query: '',
     orders: [
       { order_id: '1', content: 'Order number 1 Content' },
       { order_id: '2', content: 'Order number 2 Content' },
@@ -95,7 +112,7 @@ export default {
   },
   created() {
     document.title = 'CWD : Profile'
-  }
+  },
 }
 </script>
 
