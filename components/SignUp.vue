@@ -28,27 +28,18 @@
           <v-row>
             <v-col cols="12" sm="6" md="6">
               <v-text-field
-                prepend-icon="mdi-account"
+                prepend-icon="mdi-account-circle"
                 outlined
-                shaped="left"
-                label="first name*"
+                v-model="user.username"
                 color="green"
-                required
+                label="Username*"
               ></v-text-field>
             </v-col>
             <v-col cols="12" sm="6" md="6">
               <v-text-field
-                prepend-icon="mdi-account"
-                outlined
-                shaped
-                color="green"
-                label="last name*"
-              ></v-text-field>
-            </v-col>
-            <v-col cols="12">
-              <v-text-field
                 prepend-icon="mdi-email"
                 outlined
+                v-model="user.email"
                 color="green"
                 type="email"
                 label="Email*"
@@ -59,7 +50,7 @@
               <v-text-field
                 prepend-icon="mdi-lock"
                 outlined
-                v-model="password"
+                v-model="user.password1"
                 color="green"
                 label="Password*"
                 :rules="[rules.required, rules.min]"
@@ -73,7 +64,7 @@
               <v-text-field
                 prepend-icon="mdi-lock"
                 outlined
-                v-model="password2"
+                v-model="user.password2"
                 color="green"
                 label="Confirm Password*"
                 :rules="[rules.required, rules.min]"
@@ -96,12 +87,9 @@
           <v-icon left dark>mdi-chevron-left</v-icon>Close
         </v-btn>
         <v-spacer></v-spacer>
-        <v-btn
-          class="mr-4 mb-4"
+        <v-btn class="mr-4 mb-4"
           color="primary darken-1"
-          @click="dialog = false"
-        >
-          Create
+          @click="CreateAccount()">Create
           <v-icon right dark>mdi-plus</v-icon>
         </v-btn>
       </v-card-actions>
@@ -114,8 +102,12 @@ export default {
   name: 'Login',
   data() {
     return {
-      password: '',
-      password2: '',
+      user:{
+          email: '',
+          username:'',
+          password1: '',
+          password2: '',
+      },
       loader: null,
       loading: false,
       dialog: false,
@@ -124,6 +116,14 @@ export default {
           required: value => !!value || 'Required.',
           min: v => v.length >= 10 || 'Min 10 characters',
         },
+    }
+  },
+  methods: {
+    CreateAccount(){
+      this.$axios.post('http://127.0.0.1:8000/api/auth/registration/',this.user)
+      .then((response) =>{
+        console.log(response.data)
+      })
     }
   },
   watch: {
