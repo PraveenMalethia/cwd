@@ -6,17 +6,14 @@
           <v-row>
             <v-col>
               <v-progress-circular
-                class="ml-14 mt-10 mb-10 justify-center"
-                :size="200"
-                :value="100"
-                color="green"
-              >
-                <img
-                  height="180"
-                  width="180"
-                  :src="'http://127.0.0.1:8000' + customer.profile_pic"
-                  alt="John"
-                />
+                class="ml-14 mt-10 mb-10 justify-center" :size="200" :value="100" color="green">
+                <div v-if="customer.profile_pic">
+                <img height="180" width="180"
+                  :src="'http://127.0.0.1:8000' + customer.profile_pic" alt="John"/>
+                </div>
+                <div v-else>
+                  <p>Upload Profile Pic</p>
+                </div>
               </v-progress-circular>
             </v-col>
             <v-col>
@@ -30,6 +27,10 @@
               </div>
             </v-col>
           </v-row>
+           <v-card-actions>
+      <v-btn outlined rounded icon><v-icon>mdi-edit</v-icon>
+      </v-btn>
+    </v-card-actions>
         </v-card>
       </v-flex>
       <v-flex class="pa-1" xs12 sm12 md6>
