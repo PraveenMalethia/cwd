@@ -57,7 +57,6 @@
     </v-card>
   </v-dialog>
 </template>
-
 <script>
 export default {
     name: 'UpdateUser',
@@ -75,10 +74,8 @@ export default {
             this.$toast.success("User updated")
         }
     }
-
 }
 </script>
-
 <style>
 
 </style>
