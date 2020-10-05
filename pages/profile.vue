@@ -25,18 +25,39 @@
               </v-progress-circular>
             </v-col>
             <v-col>
-              <div class="grey--text text-darken-1 mt-10 ml-5">
-                <h2>Username : {{ $auth.user.username }}</h2>
-                <h4 class="mt-5">
-                  Name : {{ $auth.user.first_name }} {{ $auth.user.last_name }}
-                </h4>
-                <h4 class="mt-5">Email : {{ $auth.user.email }}</h4>
-                <h4 class="mt-5">Contact : {{ customer.phone_number }}</h4>
+              <div v-if="!edit">
+                <h3 class="ml-5 mt-2">Your Profile</h3>
+                <div class="grey--text text-darken-1 mt-10 ml-5">
+                  <h2>Username : {{ $auth.user.username }}</h2>
+                  <h4 class="mt-5">
+                    Name : {{ $auth.user.first_name }}
+                    {{ $auth.user.last_name }}
+                  </h4>
+                  <h4 class="mt-5">Email : {{ $auth.user.email }}</h4>
+                  <h4 class="mt-5">Contact : {{ customer.phone_number }}</h4>
+                </div>
+              </div>
+              <div v-else>
+                <h3 class="ml-5 mt-2">Edit Profile</h3>
+                <div class="grey--text text-darken-1 mt-10 ml-5 mr-3">
+                  <v-text-field
+                    label="Username"
+                    :value="this.$auth.user.username"
+                  ></v-text-field>
+                  <h4 class="mt-5">
+                    Name : {{ $auth.user.first_name }}
+                    {{ $auth.user.last_name }}
+                  </h4>
+                  <h4 class="mt-5">Email : {{ $auth.user.email }}</h4>
+                  <h4 class="mt-5">Contact : {{ customer.phone_number }}</h4>
+                </div>
               </div>
             </v-col>
           </v-row>
           <v-card-actions>
-            <UpdateUser/>
+            <v-btn icon @click="edit = !edit">
+              <v-icon right>mdi-account-edit</v-icon>
+            </v-btn>
           </v-card-actions>
         </v-card>
       </v-flex>
@@ -72,14 +93,19 @@
 
 <script>
 import ProfilePicUpload from '~/components/ProfilePicUpload'
-import UpdateUser from '~/components/UpdateUser'
 
 export default {
   data: () => ({
     dialog: false,
     customer: {},
     tab: null,
+    user: {
+      username: '',
+      first_name: '',
+      last_name: '',
+    },
     query: '',
+    edit: false,
     orders: [
       { order_id: '1', content: 'Order number 1 Content' },
       { order_id: '2', content: 'Order number 2 Content' },

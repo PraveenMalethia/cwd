@@ -3,16 +3,14 @@
     <v-file-input
       :rules="rules"
       type="file"
-      outlined
+      hide-input
       placeholder="Profile Pic"
       @change="uploadImage($event)"
       accept="image/png, image/jpeg"
-      prepend-icon="mdi-camera"
-      label="Avatar"
-    ></v-file-input>
+      prepend-icon="mdi-camera">
+    </v-file-input>
   </form>
 </template>
-
 <script>
 export default {
   name: 'ProfilePicUpload',
