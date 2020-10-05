@@ -40,16 +40,13 @@
               <div v-else>
                 <h3 class="ml-5 mt-2">Edit Profile</h3>
                 <div class="grey--text text-darken-1 mt-10 ml-5 mr-3">
-                  <v-text-field
-                    label="Username"
-                    :value="this.$auth.user.username"
-                  ></v-text-field>
-                  <h4 class="mt-5">
-                    Name : {{ $auth.user.first_name }}
-                    {{ $auth.user.last_name }}
-                  </h4>
-                  <h4 class="mt-5">Email : {{ $auth.user.email }}</h4>
-                  <h4 class="mt-5">Contact : {{ customer.phone_number }}</h4>
+                  <v-text-field v-model="user.username" prepend-icon="mdi-account-circle" label="Username" :placeholder="this.$auth.user.username"></v-text-field>
+                  <v-text-field v-model="user.first_name" prepend-icon="mdi-account" label="First Name" :placeholder="this.$auth.user.first_name"></v-text-field>
+                  <v-text-field v-model="user.last_name" prepend-icon="mdi-account" label="Last Name" :placeholder="this.$auth.user.last_name"></v-text-field>
+                  <v-text-field v-model="UpdateCustomer.phone_number" prepend-icon="mdi-phone" label="Contact" :placeholder="customer.phone_number"></v-text-field>
+                  <v-btn color="primary" @click="UpdateUser()">Update
+                    <v-icon>mdi-update</v-icon>
+                  </v-btn>
                 </div>
               </div>
             </v-col>
@@ -81,7 +78,7 @@
           <v-tabs-items v-model="tab">
             <v-tab-item v-for="order in filteredOrders" :key="order.order_id">
               <v-card flat>
-                <v-card-text>{{ order.content }}</v-card-text>
+                <v-card-text>{{ order.content }} {{user}}</v-card-text>
               </v-card>
             </v-tab-item>
           </v-tabs-items>
@@ -98,11 +95,14 @@ export default {
   data: () => ({
     dialog: false,
     customer: {},
+    UpdateCustomer:{
+      phone_number:null
+    },
     tab: null,
     user: {
-      username: '',
-      first_name: '',
-      last_name: '',
+      username: null,
+      first_name: null,
+      last_name: null,
     },
     query: '',
     edit: false,
@@ -119,15 +119,43 @@ export default {
       { order_id: '10', content: 'Order number 4 Content' },
     ],
   }),
-  mounted: function () {
-    document.title = 'CWD : Profile'
-    if (this.$auth.loggedIn) {
+  methods: {
+    loadCustomer(){
+      if (this.$auth.loggedIn) {
       this.$axios
         .get('http://127.0.0.1:8000/api/auth/customer/')
         .then((response) => {
           this.customer = response.data
         })
+      }
+    },
+    UpdateUser(){
+      if (this.user.username == null){
+        this.user.username = this.$auth.user.username
+      }
+      if(this.user.first_name == null){
+        this.user.first_name = this.$auth.user.first_name
+      }
+      if(this.user.last_name == null){
+        this.user.last_name = this.$auth.user.last_name
+      }
+      this.$axios.put('http://127.0.0.1:8000/api/auth/user/',this.user)
+      .then((response) =>{
+        this.$toast.success(response.data)
+        this.$auth.fetchUser()
+        this.edit = false
+      })
+      if(this.customer.phone_number != null){
+        this.$axios.put('http://127.0.0.1:8000/api/auth/customer/',this.UpdateCustomer)
+        .then((response) =>{
+          this.loadCustomer()
+        })
+      }
     }
+  },
+  mounted: function () {
+    document.title = 'CWD : Profile'
+    this.loadCustomer()
   },
   computed: {
     filteredOrders: function () {

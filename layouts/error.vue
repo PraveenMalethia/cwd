@@ -4,12 +4,12 @@
     <h1 v-if="error.statusCode === 404">
       <div class="d-flex justify-center">
         <h2>
-          <glitch :text="pageNotFound" :background="false"></glitch>
+          <glitch :text="pageNotFound" background="none"></glitch>
         </h2>
       </div>
     </h1>
     <h1 v-else>
-      <glitch :text="otherError" :background="false"></glitch>
+      <glitch :text="otherError" background="none"></glitch>
     </h1>
     <br>
     <br>
