@@ -65,40 +65,38 @@
 
 <script>
 export default {
-  auth: false,
-  data() {
+  auth:false,
+  data(){
     return {
       loading: true,
       query: '',
       products: [],
     }
   },
-  methods: {
+  methods:{
     AddtoCart(slug) {
       if (this.$auth.loggedIn) {
         this.$axios
-          .post('http://127.0.0.1:8000/store/add-to-cart/' + slug + '/', {
-            slug: slug,
-          })
+          .post('http://127.0.0.1:8000/store/add-to-cart/' + slug + '/', {slug: slug,})
           .then((response) => {
             this.$toast.success(response.data.detail)
           })
-      } else {
+      }else{
         this.$toast.error('Please login to add products to cart')
       }
     },
   },
-  mounted() {
+  mounted(){
     document.title = 'CWD : Store'
     this.$axios.get('http://127.0.0.1:8000/store/').then((response) => {
-      this.products = response.data
-      this.loading = false
+    this.products = response.data
+    this.loading = false
     })
   },
-  created() {
+  created(){
     document.title = 'CWD : Store'
   },
-  computed: {
+  computed:{
     filteredProducts: function () {
       return this.products.filter((product) => {
         return product.name.toLowerCase().match(this.query)
