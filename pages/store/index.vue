@@ -46,7 +46,7 @@
               <v-card-title>{{ product.name }}</v-card-title>
               <v-card-subtitle class="pb-0">quantity - {{ product.size }}</v-card-subtitle>
               <v-card-text class="text--primary">
-                <p>{{product.brand}}</p>
+                <p>From - {{product.brand}}</p>
               </v-card-text>
             </router-link>
             <v-card-actions>
