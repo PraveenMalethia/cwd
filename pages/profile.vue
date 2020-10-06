@@ -113,9 +113,6 @@ export default {
       { order_id: '5', content: 'Order number 4 Content' },
       { order_id: '6', content: 'Order number 4 Content' },
       { order_id: '7', content: 'Order number 4 Content' },
-      { order_id: '8', content: 'Order number 4 Content' },
-      { order_id: '9', content: 'Order number 4 Content' },
-      { order_id: '10', content: 'Order number 4 Content' },
     ],
   }),
   methods: {
@@ -140,14 +137,18 @@ export default {
       }
       this.$axios.put('http://127.0.0.1:8000/api/auth/user/',this.user)
       .then((response) =>{
-        this.$toast.success(response.data)
+        this.$toast.success(`Profile of ${response.data.username} Updated`)
         this.$auth.fetchUser()
         this.edit = false
+        this.user.username = null
+        this.user.first_name = null
+        this.user.last_name = null
       })
-      if(this.customer.phone_number != null){
+      if(this.UpdateCustomer.phone_number != null){
         this.$axios.put('http://127.0.0.1:8000/api/auth/customer/',this.UpdateCustomer)
         .then((response) =>{
           this.loadCustomer()
+          this.UpdateCustomer.phone_number = null
         })
       }
     }

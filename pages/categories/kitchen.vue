@@ -26,12 +26,9 @@
               <v-carousel-item :src="'http://127.0.0.1:8000' + product.image2"></v-carousel-item>
               <v-carousel-item :src="'http://127.0.0.1:8000' + product.image3"></v-carousel-item>
               <v-expand-transition>
-          <div
-            v-if="hover"
-            class="d-flex transition-fast-in-fast-out black darken-2 v-card--reveal display-3 white--text"
-            style="height: 100%;">
-            ${{product.price}}
-          </div>
+              <div v-if="hover"
+                class="d-flex transition-fast-in-fast-out black darken-2 v-card--reveal display-3 white--text"
+                style="height: 100%;">${{product.price}}</div>
               </v-expand-transition>
             </v-carousel>
             <router-link class="router-link" :to="'/store/'+product.slug">
