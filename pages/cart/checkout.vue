@@ -2,7 +2,7 @@
   <div>
     <v-container>
       <v-layout row wrap>
-        <v-flex xs12 sm12 md5 lg5>
+        <v-flex xs12 sm12 md6 lg5>
           <v-card class="mx-auto mb-7" max-width="400" shaped elevation="23">
               <v-toolbar color="deep-purple darken-2" dark flat shaped>
               <v-toolbar-title>Checkout Details</v-toolbar-title>
@@ -28,7 +28,7 @@
             </v-card-text>
           </v-card>
         </v-flex>
-        <v-flex xs12 sm12 md7 lg6>
+        <v-flex xs12 sm12 md6 lg6>
           <v-card shaped class="mb-7">
             <v-toolbar color="deep-purple darken-2" dark shaped>
               <v-toolbar-title>Checkout Form</v-toolbar-title>
