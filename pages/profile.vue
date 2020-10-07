@@ -9,10 +9,11 @@
                 class="ml-7 mt-5 mb-5 justify-center" :size="200" :value="100" color="green">
                 <div v-if="customer.profile_pic">
                   <img
-                    height="180"
-                    width="180"
-                    :src="'http://127.0.0.1:8000' + customer.profile_pic"
-                    alt="John"
+                    height="182"
+                    width="182"
+                    class="mt-1"
+                    :src="'http://127.0.0.1:8000'+customer.profile_pic"
+                    :alt="$auth.user.username"
                   />
                 </div>
                 <div v-else>
