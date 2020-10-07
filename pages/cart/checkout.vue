@@ -153,7 +153,7 @@ export default {
         {
           from: 'Order Placement',
           message: 'Maybe Today you want to Place the order ?',
-          time: 'After 3.0 seconds',
+          time: 'in just a moment',
           color: 'green',
         },
         {
