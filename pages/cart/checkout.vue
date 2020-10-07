@@ -19,7 +19,7 @@
                     <div class="font-weight-normal">
                       <strong>{{ message.from }}</strong>
                       <span v-if="message.id == 1">{{ last_added_item_date }} ago</span>
-                      <span v-else :v-model="message.time" >@ {{ message.time}}</span>
+                      <span v-else >{{ message.time}}</span>
                     </div>
                     <div>{{ message.message }}</div>
                   </div>
@@ -159,7 +159,7 @@ export default {
         {
           from: 'Order Arrival',
           message: 'Most Probably You will get the order within 30.0 mint of placement',
-          time: '9:47am',
+          time: ' At-9:47am',
           color: 'deep-purple lighten-1',
         },
       ],
@@ -221,7 +221,7 @@ export default {
   mounted() {
     document.title = 'CWD : Checkout'
     this.settingDeliveryTime()
-    this.messages[2].time = this.time_after_30_mins
+    this.messages[2].time = "at "+ this.time_after_30_mins
   },
   created() {
     this.getLastAddedProduct()
