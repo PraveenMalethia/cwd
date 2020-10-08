@@ -61,13 +61,7 @@
       <v-flex class="pa-1" xs12 sm12 md6>
         <v-card>
           <v-toolbar color="deep-purple darken-1" dark flat prominent>
-            <v-text-field
-              class="mx-4"
-              flat
-              label="Search by Order ID"
-              v-model="query"
-              solo-inverted
-            >
+            <v-text-field class="mx-4" flat label="Search by Order ID" v-model="query" solo-inverted>
             </v-text-field>
           </v-toolbar>
           <v-tabs v-model="tab" background-color="deep-purple darken-3" dark>

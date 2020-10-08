@@ -159,7 +159,7 @@ export default {
         {
           from: 'Order Arrival',
           message: 'Most Probably You will get the order within 30.0 mint of placement',
-          time: ' At-9:47am',
+          time: '',
           color: 'deep-purple lighten-1',
         },
       ],
