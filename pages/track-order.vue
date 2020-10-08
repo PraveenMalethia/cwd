@@ -1,31 +1,31 @@
 <template>
   <div>
     <div>
-      <v-container class="pa-4 text-center">
-        <v-row align="center" justify="space-around">
-          <validation-observer ref="observer">
-            <form>
-              <validation-provider
-                v-slot="{ errors }"
-                name="Order ID"
-                rules="required|max:10"
-              >
-                <v-text-field
-                  v-model="order_id"
-                  :counter="10"
-                  :error-messages="errors"
-                  label="Order ID"
-                  required
-                ></v-text-field>
-              </validation-provider>
-              <v-btn class="mr-4" @click="submit"> submit </v-btn>
-              <v-btn @click="clear"> clear </v-btn>
-            </form>
-          </validation-observer>
-        </v-row>
-      </v-container>
+      <v-layout>
+        <v-flex xs12>
+          <br/>
+          <v-card class="mx-auto" shaped hover>
+            <v-toolbar color="deep-purple darken-2" dark flat shaped>
+              <v-toolbar-title>Check Order Details</v-toolbar-title>
+            </v-toolbar>
+            <v-card-text>
+              <validation-observer ref="observer">
+                <form>
+                  <validation-provider v-slot="{ errors }" name="Order ID" rules="required|max:10">
+                    <v-text-field v-model="order_id" :counter="10" :error-messages="errors" label="Order ID" 
+                    required>
+                    </v-text-field>
+                  </validation-provider>
+                  <v-btn class="mr-4" @click="submit"> submit </v-btn>
+                  <v-btn @click="clear"> clear </v-btn>
+                </form>
+              </validation-observer>
+            </v-card-text>
+          </v-card>
+        </v-flex>
+      </v-layout>
     </div>
-    <div>
+    <div v-if="order">
       <v-timeline :dense="$vuetify.breakpoint.smAndDown">
         <v-timeline-item color="purple lighten-2" fill-dot right>
           <v-card>
@@ -184,15 +184,24 @@ export default {
   },
   data: () => ({
     order_id: '',
+    order:false,
     errors: null,
   }),
 
   methods: {
     submit() {
-      this.$refs.observer.validate()
+      this.$refs.observer.validate().then((response) => {
+        if (response == true) {
+          this.$toast.success('Fetching order data...');
+          this.clear()
+          this.order = true
+        } else {
+          this.$toast.error('Please fill the details correctly')
+        }
+      })
     },
     clear() {
-      this.order_id = ''
+      this.order = false
       this.$refs.observer.reset()
     },
   },
