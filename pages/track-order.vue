@@ -19,7 +19,7 @@
                 Your order has been placed . Your order item will be packed soon after the order gets confirmed
               </v-col>
               <v-col class="hidden-sm-and-down text-right" md="2">
-                <v-icon size="64"> mdi-calendar-text </v-icon>
+                <v-icon size="47"> mdi-calendar-text </v-icon>
               </v-col>
             </v-row>
           </v-container>
@@ -43,7 +43,7 @@
                 for more information about the order cancelled.
               </v-col>
               <v-col class="hidden-sm-and-down" md="2">
-                <v-icon size="64"> mdi-cancel </v-icon>
+                <v-icon size="47"> mdi-cancel </v-icon>
               </v-col>
             </v-row>
           </v-container>
@@ -58,7 +58,7 @@
           <v-container>
             <v-row>
               <v-col class="hidden-sm-and-down" md="2">
-                <v-icon size="64"> mdi-check-all </v-icon>
+                <v-icon size="47">mdi-check-all</v-icon>
               </v-col>
               <v-col cols="12" md="10">
                 We have recieved your order and its confirmed . Your order will departure from here shortly
@@ -78,7 +78,7 @@
           <v-container>
             <v-row>
               <v-col class="hidden-sm-and-down" md="2">
-                <v-icon size="64"> mdi-truck-delivery </v-icon>
+                <v-icon size="47"> mdi-truck-delivery </v-icon>
               </v-col>
               <v-col cols="12" md="10">
                 Your order is now in its way . Please wait or have some patience , your order will arrive soon.
@@ -98,7 +98,7 @@
           <v-container>
             <v-row>
               <v-col class="hidden-sm-and-down" md="2">
-                <v-icon size="64"> mdi-truck-check </v-icon>
+                <v-icon size="47"> mdi-truck-check </v-icon>
               </v-col>
               <v-col>
                 The order have been delivered to the location which was submitted just before the order was placed.
@@ -118,7 +118,7 @@
           <v-container>
             <v-row>
               <v-col class="hidden-sm-and-down" md="2">
-                <v-icon size="64"> mdi-check-underline-circle </v-icon>
+                <v-icon size="47"> mdi-check-underline-circle </v-icon>
               </v-col>
               <v-col>
                 You have confirmed that you have recieved the order you placed .
