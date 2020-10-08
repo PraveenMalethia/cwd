@@ -149,9 +149,9 @@ export default {
           to: '/track-order',
         },
         {
-          icon: 'mdi-phone',
-          title: 'Contact Us',
-          to: '/contact',
+          icon: 'mdi-chat',
+          title: 'Join Us',
+          to: '/join-us',
         },
         {
           icon: 'mdi-help',
