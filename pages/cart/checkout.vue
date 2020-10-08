@@ -34,74 +34,38 @@
               <v-toolbar-title>Checkout Form</v-toolbar-title>
             </v-toolbar>
             <v-card-text class="pa-7">
+              <small class="ml-10">( * ) indicates mandatory fields</small><br><br>
               <validation-observer ref="observer">
                 <form>
-                  <validation-provider
-                    v-slot="{ errors }"
-                    name="address"
-                    rules="required">
-                    <v-text-field
-                      outlined
-                      shaped
-                      v-model="shipping.address"
-                      prepend-icon="mdi-map-marker"
-                      :error-messages="errors"
-                      label="Address"
-                      required
-                    ></v-text-field>
+                  <validation-provider v-slot="{ errors }" name="address" rules="required">
+                    <v-textarea outlined shaped rows="1" auto-grow
+                      v-model="shipping.address" prepend-icon="mdi-map-marker"
+                      :error-messages="errors" label="Address*" required>
+                    </v-textarea>
                   </validation-provider>
-                  <validation-provider v-slot="{ errors }">
-                    <v-text-field
-                      outlined
-                      v-model="shipping.housenumber"
-                      prepend-icon="mdi-home"
-                      :error-messages="errors"
-                      label="House Number"
-                      required
-                    ></v-text-field>
+                  <validation-provider>
+                    <v-text-field outlined
+                      v-model="shipping.housenumber" prepend-icon="mdi-home"
+                      label="House Number (Optional)" required>
+                    </v-text-field>
                   </validation-provider>
-                  <validation-provider
-                    v-slot="{ errors }"
-                    name="Phone Number"
-                    rules="required"
-                  >
-                    <v-text-field
-                      type="text"
-                      outlined
-                      prepend-icon="mdi-phone"
-                      v-model="shipping.phonenumber"
-                      :counter="10"
-                      :error-messages="errors"
-                      label="Phone Number"
-                      required
-                    ></v-text-field>
+                  <validation-provider v-slot="{ errors }" name="Phone Number" rules="required">
+                    <v-text-field type="text" outlined
+                      prepend-icon="mdi-phone" v-model="shipping.phone" :counter="10"
+                      :error-messages="errors" label="Phone Number*" required>
+                    </v-text-field>
                   </validation-provider>
-                  <validation-provider
-                    v-slot="{ errors }"
-                    name="select"
-                    rules="required">
-                    <v-select
-                      outlined
-                      v-model="shipping.village"
-                      prepend-icon="mdi-city"
-                      :items="villages"
-                      :error-messages="errors"
-                      label="Select Village"
-                      data-vv-name="select"
-                      required
-                    ></v-select>
+                  <validation-provider v-slot="{ errors }" name="Village" rules="required">
+                    <v-select outlined v-model="shipping.village" prepend-icon="mdi-city" :items="villages"
+                      :error-messages="errors" label="Select Village*" data-vv-name="select" required>
+                    </v-select>
                   </validation-provider>
-                  <v-textarea
-                    label="Special Instructions"
-                    v-model="shipping.special_instruction"
-                    auto-grow
-                    outlined
-                    required
-                    rows="3"
-                    row-height="25"
-                    shaped
-                    prepend-icon="mdi-information"
-                  ></v-textarea>
+                  <validation-provider v-slot="{ errors }" name="Special Instructions" rules="required">
+                  <v-textarea :error-messages="errors" label="Special Instructions*"
+                    v-model="shipping.special_instructions"
+                    auto-grow outlined required rows="3" row-height="25" shaped
+                    prepend-icon="mdi-information"></v-textarea>
+                  </validation-provider>
                   <v-btn @click="clear" outlined> clear </v-btn>
                   <v-btn class="mr-4" @click="submit()" color="deep-purple darken-1"> Place Order</v-btn>
                 </form>
@@ -137,10 +101,10 @@ export default {
     shipping:{
       address: '',
       housenumber: '',
-      phonenumber: '',
+      phone: '',
       village: null,
       errors: null,
-      special_instruction:'',
+      special_instructions:'',
     },
     time_after_30_mins:'',
     last_added_item_date:'',
@@ -178,27 +142,39 @@ export default {
     getLastAddedProduct() {
       this.$axios
         .get('http://127.0.0.1:8000/store/cart')
-        .then((response) => {
+        .then((response) =>
+        {
           let total = response.data.length;
           this.last_added_item_date = response.data[total-1].humanized_date
-          })
+        })
     },
     submit() {
       this.$refs.observer.validate().then((response) => {
-        if (response == true) {
-          this.$toast.success('Order Placed')
-          this.clear()
-        } else {
-          this.$toast.error('Please fill the details correctly')
+        if (response == true)
+        {
+          this.$axios.post('http://127.0.0.1:8000/store/place-order',this.shipping)
+          .then((response) => {
+            if (response.status== 202){
+              this.$toast.success('Order Placed Successfully')
+              this.clear()
+            }
+            else{
+              this.$toast.error('Please fill the shipping details correctly.')
+            }
+          })
+        }
+        else
+        {
+          this.$toast.error('Please enter the required details.')
         }
       })
     },
     clear() {
       this.shipping.address = ''
       this.shipping.housenumber = ''
-      this.shipping.phonenumber = ''
+      this.shipping.phone = ''
       this.shipping.village = null
-      this.shipping.special_instruction = ''
+      this.shipping.special_instructions = ''
       this.$refs.observer.reset()
     },
     settingDeliveryTime(){
@@ -212,7 +188,7 @@ export default {
       }
       var ampm = hours >= 12 ? 'pm' : 'am';
       hours = hours % 12;
-      hours = hours ? hours : 12; // the hour '0' should be '12'
+      hours = hours ? hours : 12;
       minutes = minutes < 10 ? '0'+minutes : minutes;
       var strTime = hours + ':' + minutes+ ' ' + ampm;
       this.time_after_30_mins = strTime
@@ -229,5 +205,3 @@ export default {
   },
 }
 </script>
-<style>
-</style>
