@@ -148,7 +148,8 @@ export default {
           this.last_added_item_date = response.data[total-1].humanized_date
         })
     },
-    submit() {
+    submit()
+    {
       this.$refs.observer.validate().then((response) => {
         if (response == true)
         {
