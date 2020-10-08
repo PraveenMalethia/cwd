@@ -86,7 +86,7 @@
                 >
                 </v-carousel-item>
               </v-carousel>
-              <router-link class="router-link" :to="'/store/'+productproduct.slug">
+              <router-link class="router-link" :to="'/store/'+product.product.slug">
               <v-card-title>{{ product.product.name }}</v-card-title>
               <v-card-subtitle class="pb-0"
                 >Size - {{ product.product.size }}</v-card-subtitle
