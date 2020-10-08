@@ -2,9 +2,13 @@
   <v-footer dark padless>
     <v-card flat tile class="indigo lighten-1 white--text text-center">
       <v-card-text>
-        <v-btn v-for="icon in icons" :key="icon" class="mx-4 white--text" icon>
-          <v-icon size="24px">{{ icon }}</v-icon>
+        <span v-for="social in socials" :key="social.id">
+        <a :href="social.href" target="_blank">
+        <v-btn class="mx-4 white--text" icon>
+          <v-icon size="24px">{{ social.icon }}</v-icon>
         </v-btn>
+        </a>
+        </span>
       </v-card-text>
       <v-card-text
         class="white--text pt-0"
@@ -22,7 +26,28 @@
 export default {
   name: 'Footer',
   data: () => ({
-    icons: ['mdi-facebook', 'mdi-twitter', 'mdi-linkedin', 'mdi-instagram'],
+    socials: [
+      {
+        id:1,
+        icon: 'mdi-facebook',
+        href: 'https://facebook.com/parveen.kumar.malethia'
+      },
+      {
+        id:2,
+        icon: 'mdi-twitter',
+        href: 'https://twitter.com/PraveenMalethia?s=09'
+      },
+      {
+        id:3,
+        icon: 'mdi-linkedin',
+        href: 'https://linkedin.com/in/parveen-kumar-601060143'
+      },
+      {
+        id:4,
+        icon: 'mdi-instagram',
+        href: 'https://instagram.com/praveen.malethia'
+      },
+    ],
   }),
 }
 </script>
