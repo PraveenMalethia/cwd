@@ -211,6 +211,7 @@ export default {
               order_id: this.order_id,
             })
             .then((response) => {
+              console.log(response.data)
                 this.order_details = response.data
                 this.fetched = true
                 this.loading = false
@@ -218,8 +219,11 @@ export default {
             .catch((error) =>{
             if (error.response.status == 404)
             {
-              this.$router.push(name='error')
+              this.loading = false
+              this.$toast.error("Invalid Order ID")
+              this.$router.push({name:'error'})
             }
+            console.log(error.response)
             })
           this.clear()
           this.order = true
@@ -229,7 +233,8 @@ export default {
       })
     },
     clear() {
-      this.order = false
+      this.order_id = ''
+      this.fetched = false
       this.$refs.observer.reset()
     },
   },
