@@ -223,7 +223,6 @@ export default {
               this.$toast.error("Invalid Order ID")
               this.$router.push({name:'error'})
             }
-            console.log(error.response)
             })
           this.clear()
           this.order = true
