@@ -65,6 +65,17 @@
 <script>
 export default {
   auth: false,
+  validate({ params, query, store }) {
+    this.$axios.get('http://127.0.0.1:8000/store/' + this.$route.params.slug)
+    .then((response) => {
+      this.product = response.data
+      return true
+    })
+    .catch((response)=>{
+      this.$router.push('/store')
+      return false
+    })
+  },
   data() {
     return {
       show: false,
@@ -81,6 +92,10 @@ export default {
       .get('http://127.0.0.1:8000/store/' + this.$route.params.slug)
       .then((response) => {
         this.product = response.data
+      })
+      .catch((response)=>{
+        this.$router.push('/store')
+        this.$toast.error("Invalid Product URL")
       })
   },
   methods: {
