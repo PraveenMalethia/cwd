@@ -26,7 +26,7 @@
           </v-avatar>
         </div>
         <v-card-text class="mt-4 ml-4">
-          <h1>{{product.name}}</h1><br>
+          <h1>{{product.name|capitalize}}</h1><br>
           <p>{{product.category}}</p>
           <h1>$ {{product.price}}</h1>
           <p><br>
@@ -34,7 +34,10 @@
             <v-alert v-else dense outlined type="error"><strong>Out Of Stock</strong></v-alert>
           </p>
           <p><br>
-          <v-btn @click="AddtoCart(product.slug)" color="primary">Add to Bag
+          <v-btn v-if="product.in_stock" @click="AddtoCart(product.slug)" color="primary">Add to Bag
+            <v-icon right>mdi-cart</v-icon>
+          </v-btn>
+          <v-btn v-else disabled color="primary">Add to Bag
             <v-icon right>mdi-cart</v-icon>
           </v-btn>
           </p>
@@ -65,6 +68,13 @@
 <script>
 export default {
   auth: false,
+  filters: {
+  capitalize: function (value) {
+    if (!value) return ''
+    value = value.toString()
+    return value.charAt(0).toUpperCase() + value.slice(1)
+    }
+  },
   data() {
     return {
       show: false,

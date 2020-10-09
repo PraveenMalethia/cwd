@@ -34,7 +34,7 @@
               </v-expand-transition>
             </v-carousel>
             <router-link class="router-link" :to="'/store/'+product.slug">
-            <v-card-title>{{ product.name }}</v-card-title>
+            <v-card-title>{{ product.name|capitalize }}</v-card-title>
             <v-card-subtitle class="pb-0">Size - {{ product.size }}</v-card-subtitle>
             <v-card-text class="text--primary">
               <div>Category - {{ product.category }}</div>
@@ -57,6 +57,13 @@
 <script>
 export default {
   auth: false,
+  filters: {
+  capitalize: function (value) {
+    if (!value) return ''
+    value = value.toString()
+    return value.charAt(0).toUpperCase() + value.slice(1)
+    }
+  },
   data: () => ({
     query: '',
     products: [],

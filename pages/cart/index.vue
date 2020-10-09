@@ -87,7 +87,7 @@
                 </v-carousel-item>
               </v-carousel>
               <router-link class="router-link" :to="'/store/'+product.product.slug">
-              <v-card-title>{{ product.product.name }}</v-card-title>
+              <v-card-title>{{ product.product.name|capitalize }}</v-card-title>
               <v-card-subtitle class="pb-0"
                 >Size - {{ product.product.size }}</v-card-subtitle
               >
@@ -135,6 +135,13 @@
 
 <script>
 export default {
+  filters: {
+  capitalize: function (value) {
+    if (!value) return ''
+    value = value.toString()
+    return value.charAt(0).toUpperCase() + value.slice(1)
+    }
+  },
   data() {
     return {
       cart: {

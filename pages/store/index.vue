@@ -43,14 +43,18 @@
         </v-expand-transition>
             </v-carousel>
             <router-link class="router-link" :to="'/store/' + product.slug">
-              <v-card-title>{{ product.name }}</v-card-title>
+              <v-card-title>{{ product.name|capitalize }}</v-card-title>
               <v-card-subtitle class="pb-0">quantity - {{ product.size }}</v-card-subtitle>
               <v-card-text class="text--primary">
                 <p>From - {{product.brand}}</p>
               </v-card-text>
             </router-link>
             <v-card-actions>
-              <v-btn elevation="0" block @click="AddtoCart(product.slug)"
+              <v-btn v-if="product.in_stock" elevation="0" block @click="AddtoCart(product.slug)"
+                color="deep-purple darken-1">
+                <v-icon left dark>mdi-cart</v-icon>Add to cart
+              </v-btn>
+              <v-btn v-else elevation="0" disabled block
                 color="deep-purple darken-1">
                 <v-icon left dark>mdi-cart</v-icon>Add to cart
               </v-btn>
@@ -73,6 +77,13 @@ export default {
       products: [],
     }
   },
+  filters: {
+  capitalize: function (value) {
+    if (!value) return ''
+    value = value.toString()
+    return value.charAt(0).toUpperCase() + value.slice(1)
+  }
+},
   methods:{
     AddtoCart(slug) {
       if (this.$auth.loggedIn) {
