@@ -3,7 +3,7 @@
     <div>
       <v-layout>
         <v-flex xs12>
-          <br/>
+          <br />
           <v-card class="mx-auto" max-width="600" shaped hover>
             <v-toolbar color="deep-purple darken-2" dark flat shaped>
               <v-toolbar-title>Check Order Details</v-toolbar-title>
@@ -12,8 +12,7 @@
               <validation-observer ref="observer">
                 <form>
                   <validation-provider v-slot="{ errors }" name="Order ID" rules="required|max:17">
-                    <v-text-field v-model="order_id" :counter="17" :error-messages="errors" label="Order ID" 
-                    required>
+                    <v-text-field v-model="order_id" :counter="17" :error-messages="errors" label="Order ID" required>
                     </v-text-field>
                   </validation-provider>
                   <v-btn class="mr-4" @click="submit"> submit </v-btn>
@@ -25,14 +24,14 @@
         </v-flex>
       </v-layout>
     </div>
-    <div v-if="!loading">
-       <v-skeleton-loader
-          v-bind="attrs"
-          transition-group="slide-x-transition"
-          type="article, list-item-three-line">
-        </v-skeleton-loader>
+    <div v-if="loading">
+      <v-skeleton-loader
+        v-bind="attrs"
+        transition-group="slide-x-transition"
+        type="article, list-item-three-line">
+      </v-skeleton-loader>
     </div>
-    <div v-else>
+    <div v-if="fetched">
       <v-timeline :dense="$vuetify.breakpoint.smAndDown">
         <v-timeline-item color="purple lighten-2" fill-dot right>
           <v-card>
@@ -152,7 +151,8 @@
                   <v-icon size="47"> mdi-check-underline-circle </v-icon>
                 </v-col>
                 <v-col>
-                  You have confirmed that you have recieved the order you placed.
+                  You have confirmed that you have recieved the order you
+                  placed.
                 </v-col>
               </v-row>
             </v-container>
@@ -190,14 +190,15 @@ export default {
   },
   data: () => ({
     attrs: {
-        class: 'mb-6 mt-5',
-        boilerplate: true,
-        elevation: 2,
+      class: 'mb-6 mt-5',
+      boilerplate: true,
+      elevation: 2,
     },
     order_id: '',
-    loading:false,
+    fetched: false,
+    loading: false,
     errors: null,
-    order_details:{},
+    order_details: {},
   }),
 
   methods: {
@@ -205,17 +206,21 @@ export default {
       this.loading = true
       this.$refs.observer.validate().then((response) => {
         if (response == true) {
-          this.$toast.success('Fetching order data...');
-          this.$axios.post('http://127.0.0.1:8000/store/track-order',{order_id:this.order_id})
-          .then((response) => {
-            if (response.status == 200) {
-              this.loading = false
-              this.order_details = response.data
+          this.$axios
+            .post('http://127.0.0.1:8000/store/track-order', {
+              order_id: this.order_id,
+            })
+            .then((response) => {
+                this.order_details = response.data
+                this.fetched = true
+                this.loading = false
+            })
+            .catch((error) =>{
+            if (error.response.status == 404)
+            {
+              this.$router.push(name='error')
             }
-            if (response.status == 404) {
-              this.$router.push('error')
-            }
-          })
+            })
           this.clear()
           this.order = true
         } else {
