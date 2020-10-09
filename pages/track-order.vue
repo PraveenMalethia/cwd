@@ -15,8 +15,8 @@
                     <v-text-field v-model="order_id" :counter="17" :error-messages="errors" label="Order ID" required>
                     </v-text-field>
                   </validation-provider>
-                  <v-btn class="mr-4" @click="submit"> submit </v-btn>
-                  <v-btn @click="clear"> clear </v-btn>
+                  <v-btn class="mr-4" color="deep-purple darken-2" @click="submit"> submit </v-btn>
+                  <v-btn text @click="clear"> clear </v-btn>
                 </form>
               </validation-observer>
             </v-card-text>
@@ -33,7 +33,7 @@
     </div>
     <div v-if="fetched">
       <v-timeline :dense="$vuetify.breakpoint.smAndDown">
-        <v-timeline-item color="purple lighten-2" fill-dot right>
+        <v-timeline-item v-if="order_details.placed" color="purple lighten-2" fill-dot right>
           <v-card>
             <v-card-title class="purple lighten-2">
               <v-icon dark size="42" class="mr-4"> mdi-cart-check </v-icon>
@@ -54,7 +54,7 @@
             </v-container>
           </v-card>
         </v-timeline-item>
-        <v-timeline-item color="amber darken-3" fill-dot left>
+        <v-timeline-item v-if="order_details.canceled" color="amber darken-3" fill-dot left>
           <v-card>
             <v-card-title class="amber darken-3 justify-end">
               <h2 class="display-1 mr-4 white--text font-weight-light">
@@ -76,7 +76,7 @@
             </v-container>
           </v-card>
         </v-timeline-item>
-        <v-timeline-item color="cyan lighten-1" fill-dot right>
+        <v-timeline-item v-else-if="order_details.confirmed" color="cyan lighten-1" fill-dot left>
           <v-card>
             <v-card-title class="cyan lighten-1">
               <v-icon class="mr-4" dark size="42"> mdi-check </v-icon>
@@ -95,12 +95,12 @@
             </v-container>
           </v-card>
         </v-timeline-item>
-        <v-timeline-item color="red lighten-1" fill-dot left>
+        <v-timeline-item v-if="order_details.on_the_way" color="red lighten-1" fill-dot right>
           <v-card>
             <v-card-title class="red lighten-1 justify-end">
-              <h2 class="display-1 mr-4 white--text font-weight-light">
+                <h2 class="display-1 mr-4 white--text font-weight-light">
                 On the Way
-              </h2>
+                </h2>
               <v-icon dark size="42"> mdi-go-kart-track </v-icon>
             </v-card-title>
             <v-container>
@@ -116,7 +116,7 @@
             </v-container>
           </v-card>
         </v-timeline-item>
-        <v-timeline-item color="green lighten-1" fill-dot right>
+        <v-timeline-item v-if="order_details.delivered_from_us" color="green lighten-1" fill-dot left>
           <v-card>
             <v-card-title class="green">
               <v-icon class="mr-4" dark size="42"> mdi-check-circle </v-icon>
@@ -137,7 +137,7 @@
             </v-container>
           </v-card>
         </v-timeline-item>
-        <v-timeline-item color="deep-purple darken-2" fill-dot left>
+        <v-timeline-item v-if="order_details.delivered_to_user" color="deep-purple darken-2" fill-dot right>
           <v-card>
             <v-card-title class="deep-purple darken-2">
               <v-icon class="mr-4" dark size="42"> mdi-check-decagram </v-icon>
@@ -220,11 +220,11 @@ export default {
             if (error.response.status == 404)
             {
               this.loading = false
+              this.clear()
               this.$toast.error("Invalid Order ID")
               this.$router.push({name:'error'})
             }
             })
-          this.clear()
           this.order = true
         } else {
           this.$toast.error('Please fill the details correctly')
