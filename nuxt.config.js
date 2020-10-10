@@ -79,16 +79,16 @@ export default {
       local: {
         endpoints: {
           login: {
-            url: 'http://192.168.43.109/api/auth/login/',
+            url: 'http://192.168.43.109:8000/api/auth/login/',
             method: 'POST',
             propertyName: 'key'
           },
           logout: {
-            url: 'http://192.168.43.109/api/auth/logout/',
+            url: 'http://192.168.43.109:8000/api/auth/logout/',
             method: 'get'
           },
           user: {
-            url: 'http://192.168.43.109/api/auth/user/',
+            url: 'http://192.168.43.109:8000/api/auth/user/',
             method: 'get',
             propertyName: false
           }
@@ -143,7 +143,6 @@ export default {
   },
   generate:{
     dir:'../store/templates',
-    assetsDir: '../static'
   }
 }
 // module.exports = {

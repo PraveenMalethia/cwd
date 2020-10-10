@@ -18,10 +18,10 @@
             <v-carousel
               hide-delimiters cycle height="500"
               hide-delimiter-background show-arrows-on-hover>
-              <v-carousel-item :src="'http://192.168.43.109' + product.featured_image"></v-carousel-item>
-              <v-carousel-item :src="'http://192.168.43.109' + product.image1"></v-carousel-item>
-              <v-carousel-item :src="'http://192.168.43.109' + product.image2"></v-carousel-item>
-              <v-carousel-item :src="'http://192.168.43.109' + product.image3"></v-carousel-item>
+              <v-carousel-item :src="'http://192.168.43.109:8000' + product.featured_image"></v-carousel-item>
+              <v-carousel-item :src="'http://192.168.43.109:8000' + product.image1"></v-carousel-item>
+              <v-carousel-item :src="'http://192.168.43.109:8000' + product.image2"></v-carousel-item>
+              <v-carousel-item :src="'http://192.168.43.109:8000' + product.image3"></v-carousel-item>
             </v-carousel>
           </v-avatar>
         </div>
@@ -88,7 +88,7 @@ export default {
   },
   created() {
       this.$axios
-      .get('http://192.168.43.109/store/' + this.$route.params.slug)
+      .get('http://192.168.43.109:8000/store/' + this.$route.params.slug)
       .then((response) => {
         this.product = response.data
       })
@@ -102,7 +102,7 @@ export default {
       this.loading = true
       if (this.$auth.loggedIn) {
         this.$axios
-          .post('http://192.168.43.109/store/add-to-cart/' + slug + '/', {
+          .post('http://192.168.43.109:8000/store/add-to-cart/' + slug + '/', {
             slug: slug,
           })
           .then((response) => {

@@ -12,7 +12,7 @@
                     height="182"
                     width="182"
                     class="mt-1"
-                    :src="'http://192.168.43.109'+customer.profile_pic"
+                    :src="'http://192.168.43.109:8000'+customer.profile_pic"
                     :alt="$auth.user.username"
                   />
                 </div>
@@ -114,7 +114,7 @@ export default {
     loadCustomer(){
       if (this.$auth.loggedIn) {
       this.$axios
-        .get('http://192.168.43.109/api/auth/customer/')
+        .get('http://192.168.43.109:8000/api/auth/customer/')
         .then((response) => {
           this.customer = response.data
         })
@@ -130,7 +130,7 @@ export default {
       if(this.user.last_name == null){
         this.user.last_name = this.$auth.user.last_name
       }
-      this.$axios.put('http://192.168.43.109/api/auth/user/',this.user)
+      this.$axios.put('http://192.168.43.109:8000/api/auth/user/',this.user)
       .then((response) =>{
         this.$toast.success(`Profile of ${response.data.username} Updated`)
         this.$auth.fetchUser()
@@ -140,7 +140,7 @@ export default {
         this.user.last_name = null
       })
       if(this.UpdateCustomer.phone_number != null){
-        this.$axios.put('http://192.168.43.109/api/auth/customer/',this.UpdateCustomer)
+        this.$axios.put('http://192.168.43.109:8000/api/auth/customer/',this.UpdateCustomer)
         .then((response) =>{
           this.loadCustomer()
           this.UpdateCustomer.phone_number = null
