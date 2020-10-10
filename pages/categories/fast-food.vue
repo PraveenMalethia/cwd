@@ -42,8 +42,13 @@
             </v-card-text>
             </router-link>
             <v-card-actions>
-              <v-btn block elevation="0" @click="AddtoCart(product.slug)" color="deep-purple darken-1">
-                <v-icon left dark>mdi-plus</v-icon>Add to cart
+              <v-btn v-if="product.in_stock" elevation="0" block @click="AddtoCart(product.slug)"
+                color="deep-purple darken-1">
+                <v-icon left dark>mdi-cart</v-icon>Add to cart
+              </v-btn>
+              <v-btn v-else elevation="0" disabled block
+                color="deep-purple darken-1">
+                <v-icon left dark>mdi-cart</v-icon>out of stock
               </v-btn>
             </v-card-actions>
           </v-card>
