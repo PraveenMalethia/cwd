@@ -207,7 +207,7 @@ export default {
       this.$refs.observer.validate().then((response) => {
         if (response == true) {
           this.$axios
-            .post('http://127.0.0.1:8000/store/track-order', {
+            .post('http://192.168.43.109/store/track-order', {
               order_id: this.order_id,
             })
             .then((response) => {
