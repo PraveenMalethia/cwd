@@ -32,16 +32,16 @@
               delimiter-icon="mdi-minus" :show-arrows="false"
               hide-delimiter-background>
               <v-carousel-item
-                :src="'http://127.0.0.1:8000' + product.featured_image"
+                :src="'http://192.168.43.109' + product.featured_image"
               ></v-carousel-item>
               <v-carousel-item
-                :src="'http://127.0.0.1:8000' + product.image1"
+                :src="'http://192.168.43.109' + product.image1"
               ></v-carousel-item>
               <v-carousel-item
-                :src="'http://127.0.0.1:8000' + product.image2"
+                :src="'http://192.168.43.109' + product.image2"
               ></v-carousel-item>
               <v-carousel-item
-                :src="'http://127.0.0.1:8000' + product.image3"
+                :src="'http://192.168.43.109' + product.image3"
               ></v-carousel-item>
               <v-expand-transition>
           <div
@@ -109,7 +109,7 @@ export default {
     AddtoCart(slug) {
       if (this.$auth.loggedIn) {
         this.$axios
-          .post('http://127.0.0.1:8000/store/add-to-cart/' + slug + '/', {
+          .post('http://192.168.43.109/store/add-to-cart/' + slug + '/', {
             slug: slug,
           })
           .then((response) => {
@@ -123,7 +123,7 @@ export default {
   mounted(){
     document.title = 'CWD : Household'
     this.$axios
-      .get('http://127.0.0.1:8000/store/household')
+      .get('http://192.168.43.109/store/household')
       .then((response) => (this.products = response.data))
   },
   computed:{
