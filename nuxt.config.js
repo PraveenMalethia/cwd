@@ -140,5 +140,13 @@ export default {
     position: 'top-right',
     duration: 2000,
     keepOnHover: true
+  },
+  generate:{
+    dir:'../store/templates',
+    assetsDir: '../static'
   }
 }
+// module.exports = {
+//   outputDir: '../store/templates',
+//   assetsDir: '../static'
+// }
