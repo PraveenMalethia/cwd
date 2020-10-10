@@ -56,7 +56,7 @@
               </v-btn>
               <v-btn v-else elevation="0" disabled block
                 color="deep-purple darken-1">
-                <v-icon left dark>mdi-cart</v-icon>Add to cart
+                <v-icon left dark>mdi-cart</v-icon>out of stock
               </v-btn>
             </v-card-actions>
           </v-card>

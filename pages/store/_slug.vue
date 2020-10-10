@@ -37,7 +37,7 @@
           <v-btn v-if="product.in_stock" @click="AddtoCart(product.slug)" color="primary">Add to Bag
             <v-icon right>mdi-cart</v-icon>
           </v-btn>
-          <v-btn v-else disabled color="primary">Add to Bag
+          <v-btn v-else disabled color="primary">Out of stock
             <v-icon right>mdi-cart</v-icon>
           </v-btn>
           </p>
