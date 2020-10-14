@@ -138,7 +138,7 @@ export default {
   build: {},
   toast: {
     position: 'top-right',
-    duration: 2000,
+    duration: 3000,
     keepOnHover: true
   },
   // generate:{

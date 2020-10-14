@@ -11,47 +11,31 @@
                   <v-toolbar-title>Login form</v-toolbar-title>
                 </v-toolbar>
                 <v-card-text>
-                  <form>
-                    <v-text-field
-                      v-model="username"
-                      :error-messages="usernameErrors"
-                      label="Username"
-                      required
-                      outlined
-                      color="green"
-                      prepend-icon="mdi-account"
-                      @input="$v.username.$touch()"
-                      @blur="$v.username.$touch()"
-                    ></v-text-field>
-                    <v-text-field
-                      v-model="email"
-                      :error-messages="emailErrors"
-                      label="E-mail"
-                      required
-                      outlined
-                      color="green"
-                      prepend-icon="mdi-account"
-                      @input="$v.email.$touch()"
-                      @blur="$v.email.$touch()"
-                    ></v-text-field>
-                    <v-text-field
-                      v-model="password"
-                      :error-messages="passErrors"
-                      label="Password"
-                      required
-                      outlined
-                      :append-icon="show ? 'mdi-eye' : 'mdi-eye-off'"
-                      :type="show ? 'text' : 'password'"
-                      @click:append="show = !show"
-                      color="green"
-                      prepend-icon="mdi-lock"
-                      @input="$v.password.$touch()"
-                      @blur="$v.password.$touch()"
-                    ></v-text-field>
-                  </form>
+                  <validation-observer ref="observer">
+                    <form>
+                    <validation-provider v-slot="{ errors }" name="username" rules="required">
+                      <v-text-field v-model="username" label="Username" required
+                        outlined color="green" prepend-icon="mdi-account" :error-messages="errors"
+                      ></v-text-field>
+                      </validation-provider>
+                      <validation-provider v-slot="{ errors }" name="email" rules="required|email">
+                      <v-text-field v-model="email" label="E-mail" required outlined :error-messages="errors"
+                        color="green" prepend-icon="mdi-account"
+                      ></v-text-field>
+                      </validation-provider>
+                      <validation-provider v-slot="{ errors }" name="password" rules="required">
+                      <v-text-field v-model="password" label="Password" required outlined
+                        :append-icon="show ? 'mdi-eye' : 'mdi-eye-off'"
+                        :type="show ? 'text' : 'password'"
+                        @click:append="show = !show"
+                        color="green" prepend-icon="mdi-lock" :error-messages="errors"
+                      ></v-text-field>
+                      </validation-provider>
+                    </form>
+                  </validation-observer>
                 </v-card-text>
                 <v-card-actions>
-                    <SignUp/>
+                  <SignUp />
                   <v-spacer></v-spacer>
                   <v-btn @click="userLogin" class="mr-2" color="deep-purple darken-3">Login</v-btn>
                 </v-card-actions>
@@ -65,12 +49,24 @@
 </template>
 
 <script>
+import { required, email} from 'vee-validate/dist/rules'
+import {
+  extend,
+  ValidationObserver,
+  ValidationProvider,
+  setInteractionMode,} from 'vee-validate'
+setInteractionMode('eager')
+extend('required', {
+  ...required,
+  message: '{_field_} can not be empty',
+})
+extend('email', {
+    ...email,
+    message: 'Email must be valid',
+  })
 import SignUp from '~/components/SignUp.vue'
-import { validationMixin } from 'vuelidate'
-import { required, maxLength, minLength, email } from 'vuelidate/lib/validators'
 export default {
-  components: { SignUp },
-  mixins: [validationMixin],
+  components: { SignUp ,ValidationProvider, ValidationObserver},
 
   validations: {
     username: { required },
@@ -82,9 +78,13 @@ export default {
       show: false,
       loader: null,
       loading: false,
+      errors: null,
       username: '',
       email: '',
       password: '',
+      rules: {
+      required: (value) => !!value || 'Required.',
+    },
     }
   },
   watch: {
@@ -95,57 +95,36 @@ export default {
       this.loader = null
     },
   },
-  computed: {
-    usernameErrors() {
-      const errors = []
-      if (!this.$v.username.$dirty) return errors
-      !this.$v.username.required && errors.push('Username is required.')
-      this.null = false
-      return errors
-    },
-    passErrors() {
-      const errors = []
-      if (!this.$v.password.$dirty) return errors
-      !this.$v.password.required && errors.push('Password is required.')
-      this.null = false
-      return errors
-    },
-    emailErrors() {
-      const errors = []
-      if (!this.$v.email.$dirty) return errors
-      !this.$v.email.email && errors.push('Must be valid e-mail')
-      !this.$v.email.required && errors.push('E-mail is required')
-      return errors
-    },
-  },
-
   methods: {
-    async userLogin() {
-      try {
-        var login = {
-          username: this.username,
-          email: this.email,
-          password: this.password,
+    userLogin() {
+    this.$refs.observer.validate().then((response) => {
+        if (response == true)
+        {
+              var login = 
+              {
+                    username: this.username,
+                    email: this.email,
+                    password: this.password,
+              }
+              this.$auth.loginWith('local', { data: login })
+              .then((response) => {
+                this.$auth.setUserToken(response.data.key)
+                this.$toast.success('Successfully authenticated')
+                this.dialog = false
+              })
+              .catch(err => {
+                  if (err.response) {
+      // client received an error response (5xx, 4xx)
+    } else if (err.request) {
+      // client never received a response, or request never left
+    } else {
+      console.log('error')
+    }})
         }
-        let response = await this.$auth.loginWith('local', { data: login })
-        this.$auth.setUserToken(response.data.key)
-        this.$toast.success('Successfully authenticated')
-        this.dialog = false
-      } catch (err) {
-        this.$toast.error('Please use valid credentials')
-      }
-    },
-    submit() {
-      this.$toast.success('Successfully authenticated')
-    },
-    clear() {
-      this.$v.$reset()
-      this.name = ''
-      this.email = ''
-      this.select = null
+        })
     },
   },
-  created() {
+  mounted() {
     document.title = 'Login : CWD Account'
   }
 }
