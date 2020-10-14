@@ -1,25 +1,23 @@
 <template>
   <v-app dark>
     <br><br>
-    <h1 v-if="error.statusCode === 404">
+    <br><br>
+    <br><br>
+    <div v-if="error.statusCode === 404">
       <div class="d-flex justify-center">
-        <h2>
+        <h2 class="font-weight-bold">
           <glitch :text="pageNotFound" background="none"></glitch>
         </h2>
       </div>
-    </h1>
+    </div>
     <h1 v-else>
       <glitch :text="otherError" background="none"></glitch>
     </h1>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
+    <br><br>
     <div class="d-flex justify-center">
       <NuxtLink to="/">
       <v-btn outlined x-large rounded depressed>
-      <glitch text="Home page" background="none">
+      <glitch text="Get me out of here!" background="none">
       </glitch>
       </v-btn>
       </NuxtLink>
@@ -40,8 +38,8 @@ export default {
   },
   data () {
     return {
-      pageNotFound: '404 Not Found',
-      otherError: 'An error occurred'
+      pageNotFound: 'Whoops, 404',
+      otherError: 'An error occurred or The page you were looking for does not exist'
     }
   },
   head () {
