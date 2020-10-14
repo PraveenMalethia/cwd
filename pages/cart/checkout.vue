@@ -84,8 +84,7 @@ import {
   extend,
   ValidationObserver,
   ValidationProvider,
-  setInteractionMode,
-} from 'vee-validate'
+  setInteractionMode,} from 'vee-validate'
 setInteractionMode('eager')
 extend('required', {
   ...required,
@@ -96,7 +95,7 @@ extend('max', {
   message: '{_field_} may not be greater than {length} characters',
 })
 export default {
-  components: { ValidationProvider, ValidationObserver },
+  components: { ValidationProvider, ValidationObserver},
   data: () => ({
     shipping:{
       address: '',
@@ -137,7 +136,6 @@ export default {
       required: (value) => !!value || 'Required.',
     },
   }),
-
   methods: {
     getLastAddedProduct() {
       this.$axios
@@ -171,11 +169,8 @@ export default {
       })
     },
     clear() {
-      this.shipping.address = ''
-      this.shipping.housenumber = ''
-      this.shipping.phone = ''
+      this.shipping.address , this.shipping.housenumber, this.shipping.phone, this.shipping.special_instructions = ''
       this.shipping.village = null
-      this.shipping.special_instructions = ''
       this.$refs.observer.reset()
     },
     settingDeliveryTime(){

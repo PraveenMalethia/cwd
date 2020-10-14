@@ -97,7 +97,7 @@ export default {
       }
     },
   },
-  mounted(){
+  async mounted(){
     document.title = 'CWD : Store'
     this.$axios.get('http://192.168.43.109:8000/store/').then((response) => {
     this.products = response.data
