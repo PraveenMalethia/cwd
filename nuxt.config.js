@@ -141,11 +141,7 @@ export default {
     duration: 2000,
     keepOnHover: true
   },
-  generate:{
-    dir:'../store/templates',
-  }
+  // generate:{
+  //   dir:'../store/templates',
+  // }
 }
-// module.exports = {
-//   outputDir: '../store/templates',
-//   assetsDir: '../static'
-// }
