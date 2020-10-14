@@ -141,7 +141,4 @@ export default {
     duration: 2500,
     keepOnHover: true
   },
-  // generate:{
-  //   dir:'../store/templates',
-  // }
 }
