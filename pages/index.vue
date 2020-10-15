@@ -2,7 +2,7 @@
   <div>
     <HomeCarousel />
     <v-layout row wrap>
-      <v-flex v-for="card in cards" :key="card.id" xs12 sm6 md4 lg4 xl4 class="pt-10">
+      <v-flex v-for="card in cards" :key="card.id" xs12 sm6 md6 lg4 xl4 class="pt-10">
         <v-card shaped elevation="20" class="mx-auto" max-width="344" router to="/">
           <v-img src="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg" height="200px"></v-img>
           <v-card-title justify="center" >{{card.title}}</v-card-title>
@@ -12,7 +12,7 @@
     </v-layout>
     <v-layout row wrap>
       <v-flex class="pt-10">
-        <v-card class="mx-auto" color="#26c6da" dark max-width="400">
+        <v-card class="mx-auto" color="#26c6da" dark max-width="360">
           <v-card-title>
             <v-icon large left>mdi-reddit</v-icon>
             <span class="title font-weight-light">Reddit</span>

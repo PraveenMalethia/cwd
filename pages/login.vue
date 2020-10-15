@@ -15,21 +15,18 @@
                     <form>
                     <validation-provider v-slot="{ errors }" name="username" rules="required">
                       <v-text-field v-model="username" label="Username" required
-                        outlined color="green" prepend-icon="mdi-account" :error-messages="errors"
-                      ></v-text-field>
+                        outlined color="green" prepend-icon="mdi-account" :error-messages="errors"></v-text-field>
                       </validation-provider>
                       <validation-provider v-slot="{ errors }" name="email" rules="required|email">
                       <v-text-field v-model="email" label="E-mail" required outlined :error-messages="errors"
-                        color="green" prepend-icon="mdi-account"
-                      ></v-text-field>
+                        color="green" prepend-icon="mdi-account"></v-text-field>
                       </validation-provider>
                       <validation-provider v-slot="{ errors }" name="password" rules="required">
                       <v-text-field v-model="password" label="Password" required outlined
                         :append-icon="show ? 'mdi-eye' : 'mdi-eye-off'"
                         :type="show ? 'text' : 'password'"
                         @click:append="show = !show"
-                        color="green" prepend-icon="mdi-lock" :error-messages="errors"
-                      ></v-text-field>
+                        color="green" prepend-icon="mdi-lock" :error-messages="errors"></v-text-field>
                       </validation-provider>
                     </form>
                   </validation-observer>
@@ -37,7 +34,9 @@
                 <v-card-actions>
                   <SignUp />
                   <v-spacer></v-spacer>
-                  <v-btn @click="userLogin" class="mr-2" color="deep-purple darken-3">Login</v-btn>
+                  <v-btn @click="userLogin" class="mr-2" color="deep-purple darken-3">Login
+                    <v-icon right>mdi-login</v-icon>
+                  </v-btn>
                 </v-card-actions>
               </v-card>
             </v-col>
