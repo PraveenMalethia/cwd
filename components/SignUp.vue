@@ -5,7 +5,7 @@
         class="ma-2"
         :loading="loading"
         :disabled="loading"
-        color="green"
+        text
         v-bind="attrs"
         v-on="on"
         @click="loader = 'loading'"
@@ -78,19 +78,12 @@
         </v-container>
       </v-card-text>
       <v-card-actions>
-        <v-btn
-          class="mr-4 ml-4 mb-4"
-          color="blue darken-1"
-          text
-          @click="dialog = false"
-        >
+        <v-btn class="mr-4 ml-4 mb-4" text
+          @click="dialog = false">
           <v-icon left dark>mdi-chevron-left</v-icon>Close
         </v-btn>
         <v-spacer></v-spacer>
-        <v-btn class="mr-4 mb-4"
-          color="primary darken-1"
-          @click="CreateAccount()">Create
-          <v-icon right dark>mdi-plus</v-icon>
+        <v-btn class="mr-4 mb-4" @click="CreateAccount()">Create<v-icon right dark>mdi-plus</v-icon>
         </v-btn>
       </v-card-actions>
     </v-card>
