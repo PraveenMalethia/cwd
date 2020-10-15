@@ -6,7 +6,7 @@
           <v-row>
             <v-col>
               <v-progress-circular
-                class="ml-7 mt-5 mb-5 justify-center" :size="200" :value="100" color="green">
+                class="ml-7 mt-5 mb-5 mr-5 justify-center" :size="200" :value="100" color="green">
                 <div v-if="customer.profile_pic">
                   <img
                     height="182"
