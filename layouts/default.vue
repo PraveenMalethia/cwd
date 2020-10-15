@@ -55,8 +55,11 @@
         class="hidden-sm-and-down" prepend-inner-icon="mdi-magnify">
       </v-text-field>
       <v-spacer></v-spacer>
-      <v-btn text router to="/login" class="hidden-md-and-up">Login
+      <v-btn v-if="!$auth.loggedIn" text router to="/login" class="hidden-md-and-up">Login
         <v-icon>mdi-login</v-icon>
+      </v-btn>
+      <v-btn v-if="$auth.loggedIn" icon router to="/profile" class="hidden-md-and-up">
+        <v-icon>mdi-account</v-icon>
       </v-btn>
       <v-toolbar-items class="hidden-sm-and-down">
         <Community/>
