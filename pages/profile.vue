@@ -2,68 +2,82 @@
   <v-container>
     <v-layout row wrap>
       <v-flex class="pa-1" xs12 sm12 md6>
-        <v-card>
-          <v-row>
-            <v-col>
-              <v-progress-circular
-                class="ml-7 mt-5 mb-5 mr-5 justify-center" :size="200" :value="100" color="green">
-                <div v-if="customer.profile_pic">
-                  <img
-                    height="182"
-                    width="182"
-                    class="mt-1"
-                    :src="'https://cwdstore.pythonanywhere.com'+customer.profile_pic"
-                    :alt="$auth.user.username"
-                  />
-                </div>
-                <div v-else>
-                  <ProfilePicUpload />
-                </div>
-              </v-progress-circular>
-              <v-divider></v-divider><br>
-              <v-row align="center" justify="center">
-                <v-btn large outlined icon @click="edit = !edit">
-                <v-icon large>mdi-account-edit</v-icon>
+        <v-card class="mx-auto" dark max-width="450">
+          <v-card-title>
+            <v-icon large left> mdi-account </v-icon>
+            <span class="title font-weight-light">Account</span>
+            <v-spacer></v-spacer>
+            <v-btn text @click="edit = !edit">Edit
+                  <v-icon right>mdi-account-edit</v-icon>
                 </v-btn>
-              </v-row>
-            </v-col>
-            <v-col>
-              <v-row align="center" justify="center" wrap>
-              <div v-if="!edit">
-                <h3 class="ml-5 mt-2">Your Profile</h3>
-                <div class="grey--text text-darken-1 mt-10 ml-5">
-                  <h2>Username : {{ $auth.user.username }}</h2>
-                  <h4 class="mt-5">
-                    Name : {{ $auth.user.first_name }}
-                    {{ $auth.user.last_name }}
-                  </h4>
-                  <h4 class="mt-5">Email : {{ $auth.user.email }}</h4>
-                  <h4 class="mt-5">Contact : {{ customer.phone_number }}</h4>
-                </div>
+          </v-card-title>
+          <v-card-text class="headline">
+            <div v-if="!edit">
+              <div class="mt-2 ml-5">
+                <h5><v-icon left>mdi-account-circle</v-icon>Username : {{ $auth.user.username }}</h5>
+                <h5 class="mt-5"><v-icon left>mdi-account-box</v-icon>Name : {{ $auth.user.first_name }}{{ $auth.user.last_name }}</h5>
+                <h5 class="mt-5"><v-icon left>mdi-gmail</v-icon>Email : {{ $auth.user.email }}</h5>
+                <h5 class="mt-5"><v-icon left>mdi-phone</v-icon>Contact : {{ customer.phone_number }}</h5>
               </div>
-              <div v-else>
-                <h3 class="ml-5 mt-2">Edit Profile</h3>
-                <div class="grey--text text-darken-1 mt-10 ml-5 mr-3">
-                  <v-text-field v-model="user.username" prepend-icon="mdi-account-circle" label="Username" :placeholder="this.$auth.user.username"></v-text-field>
-                  <v-text-field v-model="user.first_name" prepend-icon="mdi-account" label="First Name" :placeholder="this.$auth.user.first_name"></v-text-field>
-                  <v-text-field v-model="user.last_name" prepend-icon="mdi-account" label="Last Name" :placeholder="this.$auth.user.last_name"></v-text-field>
-                  <v-text-field v-model="UpdateCustomer.phone_number" prepend-icon="mdi-phone" label="Contact" :placeholder="customer.phone_number"></v-text-field>
-                  <v-btn color="deep-purple darken-1" @click="UpdateUser()">Update
-                    <v-icon right>mdi-update</v-icon>
-                  </v-btn>
-                </div>
+            </div>
+            <div v-else>
+              <h3 class="ml-5 mt-2">Edit Profile</h3>
+              <div class="grey--text text-darken-1 mt-10 ml-5 mr-3">
+                <v-text-field
+                  v-model="user.username"
+                  prepend-icon="mdi-account-circle"
+                  label="Username"
+                  :placeholder="this.$auth.user.username"
+                ></v-text-field>
+                <v-text-field
+                  v-model="user.first_name"
+                  prepend-icon="mdi-account"
+                  label="First Name"
+                  :placeholder="this.$auth.user.first_name"
+                ></v-text-field>
+                <v-text-field
+                  v-model="user.last_name"
+                  prepend-icon="mdi-account"
+                  label="Last Name"
+                  :placeholder="this.$auth.user.last_name"
+                ></v-text-field>
+                <v-text-field
+                  v-model="UpdateCustomer.phone_number"
+                  prepend-icon="mdi-phone"
+                  label="Contact"
+                  :placeholder="customer.phone_number"
+                ></v-text-field>
+                <v-btn color="deep-purple darken-1" @click="UpdateUser()"
+                  >Update
+                  <v-icon right>mdi-update</v-icon>
+                </v-btn>
               </div>
-              </v-row>
-            </v-col>
-          </v-row>
+            </div>
+          </v-card-text>
           <v-card-actions>
+            <v-list-item class="grow">
+              <v-list-item-content>
+                <v-spacer></v-spacer>
+                <v-list-item-title v-if="customer.profile_pic">Change Profile Pic</v-list-item-title>
+                <v-list-item-title v-else>Upload Profile Pic</v-list-item-title>
+              </v-list-item-content>
+              <v-row align="center" justify="end">
+                <ProfilePicUpload />
+              </v-row>
+            </v-list-item>
           </v-card-actions>
         </v-card>
       </v-flex>
       <v-flex class="pa-1" xs12 sm12 md6>
         <v-card>
           <v-toolbar color="deep-purple darken-1" dark flat prominent>
-            <v-text-field class="mx-4" flat label="Search by Order ID" v-model="query" solo-inverted>
+            <v-text-field
+              class="mx-4"
+              flat
+              label="Search by Order ID"
+              v-model="query"
+              solo-inverted
+            >
             </v-text-field>
           </v-toolbar>
           <v-tabs v-model="tab" background-color="deep-purple darken-3" dark>
@@ -91,8 +105,8 @@ export default {
   data: () => ({
     dialog: false,
     customer: {},
-    UpdateCustomer:{
-      phone_number:null
+    UpdateCustomer: {
+      phone_number: null,
     },
     tab: null,
     user: {
@@ -113,42 +127,47 @@ export default {
     ],
   }),
   methods: {
-    loadCustomer(){
+    loadCustomer() {
       if (this.$auth.loggedIn) {
-      this.$axios
-        .get('https://cwdstore.pythonanywhere.com/api/auth/customer/')
-        .then((response) => {
-          this.customer = response.data
-        })
+        this.$axios
+          .get('https://cwdstore.pythonanywhere.com/api/auth/customer/')
+          .then((response) => {
+            this.customer = response.data
+          })
       }
     },
-    UpdateUser(){
-      if (this.user.username == null){
+    UpdateUser() {
+      if (this.user.username == null) {
         this.user.username = this.$auth.user.username
       }
-      if(this.user.first_name == null){
+      if (this.user.first_name == null) {
         this.user.first_name = this.$auth.user.first_name
       }
-      if(this.user.last_name == null){
+      if (this.user.last_name == null) {
         this.user.last_name = this.$auth.user.last_name
       }
-      this.$axios.put('https://cwdstore.pythonanywhere.com/api/auth/user/',this.user)
-      .then((response) =>{
-        this.$toast.success(`Profile of ${response.data.username} Updated`)
-        this.$auth.fetchUser()
-        this.edit = false
-        this.user.username = null
-        this.user.first_name = null
-        this.user.last_name = null
-      })
-      if(this.UpdateCustomer.phone_number != null){
-        this.$axios.put('https://cwdstore.pythonanywhere.com/api/auth/customer/',this.UpdateCustomer)
-        .then((response) =>{
-          this.loadCustomer()
-          this.UpdateCustomer.phone_number = null
+      this.$axios
+        .put('https://cwdstore.pythonanywhere.com/api/auth/user/', this.user)
+        .then((response) => {
+          this.$toast.success(`Profile of ${response.data.username} Updated`)
+          this.$auth.fetchUser()
+          this.edit = false
+          this.user.username = null
+          this.user.first_name = null
+          this.user.last_name = null
         })
+      if (this.UpdateCustomer.phone_number != null) {
+        this.$axios
+          .put(
+            'https://cwdstore.pythonanywhere.com/api/auth/customer/',
+            this.UpdateCustomer
+          )
+          .then((response) => {
+            this.loadCustomer()
+            this.UpdateCustomer.phone_number = null
+          })
       }
-    }
+    },
   },
   mounted: function () {
     document.title = 'CWD : Profile'
