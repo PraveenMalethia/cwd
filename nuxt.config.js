@@ -98,7 +98,7 @@ export default {
         globalToken: true,
         autoFetchUser: true
       }
-    }
+    } 
   },
   /*
    ** Axios module configuration
