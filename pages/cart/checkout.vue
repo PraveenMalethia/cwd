@@ -11,10 +11,7 @@
               <div class="font-weight-bold ml-8 mb-2">Today</div>
               <v-timeline align-top dense>        
                 <v-timeline-item
-                  v-for="message in messages"
-                  :key="message.time"
-                  :color="message.color"
-                  small>
+                  v-for="message in messages" :key="message.time" :color="message.color" small>
                   <div>
                     <div class="font-weight-normal">
                       <strong>{{ message.from }}</strong>
@@ -55,9 +52,9 @@
                       :error-messages="errors" label="Phone Number*" required>
                     </v-text-field>
                   </validation-provider>
-                  <validation-provider v-slot="{ errors }" name="Village" rules="required">
+                  <validation-provider v-slot="{ errors }" name="Village Or City" rules="required">
                     <v-select outlined v-model="shipping.village" prepend-icon="mdi-city" :items="villages"
-                      :error-messages="errors" label="Select Village*" data-vv-name="select" required>
+                      :error-messages="errors" label="Select City Or Village*" data-vv-name="select" required>
                     </v-select>
                   </validation-provider>
                   <validation-provider v-slot="{ errors }" name="Special Instructions" rules="required">
