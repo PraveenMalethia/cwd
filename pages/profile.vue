@@ -28,6 +28,7 @@
               </v-row>
             </v-col>
             <v-col>
+              <v-row align="center" justify="center" wrap>
               <div v-if="!edit">
                 <h3 class="ml-5 mt-2">Your Profile</h3>
                 <div class="grey--text text-darken-1 mt-10 ml-5">
@@ -52,6 +53,7 @@
                   </v-btn>
                 </div>
               </div>
+              </v-row>
             </v-col>
           </v-row>
           <v-card-actions>

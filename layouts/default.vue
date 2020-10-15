@@ -195,7 +195,7 @@ export default {
   mounted() {
     if (this.$auth.loggedIn) {
       this.$axios
-        .get('http://0.0.0:8000/api/auth/customer/')
+        .get('https://cwdstore.pythonanywhere.com/api/auth/customer/')
         .then((response) => {
           this.customer = response.data
         })
