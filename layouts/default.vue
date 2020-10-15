@@ -99,12 +99,12 @@ export default {
   data() {
     return {
       fab: null,
-    color: "",
-    flat: null,
+      color: "",
+      flat: null,
       loader: null,
       loading4: false,
       clipped: false,
-      drawer: true,
+      drawer: false,
       fixed: true,
       miniVariant: false,
       customer: {},
