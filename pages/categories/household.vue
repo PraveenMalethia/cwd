@@ -106,7 +106,7 @@ export default {
     AddtoCart(slug) {
       if (this.$auth.loggedIn) {
         this.$axios
-          .post('http://192.168.43.109:8000/store/add-to-cart/' + slug + '/', {
+          .post('https://5868a103abcd.ngrok.io/store/add-to-cart/' + slug + '/', {
             slug: slug,
           })
           .then((response) => {
@@ -120,7 +120,7 @@ export default {
   mounted(){
     document.title = 'CWD : Household'
     this.$axios
-      .get('http://192.168.43.109:8000/store/household')
+      .get('https://5868a103abcd.ngrok.io/store/household')
       .then((response) => (this.products = response.data))
   },
   computed:{
