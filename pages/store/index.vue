@@ -29,10 +29,10 @@
           <v-hover v-slot:default="{ hover }">
             <v-card class="max-auto pa-1 mb-2 mr-2" max-width="390">
             <v-carousel hide-delimiters cycle height="260" :show-arrows="false" delimiter-icon="mdi-minus">
-              <v-carousel-item :src="'http://192.168.43.109:8000' + product.featured_image"></v-carousel-item>
-              <v-carousel-item :src="'http://192.168.43.109:8000' + product.image1"></v-carousel-item>
-              <v-carousel-item :src="'http://192.168.43.109:8000' + product.image2"></v-carousel-item>
-              <v-carousel-item :src="'http://192.168.43.109:8000' + product.image3"></v-carousel-item>
+              <v-carousel-item :src="'https://5868a103abcd.ngrok.io' + product.featured_image"></v-carousel-item>
+              <v-carousel-item :src="'https://5868a103abcd.ngrok.io' + product.image1"></v-carousel-item>
+              <v-carousel-item :src="'https://5868a103abcd.ngrok.io' + product.image2"></v-carousel-item>
+              <v-carousel-item :src="'https://5868a103abcd.ngrok.io' + product.image3"></v-carousel-item>
              <v-expand-transition>
           <div
             v-if="hover"
@@ -88,7 +88,7 @@ export default {
     AddtoCart(slug) {
       if (this.$auth.loggedIn) {
         this.$axios
-          .post('http://192.168.43.109:8000/store/add-to-cart/' + slug + '/', {slug: slug,})
+          .post('https://5868a103abcd.ngrok.io/store/add-to-cart/' + slug + '/', {slug: slug,})
           .then((response) => {
             this.$toast.success(response.data.detail)
           })
@@ -99,7 +99,7 @@ export default {
   },
   async mounted(){
     document.title = 'CWD : Store'
-    this.$axios.get('http://192.168.43.109:8000/store/').then((response) => {
+    this.$axios.get('https://5868a103abcd.ngrok.io/store/').then((response) => {
     this.products = response.data
     this.loading = false
     })
