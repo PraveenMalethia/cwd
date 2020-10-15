@@ -23,13 +23,13 @@
           <v-card class="max-auto pa-1 mb-2 mr-2" max-width="390">
             <v-carousel delimiter-icon="mdi-minus" :show-arrows="false"
               hide-delimiters cycle height="260" hide-delimiter-background>
-              <v-carousel-item :src="'https://5868a103abcd.ngrok.io' + product.featured_image"></v-carousel-item>
-              <v-carousel-item :src="'https://5868a103abcd.ngrok.io' + product.image1"></v-carousel-item>
-              <v-carousel-item :src="'https://5868a103abcd.ngrok.io' + product.image2"></v-carousel-item>
-              <v-carousel-item :src="'https://5868a103abcd.ngrok.io' + product.image3"></v-carousel-item>
+              <v-carousel-item :src="'http://cwdstore.pythonanywhere.com' + product.featured_image"></v-carousel-item>
+              <v-carousel-item :src="'http://cwdstore.pythonanywhere.com' + product.image1"></v-carousel-item>
+              <v-carousel-item :src="'http://cwdstore.pythonanywhere.com' + product.image2"></v-carousel-item>
+              <v-carousel-item :src="'http://cwdstore.pythonanywhere.com' + product.image3"></v-carousel-item>
               <v-expand-transition>
               <div v-if="hover"
-                class="d-flex transition-fast-in-fast-out black darken-2 v-card--reveal display-3 white--text"
+                class="d-flex transition-fast-in-http://cwdstore.pythonanywhere.com v-card--reveal display-3 white--text"
                 style="height: 100%;"> ${{product.price}} </div>
               </v-expand-transition>
             </v-carousel>
@@ -94,7 +94,7 @@ export default {
     AddtoCart(slug) {
       if (this.$auth.loggedIn) {
         this.$axios
-          .post('https://5868a103abcd.ngrok.io/store/add-to-cart/' + slug + '/', {
+          .post('http://cwdstore.pythonanywhere.com/store/add-to-cart/' + slug + '/', {
             slug: slug,
           })
           .then((response) => {
@@ -108,7 +108,7 @@ export default {
   mounted() {
     document.title = 'CWD : Food & Bevarages'
     this.$axios
-      .get('https://5868a103abcd.ngrok.io/store/fast-food')
+      .get('http://cwdstore.pythonanywhere.com/store/fast-food')
       .then((response) => (this.products = response.data))
   },
   computed: {

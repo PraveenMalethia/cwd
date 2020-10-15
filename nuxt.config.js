@@ -79,16 +79,16 @@ export default {
       local: {
         endpoints: {
           login: {
-            url: 'https://5868a103abcd.ngrok.io/api/auth/login/',
+            url: 'http://cwdstore.pythonanywhere.com/api/auth/login/',
             method: 'POST',
             propertyName: 'key'
           },
           logout: {
-            url: 'https://5868a103abcd.ngrok.io/api/auth/logout/',
+            url: 'http://cwdstore.pythonanywhere.com/api/auth/logout/',
             method: 'get'
           },
           user: {
-            url: 'https://5868a103abcd.ngrok.io/api/auth/user/',
+            url: 'http://cwdstore.pythonanywhere.com/api/auth/user/',
             method: 'get',
             propertyName: false
           }

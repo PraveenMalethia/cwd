@@ -45,7 +45,7 @@ export default {
         /*
           Make the request to the POST /multiple-files URL
         */
-        this.$axios.post('http://127.0.0.1:8000/api/auth/customer/uplad-profile-pic/',
+        this.$axios.post('http://cwdstore.pythonanywhere.com/api/auth/customer/uplad-profile-pic/',
           formData,
           {
             headers: {

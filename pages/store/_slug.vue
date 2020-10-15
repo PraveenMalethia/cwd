@@ -88,7 +88,7 @@ export default {
   },
   created() {
       this.$axios
-      .get('https://5868a103abcd.ngrok.io/store/' + this.$route.params.slug)
+      .get('http://cwdstore.pythonanywhere.com/' + this.$route.params.slug)
       .then((response) => {
         this.product = response.data
       })
@@ -102,7 +102,7 @@ export default {
       this.loading = true
       if (this.$auth.loggedIn) {
         this.$axios
-          .post('https://5868a103abcd.ngrok.io/store/add-to-cart/' + slug + '/', {
+          .post('http://cwdstore.pythonanywhere.com/store/add-to-cart/' + slug + '/', {
             slug: slug,
           })
           .then((response) => {

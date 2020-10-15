@@ -81,7 +81,7 @@
               >
                 <v-carousel-item
                   :src="
-                    'https://5868a103abcd.ngrok.io' + product.product.featured_image
+                    'http://cwdstore.pythonanywhere.com' + product.product.featured_image
                   "
                 >
                 </v-carousel-item>
@@ -159,12 +159,12 @@ export default {
     getCartTotalItems() {
       if (this.$auth.loggedIn) {
         this.$axios
-          .get('https://5868a103abcd.ngrok.io/store/cart-total-items')
+          .get('http://cwdstore.pythonanywhere.com/store/cart-total-items')
           .then((response) => {
             this.cart.items = response.data
           })
         this.$axios
-          .get('https://5868a103abcd.ngrok.io/store/cart-total')
+          .get('http://cwdstore.pythonanywhere.com/store/cart-total')
           .then((response) => {
             this.cart.total = response.data
           })
@@ -176,13 +176,13 @@ export default {
     },
     getProducts() {
       this.$axios
-        .get('https://5868a103abcd.ngrok.io/store/cart')
+        .get('http://cwdstore.pythonanywhere.com/store/cart')
         .then((response) => (this.products = response.data))
     },
     IncreaseQuantity(slug) {
       if (this.$auth.loggedIn) {
         this.$axios
-          .post('https://5868a103abcd.ngrok.io/store/add-to-cart/' + slug + '/', {
+          .post('http://cwdstore.pythonanywhere.com/store/add-to-cart/' + slug + '/', {
             slug: slug,
           })
           .then((response) => {
@@ -195,7 +195,7 @@ export default {
     },
     DecreaseQuantity(slug) {
       this.$axios
-        .post('https://5868a103abcd.ngrok.io/store/remove-cart/' + slug + '/')
+        .post('http://cwdstore.pythonanywhere.com/store/remove-cart/' + slug + '/')
         .then((response) => {
           this.$toast.success(response.data.detail)
           this.getProducts()
@@ -205,7 +205,7 @@ export default {
   },
   mounted() {
     document.title = 'CWD : Cart'
-    this.$axios.get('https://5868a103abcd.ngrok.io/store/cart').then((response) => {
+    this.$axios.get('http://cwdstore.pythonanywhere.com/store/cart').then((response) => {
       this.products = response.data
       this.loading = false
     })

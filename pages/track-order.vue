@@ -207,7 +207,7 @@ export default {
       this.$refs.observer.validate().then((response) => {
         if (response == true) {
           this.$axios
-            .post('https://5868a103abcd.ngrok.io/store/track-order', {
+            .post('http://cwdstore.pythonanywhere.com/store/track-order', {
               order_id: this.order_id,
             })
             .then((response) => {

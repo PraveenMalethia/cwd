@@ -139,7 +139,7 @@ export default {
   methods: {
     getLastAddedProduct() {
       this.$axios
-        .get('https://5868a103abcd.ngrok.io/store/cart')
+        .get('http://cwdstore.pythonanywhere.com/store/cart')
         .then((response) =>
         {
           let total = response.data.length;
@@ -151,7 +151,7 @@ export default {
       this.$refs.observer.validate().then((response) => {
         if (response == true)
         {
-          this.$axios.post('https://5868a103abcd.ngrok.io/store/place-order',this.shipping)
+          this.$axios.post('http://cwdstore.pythonanywhere.com/store/place-order',this.shipping)
           .then((response) => {
             if (response.status== 202){
               this.$toast.success('Order Placed Successfully')
