@@ -79,16 +79,16 @@ export default {
       local: {
         endpoints: {
           login: {
-            url: 'http://192.168.43.109:8000/api/auth/login/',
+            url: 'https://5868a103abcd.ngrok.io/api/auth/login/',
             method: 'POST',
             propertyName: 'key'
           },
           logout: {
-            url: 'http://192.168.43.109:8000/api/auth/logout/',
+            url: 'https://5868a103abcd.ngrok.io/api/auth/logout/',
             method: 'get'
           },
           user: {
-            url: 'http://192.168.43.109:8000/api/auth/user/',
+            url: 'https://5868a103abcd.ngrok.io/api/auth/user/',
             method: 'get',
             propertyName: false
           }

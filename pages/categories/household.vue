@@ -31,10 +31,10 @@
               hide-delimiters cycle height="260"
               delimiter-icon="mdi-minus" :show-arrows="false"
               hide-delimiter-background>
-              <v-carousel-item :src="'http://192.168.43.109:8000' + product.featured_image"></v-carousel-item>
-              <v-carousel-item :src="'http://192.168.43.109:8000' + product.image1"></v-carousel-item>
-              <v-carousel-item :src="'http://192.168.43.109:8000' + product.image2"></v-carousel-item>
-              <v-carousel-item :src="'http://192.168.43.109:8000' + product.image3"></v-carousel-item>
+              <v-carousel-item :src="'https://5868a103abcd.ngrok.io' + product.featured_image"></v-carousel-item>
+              <v-carousel-item :src="'https://5868a103abcd.ngrok.io' + product.image1"></v-carousel-item>
+              <v-carousel-item :src="'https://5868a103abcd.ngrok.io' + product.image2"></v-carousel-item>
+              <v-carousel-item :src="'https://5868a103abcd.ngrok.io' + product.image3"></v-carousel-item>
               <v-expand-transition>
           <div
             v-if="hover"

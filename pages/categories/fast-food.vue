@@ -23,10 +23,10 @@
           <v-card class="max-auto pa-1 mb-2 mr-2" max-width="390">
             <v-carousel delimiter-icon="mdi-minus" :show-arrows="false"
               hide-delimiters cycle height="260" hide-delimiter-background>
-              <v-carousel-item :src="'http://192.168.43.109:8000' + product.featured_image"></v-carousel-item>
-              <v-carousel-item :src="'http://192.168.43.109:8000' + product.image1"></v-carousel-item>
-              <v-carousel-item :src="'http://192.168.43.109:8000' + product.image2"></v-carousel-item>
-              <v-carousel-item :src="'http://192.168.43.109:8000' + product.image3"></v-carousel-item>
+              <v-carousel-item :src="'https://5868a103abcd.ngrok.io' + product.featured_image"></v-carousel-item>
+              <v-carousel-item :src="'https://5868a103abcd.ngrok.io' + product.image1"></v-carousel-item>
+              <v-carousel-item :src="'https://5868a103abcd.ngrok.io' + product.image2"></v-carousel-item>
+              <v-carousel-item :src="'https://5868a103abcd.ngrok.io' + product.image3"></v-carousel-item>
               <v-expand-transition>
               <div v-if="hover"
                 class="d-flex transition-fast-in-fast-out black darken-2 v-card--reveal display-3 white--text"
@@ -94,7 +94,7 @@ export default {
     AddtoCart(slug) {
       if (this.$auth.loggedIn) {
         this.$axios
-          .post('http://192.168.43.109:8000/store/add-to-cart/' + slug + '/', {
+          .post('https://5868a103abcd.ngrok.io/store/add-to-cart/' + slug + '/', {
             slug: slug,
           })
           .then((response) => {
@@ -108,7 +108,7 @@ export default {
   mounted() {
     document.title = 'CWD : Food & Bevarages'
     this.$axios
-      .get('http://192.168.43.109:8000/store/fast-food')
+      .get('https://5868a103abcd.ngrok.io/store/fast-food')
       .then((response) => (this.products = response.data))
   },
   computed: {
