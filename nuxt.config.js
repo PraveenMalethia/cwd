@@ -79,16 +79,16 @@ export default {
       local: {
         endpoints: {
           login: {
-            url: 'http://cwdstore.pythonanywhere.com/api/auth/login/',
+            url: 'https://cwdstore.pythonanywhere.com/api/auth/login/',
             method: 'POST',
             propertyName: 'key'
           },
           logout: {
-            url: 'http://cwdstore.pythonanywhere.com/api/auth/logout/',
+            url: 'https://cwdstore.pythonanywhere.com/api/auth/logout/',
             method: 'get'
           },
           user: {
-            url: 'http://cwdstore.pythonanywhere.com/api/auth/user/',
+            url: 'https://cwdstore.pythonanywhere.com/api/auth/user/',
             method: 'get',
             propertyName: false
           }

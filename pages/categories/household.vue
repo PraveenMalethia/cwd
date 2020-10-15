@@ -31,10 +31,10 @@
               hide-delimiters cycle height="260"
               delimiter-icon="mdi-minus" :show-arrows="false"
               hide-delimiter-background>
-              <v-carousel-item :src="'http://cwdstore.pythonanywhere.com' + product.featured_image"></v-carousel-item>
-              <v-carousel-item :src="'http://cwdstore.pythonanywhere.com' + product.image1"></v-carousel-item>
-              <v-carousel-item :src="'http://cwdstore.pythonanywhere.com' + product.image2"></v-carousel-item>
-              <v-carousel-item :src="'http://cwdstore.pythonanywhere.com' + product.image3"></v-carousel-item>
+              <v-carousel-item :src="'https://cwdstore.pythonanywhere.com' + product.featured_image"></v-carousel-item>
+              <v-carousel-item :src="'https://cwdstore.pythonanywhere.com' + product.image1"></v-carousel-item>
+              <v-carousel-item :src="'https://cwdstore.pythonanywhere.com' + product.image2"></v-carousel-item>
+              <v-carousel-item :src="'https://cwdstore.pythonanywhere.com' + product.image3"></v-carousel-item>
               <v-expand-transition>
           <div
             v-if="hover"
@@ -106,7 +106,7 @@ export default {
     AddtoCart(slug) {
       if (this.$auth.loggedIn) {
         this.$axios
-          .post('http://cwdstore.pythonanywhere.com/store/add-to-cart/' + slug + '/', {
+          .post('https://cwdstore.pythonanywhere.com/store/add-to-cart/' + slug + '/', {
             slug: slug,
           })
           .then((response) => {
@@ -120,7 +120,7 @@ export default {
   mounted(){
     document.title = 'CWD : Household'
     this.$axios
-      .get('http://cwdstore.pythonanywhere.com/store/household')
+      .get('https://cwdstore.pythonanywhere.com/store/household')
       .then((response) => (this.products = response.data))
   },
   computed:{

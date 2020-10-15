@@ -120,7 +120,7 @@ export default {
   },
   methods: {
     CreateAccount(){
-      this.$axios.post('http://cwdstore.pythonanywhere.com/api/auth/registration/',this.user)
+      this.$axios.post('https://cwdstore.pythonanywhere.com/api/auth/registration/',this.user)
       .then((response) =>{
         console.log(response.data)
       })

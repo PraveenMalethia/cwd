@@ -18,10 +18,10 @@
             <v-carousel
               hide-delimiters cycle height="500"
               hide-delimiter-background show-arrows-on-hover>
-              <v-carousel-item :src="'https://5868a103abcd.ngrok.io' + product.featured_image"></v-carousel-item>
-              <v-carousel-item :src="'https://5868a103abcd.ngrok.io' + product.image1"></v-carousel-item>
-              <v-carousel-item :src="'https://5868a103abcd.ngrok.io' + product.image2"></v-carousel-item>
-              <v-carousel-item :src="'https://5868a103abcd.ngrok.io' + product.image3"></v-carousel-item>
+              <v-carousel-item :src="'https://cwdstore.pythonanywhere.com' + product.featured_image"></v-carousel-item>
+              <v-carousel-item :src="'https://cwdstore.pythonanywhere.com' + product.image1"></v-carousel-item>
+              <v-carousel-item :src="'https://cwdstore.pythonanywhere.com' + product.image2"></v-carousel-item>
+              <v-carousel-item :src="'https://cwdstore.pythonanywhere.com' + product.image3"></v-carousel-item>
             </v-carousel>
           </v-avatar>
         </div>
@@ -88,7 +88,7 @@ export default {
   },
   created() {
       this.$axios
-      .get('http://cwdstore.pythonanywhere.com/' + this.$route.params.slug)
+      .get('https://cwdstore.pythonanywhere.com/' + this.$route.params.slug)
       .then((response) => {
         this.product = response.data
       })
@@ -102,7 +102,7 @@ export default {
       this.loading = true
       if (this.$auth.loggedIn) {
         this.$axios
-          .post('http://cwdstore.pythonanywhere.com/store/add-to-cart/' + slug + '/', {
+          .post('https://cwdstore.pythonanywhere.com/store/add-to-cart/' + slug + '/', {
             slug: slug,
           })
           .then((response) => {
