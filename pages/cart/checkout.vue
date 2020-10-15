@@ -131,6 +131,7 @@ export default {
       'Nihal Khera',
       'Danger Kheda',
       'Killian wali',
+      'Bathinda'
     ],
     rules: {
       required: (value) => !!value || 'Required.',

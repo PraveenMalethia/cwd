@@ -69,29 +69,30 @@
         </v-card>
       </v-flex>
       <v-flex class="pa-1" xs12 sm12 md6>
-        <v-card>
-          <v-toolbar color="deep-purple darken-1" dark flat prominent>
-            <v-text-field
-              class="mx-4"
-              flat
-              label="Search by Order ID"
-              v-model="query"
-              solo-inverted
-            >
-            </v-text-field>
+        <v-card class="mx-auto" max-width="500">
+          <v-toolbar color="green darken-1" dark>
+            <v-app-bar-nav-icon></v-app-bar-nav-icon>
+            <v-toolbar-title>Order History</v-toolbar-title>
+            <v-spacer></v-spacer>
+            <v-btn icon>
+              <v-icon>mdi-dots-vertical</v-icon>
+            </v-btn>
           </v-toolbar>
-          <v-tabs v-model="tab" background-color="deep-purple darken-3" dark>
-            <v-tab v-for="order in filteredOrders" :key="order.order_id">
-              Order Id: {{ order.order_id }}
-            </v-tab>
-          </v-tabs>
-          <v-tabs-items v-model="tab">
-            <v-tab-item v-for="order in filteredOrders" :key="order.order_id">
-              <v-card flat>
-                <v-card-text>{{ order.content }}</v-card-text>
-              </v-card>
-            </v-tab-item>
-          </v-tabs-items>
+          <v-list>
+            <v-list-group v-for="item in orders" :key="item.id" v-model="item.completed"
+              prepend-icon="mdi-calendar-text" no-action>
+              <template v-slot:activator>
+                <v-list-item-content>
+                  <v-list-item-title v-text="'Order Number: '+item.id"></v-list-item-title>
+                </v-list-item-content>
+              </template>
+              <v-list-item v-for="item in order_items" :key="item.id">
+                <v-list-item-content>
+                  <v-list-item-title v-text="item"></v-list-item-title>
+                </v-list-item-content>
+              </v-list-item>
+            </v-list-group>
+          </v-list>
         </v-card>
       </v-flex>
     </v-layout>
@@ -116,15 +117,8 @@ export default {
     },
     query: '',
     edit: false,
-    orders: [
-      { order_id: '1', content: 'Order number 1 Content' },
-      { order_id: '2', content: 'Order number 2 Content' },
-      { order_id: '3', content: 'Order number 3 Content' },
-      { order_id: '4', content: 'Order number 4 Content' },
-      { order_id: '5', content: 'Order number 4 Content' },
-      { order_id: '6', content: 'Order number 4 Content' },
-      { order_id: '7', content: 'Order number 4 Content' },
-    ],
+    orders:[],
+    order_items:[],
   }),
   methods: {
     loadCustomer() {
@@ -135,6 +129,13 @@ export default {
             this.customer = response.data
           })
       }
+    },
+    UserOrders(){
+      this.$axios.get('https://cwdstore.pythonanywhere.com/api/auth/customer/orders')
+      .then((response) => {
+        console.log(response.data)
+        this.orders= response.data
+      })
     },
     UpdateUser() {
       if (this.user.username == null) {
@@ -172,13 +173,7 @@ export default {
   mounted: function () {
     document.title = 'CWD : Profile'
     this.loadCustomer()
-  },
-  computed: {
-    filteredOrders: function () {
-      return this.orders.filter((order) => {
-        return order.order_id.toLowerCase().match(this.query)
-      })
-    },
+    this.UserOrders()
   },
   created() {
     document.title = 'CWD : Profile'
