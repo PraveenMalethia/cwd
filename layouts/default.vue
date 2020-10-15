@@ -55,7 +55,7 @@
         class="hidden-sm-and-down" prepend-inner-icon="mdi-magnify">
       </v-text-field>
       <v-spacer></v-spacer>
-      <v-btn icon router to="/login" class="hidden-md-and-up">
+      <v-btn text router to="/login" class="hidden-md-and-up">Login
         <v-icon>mdi-login</v-icon>
       </v-btn>
       <v-toolbar-items class="hidden-sm-and-down">
@@ -64,7 +64,7 @@
         <v-btn v-if="$auth.loggedIn" @click="logout" text>Logout</v-btn>
         <v-btn v-else text router to="/login">Login</v-btn>
         <v-divider inset vertical></v-divider>
-        <v-btn text router to="/cart">Cart</v-btn>
+        <v-btn text router icon to="/cart"><v-icon>mdi-cart</v-icon></v-btn>
       </v-toolbar-items>
     </v-app-bar>
     <v-main>
