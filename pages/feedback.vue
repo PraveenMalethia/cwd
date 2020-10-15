@@ -1,7 +1,9 @@
 <template>
-  <v-card class="mx-auto" max-width="500">
+  <v-card shaped class="mx-auto" max-width="500">
+    <v-toolbar color="deep-purple darken-2" dark flat shaped>
+      <v-toolbar-title>Feedback Or Report Bug</v-toolbar-title>
+    </v-toolbar>
     <v-card-text>
-      <p class="display-1 text--primary">Report Bug Or Feeback</p>
       <validation-observer ref="observer">
     <form>
       <validation-provider v-slot="{ errors }" name="Subject" rules="required|max:50">
