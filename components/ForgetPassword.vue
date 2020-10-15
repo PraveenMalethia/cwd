@@ -8,10 +8,9 @@
         text
         v-bind="attrs"
         v-on="on"
-        @click="loader = 'loading'"
-      >
-        Create
-        <v-icon right dark>mdi-account</v-icon> ?
+        @click="loader = 'loading'">
+        Forget Password
+        <v-icon right dark>mdi-lock-reset</v-icon>
         <template v-slot:loader>
           <span class="custom-loader">
             <v-icon light>mdi-loading</v-icon>
@@ -21,21 +20,12 @@
     </template>
     <v-card>
       <v-toolbar color="deep-purple darken-2" dark flat>
-        <v-toolbar-title>Create Account form</v-toolbar-title>
+        <v-toolbar-title>Account Password Reset Form</v-toolbar-title>
       </v-toolbar>
       <v-card-text>
         <v-container>
           <v-row>
-            <v-col cols="12" sm="6" md="6">
-              <v-text-field
-                prepend-icon="mdi-account-circle"
-                outlined
-                v-model="user.username"
-                color="green"
-                label="Username*"
-              ></v-text-field>
-            </v-col>
-            <v-col cols="12" sm="6" md="6">
+            <v-col cols="12">
               <v-text-field
                 prepend-icon="mdi-email"
                 outlined
@@ -43,34 +33,6 @@
                 color="green"
                 type="email"
                 label="Email*"
-                required
-              ></v-text-field>
-            </v-col>
-            <v-col cols="12" sm="6" md="6">
-              <v-text-field
-                prepend-icon="mdi-lock"
-                outlined
-                v-model="user.password1"
-                color="green"
-                label="Password*"
-                :rules="[rules.required, rules.min]"
-                :append-icon="showpassword ? 'mdi-eye' : 'mdi-eye-off'"
-                :type="showpassword ? 'text' : 'password'"
-                @click:append="showpassword = !showpassword"
-                required
-              ></v-text-field>
-            </v-col>
-            <v-col cols="12" sm="6" md="6">
-              <v-text-field
-                prepend-icon="mdi-lock"
-                outlined
-                v-model="user.password2"
-                color="green"
-                label="Confirm Password*"
-                :rules="[rules.required, rules.min]"
-                :append-icon="showpassword ? 'mdi-eye' : 'mdi-eye-off'"
-                :type="showpassword ? 'text' : 'password'"
-                @click:append="showpassword = !showpassword"
                 required
               ></v-text-field>
             </v-col>
@@ -83,7 +45,7 @@
           <v-icon left dark>mdi-chevron-left</v-icon>Close
         </v-btn>
         <v-spacer></v-spacer>
-        <v-btn class="mr-4 mb-4" color="green darken-1" @click="CreateAccount()">Create<v-icon right dark>mdi-plus</v-icon>
+        <v-btn class="mr-4 mb-4" color="green darken-1" @click="CreateAccount()">Reset<v-icon right dark>mdi-lock-reset</v-icon>
         </v-btn>
       </v-card-actions>
     </v-card>
@@ -92,7 +54,7 @@
 
 <script>
 export default {
-  name: 'Login',
+  name: 'ForgetPassword',
   data() {
     return {
       user:{

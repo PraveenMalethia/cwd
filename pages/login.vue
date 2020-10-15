@@ -30,6 +30,7 @@
                       </validation-provider>
                     </form>
                   </validation-observer>
+                  <ForgetPassword/>
                 </v-card-text>
                 <v-card-actions>
                   <SignUp />
@@ -60,8 +61,9 @@ extend('email', {
     message: 'Email must be valid',
   })
 import SignUp from '~/components/SignUp.vue'
+import ForgetPassword from '~/components/ForgetPassword.vue'
 export default {
-  components: { SignUp ,ValidationProvider, ValidationObserver},
+  components: { SignUp ,ValidationProvider, ValidationObserver , ForgetPassword},
 
   validations: {
     username: { required },
