@@ -88,11 +88,12 @@ export default {
   },
   created() {
       this.$axios
-      .get('https://cwdstore.pythonanywhere.com/' + this.$route.params.slug)
+      .get('https://cwdstore.pythonanywhere.com/store/' + this.$route.params.slug)
       .then((response) => {
         this.product = response.data
       })
       .catch((response)=>{
+        console.log(response.message)
         this.$router.push('/store')
         this.$toast.error("Invalid Product URL")
       })
