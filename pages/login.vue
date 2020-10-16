@@ -44,6 +44,15 @@
         </v-container>
       </div>
     </div>
+    <div v-else>
+       <v-container class="fill-height" fluid>
+          <v-row align="center" justify="center">
+            <v-col cols="12">
+              <v-btn outlined router to="/store">Cool , Let's Dive in !</v-btn>
+            </v-col>
+          </v-row>
+       </v-container>
+    </div>
   </div>
 </template>
 
