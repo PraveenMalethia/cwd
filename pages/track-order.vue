@@ -15,11 +15,14 @@
                     <v-text-field v-model="order_id" :counter="17" :error-messages="errors" label="Order ID" required>
                     </v-text-field>
                   </validation-provider>
-                  <v-btn class="mr-4" color="deep-purple darken-2" @click="submit"> submit </v-btn>
-                  <v-btn text @click="clear"> clear </v-btn>
                 </form>
               </validation-observer>
             </v-card-text>
+            <v-card-actions>
+              <v-spacer></v-spacer>
+              <v-btn class="mr-4 mb-4" text @click="clear"> clear </v-btn>
+              <v-btn class="mr-10 mb-4" color="deep-purple darken-2" @click="submit"> submit </v-btn>
+            </v-card-actions>
           </v-card>
         </v-flex>
       </v-layout>

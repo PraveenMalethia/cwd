@@ -27,30 +27,23 @@
                   v-model="user.username"
                   prepend-icon="mdi-account-circle"
                   label="Username"
-                  :placeholder="this.$auth.user.username"
-                ></v-text-field>
+                  :placeholder="this.$auth.user.username"></v-text-field>
                 <v-text-field
                   v-model="user.first_name"
                   prepend-icon="mdi-account"
                   label="First Name"
-                  :placeholder="this.$auth.user.first_name"
-                ></v-text-field>
+                  :placeholder="this.$auth.user.first_name"></v-text-field>
                 <v-text-field
                   v-model="user.last_name"
                   prepend-icon="mdi-account"
                   label="Last Name"
-                  :placeholder="this.$auth.user.last_name"
-                ></v-text-field>
+                  :placeholder="this.$auth.user.last_name"></v-text-field>
                 <v-text-field
                   v-model="UpdateCustomer.phone_number"
                   prepend-icon="mdi-phone"
                   label="Contact"
-                  :placeholder="customer.phone_number"
-                ></v-text-field>
-                <v-btn color="deep-purple darken-1" @click="UpdateUser()"
-                  >Update
-                  <v-icon right>mdi-update</v-icon>
-                </v-btn>
+                  :placeholder="customer.phone_number"></v-text-field>
+                <v-btn color="deep-purple darken-1" @click="UpdateUser()">Update<v-icon right>mdi-update</v-icon></v-btn>
               </div>
             </div>
           </v-card-text>
@@ -71,12 +64,8 @@
       <v-flex class="pa-1" xs12 sm12 md6>
         <v-card class="mx-auto" max-width="500">
           <v-toolbar color="green darken-1" dark>
-            <v-app-bar-nav-icon></v-app-bar-nav-icon>
             <v-toolbar-title>Order History</v-toolbar-title>
             <v-spacer></v-spacer>
-            <v-btn icon>
-              <v-icon>mdi-dots-vertical</v-icon>
-            </v-btn>
           </v-toolbar>
           <v-list>
             <v-list-group v-for="item in orders" :key="item.id" v-model="item.completed"
@@ -84,13 +73,27 @@
               <template v-slot:activator>
                 <v-list-item-content>
                   <v-list-item-title v-text="'Order Number: '+item.id"></v-list-item-title>
+
                 </v-list-item-content>
               </template>
-              <v-list-item v-for="item in order_items" :key="item.id">
+              <v-list-item>
+                <v-list-item-content>
+                    <v-alert border="left" color="indigo" dark>
+                      Transaction Id : {{item.transaction_id}}<br>
+                      Order Placed : {{item.placed}}<br>
+                      Canceled : {{item.canceled}}<br>
+                      Confirmed : {{item.confirmed}}<br>
+                      On The Way : {{item.on_the_way}}<br>
+                      Delivered from us : {{item.delivered_from_us}}<br>
+                      Delivered to User : {{item.delivered_to_user}}
+                    </v-alert>
+                </v-list-item-content>
+              </v-list-item>
+              <!-- <v-list-item v-for="item in order_items" :key="item.id">
                 <v-list-item-content>
                   <v-list-item-title v-text="item"></v-list-item-title>
                 </v-list-item-content>
-              </v-list-item>
+              </v-list-item> -->
             </v-list-group>
           </v-list>
         </v-card>
