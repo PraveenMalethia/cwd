@@ -63,11 +63,14 @@
                     auto-grow outlined required rows="3" row-height="25" shaped
                     prepend-icon="mdi-information"></v-textarea>
                   </validation-provider>
-                  <v-btn @click="clear" outlined> clear </v-btn>
-                  <v-btn class="mr-4" @click="submit()" color="deep-purple darken-1"> Place Order</v-btn>
                 </form>
               </validation-observer>
             </v-card-text>
+            <v-card-actions>
+              <v-spacer></v-spacer>
+              <v-btn class="mr-4 mb-4" @click="clear" text> clear </v-btn>
+              <v-btn class="mr-10 mb-4" @click="submit()" color="deep-purple darken-1"> Place Order</v-btn>
+            </v-card-actions>
           </v-card>
         </v-flex>
       </v-layout>
