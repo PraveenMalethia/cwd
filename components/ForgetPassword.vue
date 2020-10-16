@@ -1,5 +1,5 @@
 <template v-slot:progress>
-  <v-dialog v-model="dialog" persistent max-width="600px">
+  <v-dialog v-model="dialog" persistent max-width="700px">
     <template v-slot:activator="{ on, attrs }">
       <v-btn
         class="ma-2"
@@ -24,28 +24,30 @@
       </v-toolbar>
       <v-card-text>
         <v-container>
+          <div class="mt-5 ml-9 font-weight-bold">
+              Forgotten your password? Enter your e-mail address below, and we'll e-mail instructions for setting a new one.
+          </div>
           <v-row>
             <v-col cols="12">
-              <v-text-field
-                prepend-icon="mdi-email"
-                outlined
-                v-model="user.email"
-                color="green"
-                type="email"
-                label="Email*"
-                required
-              ></v-text-field>
+              <v-text-field prepend-icon="mdi-email" outlined
+                v-model="user.email" color="green" type="email" label="Email*" required></v-text-field>
+                <div class="ml-9 font-weight-bold">
+                    if you don't receive an email, first, check your spam folder. If that doesnt work, 
+                    it may be because you never confirmed your email address, tsk tsk. Send us an email (from the address you registered with), to 
+                    <a href="mailto:developerbuilds@gmail.com"> devloperbuilds@gmail.com</a> ,
+                    including your username and we will try and locate it for you.
+                </div>
             </v-col>
           </v-row>
         </v-container>
       </v-card-text>
       <v-card-actions>
+        <v-spacer></v-spacer>
         <v-btn class="mr-4 ml-4 mb-4" text
           @click="dialog = false">
           <v-icon left dark>mdi-chevron-left</v-icon>Close
         </v-btn>
-        <v-spacer></v-spacer>
-        <v-btn class="mr-4 mb-4" color="green darken-1" @click="CreateAccount()">Reset<v-icon right dark>mdi-lock-reset</v-icon>
+        <v-btn class="mr-4 mb-4" color="green darken-2" @click="CreateAccount()">Reset my password<v-icon right dark>mdi-lock-reset</v-icon>
         </v-btn>
       </v-card-actions>
     </v-card>

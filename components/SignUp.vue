@@ -78,12 +78,12 @@
         </v-container>
       </v-card-text>
       <v-card-actions>
+        <v-spacer></v-spacer>
         <v-btn class="mr-4 ml-4 mb-4" text
           @click="dialog = false">
           <v-icon left dark>mdi-chevron-left</v-icon>Close
         </v-btn>
-        <v-spacer></v-spacer>
-        <v-btn class="mr-4 mb-4" color="green darken-1" @click="CreateAccount()">Create<v-icon right dark>mdi-plus</v-icon>
+        <v-btn class="mr-4 mb-4" color="green darken-2" @click="CreateAccount()">Create<v-icon right dark>mdi-plus</v-icon>
         </v-btn>
       </v-card-actions>
     </v-card>
