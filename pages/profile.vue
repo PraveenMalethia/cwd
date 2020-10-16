@@ -66,48 +66,52 @@
               <v-icon>mdi-account-circle</v-icon>
             </v-list-item-action>
             <v-list-item-content>
-              <v-text-field
-                  v-model="user.username"
-                  label="Username"
+              <v-text-field v-model="user.username" filled label="Username"
                   :placeholder="this.$auth.user.username"></v-text-field>
             </v-list-item-content>
           </v-list-item>
-          <v-divider inset></v-divider>
           <v-list-item>
             <v-list-item-action>
               <v-icon>mdi-account-circle</v-icon>
             </v-list-item-action>
             <v-list-item-content>
-              <v-text-field
-                  v-model="user.first_name"
-                  label="First Name"
+              <v-text-field v-model="user.first_name" filled label="First Name"
                   :placeholder="this.$auth.user.first_name"></v-text-field>
             </v-list-item-content>
           </v-list-item>
-          <v-divider inset></v-divider>
           <v-list-item>
             <v-list-item-action>
               <v-icon>mdi-account-circle</v-icon>
             </v-list-item-action>
             <v-list-item-content>
-              <v-text-field
-                  v-model="user.last_name"
-                  label="Last Name"
+              <v-text-field v-model="user.last_name" filled label="Last Name"
                   :placeholder="this.$auth.user.last_name"></v-text-field>
             </v-list-item-content>
           </v-list-item>
-          <v-divider inset></v-divider>
           <v-list-item>
             <v-list-item-action>
               <v-icon>mdi-phone</v-icon>
             </v-list-item-action>
             <v-list-item-content>
-              <v-text-field v-model="UpdateCustomer.phone_number" label="Contact"
+              <v-text-field filled v-model="UpdateCustomer.phone_number" label="Contact"
                   :placeholder="customer.phone_number"></v-text-field>
             </v-list-item-content>
           </v-list-item>
+          <v-list-item>
+            <v-list-item-action>
+              <v-icon>mdi-image</v-icon>
+            </v-list-item-action>
+            <v-list-item-content>
+              Upload Profile Image : 
+            </v-list-item-content>
+            <v-list-item-action>
+              <ProfilePicUpload/>
+            </v-list-item-action>
+          </v-list-item>
         </v-list>
+        <div v-if="!edit">
         <v-img :src="'https://cwdstore.pythonanywhere.com' + customer.profile_pic" height="100%"></v-img>
+        </div>
       </v-card>
       </v-flex>
       <v-flex class="pa-1" xs12 sm6 md6>
