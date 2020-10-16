@@ -129,7 +129,7 @@ export default {
       .get('https://cwdstore.pythonanywhere.com/store/' + this.$route.params.slug)
       .then((response) => {
         this.product = response.data
-        //this.loaded = true
+        this.loaded = true
       })
       .catch((response)=>{
         console.log(response.message)
