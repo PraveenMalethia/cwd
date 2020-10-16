@@ -1,6 +1,6 @@
 <template>
   <v-card class="mx-auto" max-width="500" tile>
-    <v-list shaped>
+    <v-list rounded>
       <v-subheader>CATEGORIES</v-subheader>
       <v-list-item-group color="primary">
         <v-list-item v-for="(item, i) in items" :key="i" :to="item.to" router>
