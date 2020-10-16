@@ -21,7 +21,7 @@
               <v-carousel-item :src="'https://cwdstore.pythonanywhere.com' + product.image3"></v-carousel-item>
             </v-carousel>
             <v-card>
-              <v-card-text class="mt-4 ml-4">
+              <v-card-text class="mt-4 ml-1">
           <h1>{{product.name|capitalize}}</h1><br>
           <p>{{product.category}}</p>
           <h1>$ {{product.price}}</h1>
