@@ -21,8 +21,8 @@ export default {
    ** See https://nuxtjs.org/api/configuration-head
    */
   head: {
-    titleTemplate: '%s : ' + "Home",
-    title: "CWD" || '',
+    titleTemplate: '%s : ' + "Welcome",
+    title: "NearByStore" || '',
     meta: [{
         charset: 'utf-8'
       },
