@@ -47,10 +47,10 @@ export default {
     transparent: 'rgba(255, 255, 255, 0)',
   }),
   created() {
-    document.title = 'CWD : Contact Us'
+    document.title = 'NearbyStore : Contact Us'
   },
   mounted() {
-    document.title = 'CWD : Contact Us'
+    document.title = 'NearbyStore : Contact Us'
   },
 }
 </script>

@@ -32,10 +32,10 @@
       ],
     }),
     created(){
-      document.title = 'CWD : Categories'
+      document.title = 'NearByStore : Categories'
     },
     mounted(){
-      document.title = 'CWD : Categories'
+      document.title = 'NearByStore : Categories'
     }
   }
 </script>

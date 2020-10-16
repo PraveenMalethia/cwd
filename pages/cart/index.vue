@@ -204,7 +204,7 @@ export default {
     },
   },
   mounted() {
-    document.title = 'CWD : Cart'
+    document.title = 'NearbyStore : Cart'
     this.$axios.get('https://cwdstore.pythonanywhere.com/store/cart').then((response) => {
       this.products = response.data
       this.loading = false
@@ -219,7 +219,7 @@ export default {
     },
   },
   created() {
-    document.title = 'CWD : Cart'
+    document.title = 'NearbyStore : Cart'
   },
 }
 </script>

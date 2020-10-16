@@ -241,10 +241,10 @@ export default {
     },
   },
   created() {
-    document.title = 'CWD : Tracker'
+    document.title = 'NearbyStore: Tracker'
   },
   mounted() {
-    document.title = 'CWD : Tracker'
+    document.title = 'NearbyStore: Tracker'
   },
 }
 </script>

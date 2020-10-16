@@ -65,10 +65,10 @@ export default {
       },
     },
   created(){
-    document.title = 'CWD : Feedback'
+    document.title = 'NearbyStore : Feedback'
   },
   mounted() {
-    document.title = 'CWD : Feedback'
+    document.title = 'NearbyStore : Feedback'
   }
 }
 </script>

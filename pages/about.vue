@@ -16,10 +16,10 @@
 export default {
   auth: false,
   created() {
-    document.title = 'CWD : About Us'
+    document.title = 'NearbyStore : About Us'
   },
   mounted() {
-    document.title = 'CWD : About Us'
+    document.title = 'NearbyStore : About Us'
   }
 }
 </script>

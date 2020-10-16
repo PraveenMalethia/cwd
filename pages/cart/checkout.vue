@@ -192,13 +192,13 @@ export default {
     }
   },
   mounted() {
-    document.title = 'CWD : Checkout'
+    document.title = 'NearbyStore : Checkout'
     this.settingDeliveryTime()
     this.messages[2].time = "at "+ this.time_after_30_mins
   },
   created() {
     this.getLastAddedProduct()
-    document.title = 'CWD : Checkout'
+    document.title = 'NearbyStore : Checkout'
   },
 }
 </script>

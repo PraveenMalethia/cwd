@@ -103,7 +103,7 @@ export default {
     },
   },
   mounted() {
-    document.title = 'CWD : Kitchen'
+    document.title = 'NearByStore : Kitchen'
     this.$axios
       .get('https://cwdstore.pythonanywhere.com/store/kitchen')
       .then((response) => (this.products = response.data))
@@ -116,7 +116,7 @@ export default {
     },
   },
   created(){
-    document.title = 'CWD : Kitchen'
+    document.title = 'NearByStore : Kitchen'
   },
 }
 </script>

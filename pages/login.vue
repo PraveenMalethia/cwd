@@ -121,7 +121,7 @@ export default {
     },
   },
   mounted() {
-    document.title = 'Login : CWD Account'
+    document.title = 'NearbyStore : CWD Account'
   }
 }
 </script>

@@ -212,12 +212,12 @@ export default {
     },
   },
   mounted: function () {
-    document.title = 'CWD : Profile'
+    document.title = 'NearbyStore : Profile'
     this.UserOrders()
   },
   created() {
     this.loadCustomer()
-    document.title = 'CWD : Profile'
+    document.title = 'NearbyStore : Profile'
   },
 }
 </script>

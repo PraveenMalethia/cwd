@@ -105,7 +105,7 @@ export default {
     },
   },
   mounted() {
-    document.title = 'CWD : Food & Bevarages'
+    document.title = 'NearbyStore : Food & Bevarages'
     this.$axios
       .get('https://cwdstore.pythonanywhere.com/store/fast-food')
       .then((response) => (this.products = response.data))
@@ -118,7 +118,7 @@ export default {
     },
   },
   created() {
-    document.title = 'CWD : Food & Bevarages'
+    document.title = 'NearbyStore : Food & Bevarages'
   }
 }
 </script>

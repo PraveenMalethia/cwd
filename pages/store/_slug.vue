@@ -84,7 +84,7 @@ export default {
     }
   },
   mounted() {
-    document.title = `CWD : ${this.slug}`
+    document.title = `NearbyStore : ${this.slug}`
   },
   created() {
       this.$axios

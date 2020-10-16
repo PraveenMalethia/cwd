@@ -187,7 +187,7 @@ export default {
     },
   },
   created(){
-    document.title = 'CWD Store'
+    document.title = 'NearbyStore'
     const top = window.pageYOffset || 0;
     if (top <= 60) {
       this.color = "transparent";

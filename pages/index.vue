@@ -72,10 +72,10 @@ export default {
     }
   },
   created() {
-    document.title = 'CWD : Home'
+    document.title = 'NearbyStore : Home'
   },
   mounted() {
-    document.title = 'CWD : Home'
+    document.title = 'NearbyStore : Home'
   }
 }
 </script>

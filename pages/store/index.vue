@@ -98,14 +98,14 @@ export default {
     },
   },
   async mounted(){
-    document.title = 'CWD : Store'
+    document.title = 'NearbyStore : Store'
     this.$axios.get('https://cwdstore.pythonanywhere.com/store/').then((response) => {
     this.products = response.data
     this.loading = false
     })
   },
   created(){
-    document.title = 'CWD : Store'
+    document.title = 'NearbyStore : Store'
   },
   computed:{
     filteredProducts: function () {
