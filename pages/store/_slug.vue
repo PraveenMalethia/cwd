@@ -37,7 +37,6 @@
             <v-icon right>mdi-cart</v-icon>
           </v-btn>
           </p>
-          <p>{{product.description}}</p>
           <p>FREE Delivery</p>
         </v-card-text>
             </v-card>
@@ -86,8 +85,7 @@
             <h1>Product Description</h1>
             <br>
                 <ul>
-                  <li>Sneakers (also known as athletic shoes, tennis shoes,gym shoes, runners, takkies, or trainers) are shoes primarily designed for sports or other forms of physical exercise, but which are now also often used for everyday wear.</li>
-                  <li>The term generally describes a type of footwear with a flexible sole made of rubber or synthetic material and an upper part made of leather or synthetic materials. </li>
+                  <li>{{product.description}}</li>
                 </ul>
           </v-flex>
         </v-layout>
