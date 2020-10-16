@@ -1,8 +1,8 @@
 <template>
   <v-container>
     <v-layout row wrap>
-      <v-flex class="pa-1" xs12 sm12 md6>
-        <v-card>
+      <v-flex class="pa-1" xs12 sm6 md6>
+        <v-card class="mx-auto" max-width="500">
         <v-card-title class="cyan darken-1">
           <span class="headline white--text">Profile</span>
           <v-spacer></v-spacer>
@@ -110,7 +110,7 @@
         <v-img :src="'https://cwdstore.pythonanywhere.com' + customer.profile_pic" height="100%"></v-img>
       </v-card>
       </v-flex>
-      <v-flex class="pa-1" xs12 sm12 md6>
+      <v-flex class="pa-1" xs12 sm6 md6>
         <v-card class="mx-auto" max-width="500">
           <v-toolbar color="green darken-1" dark>
             <v-toolbar-title>Order History</v-toolbar-title>
