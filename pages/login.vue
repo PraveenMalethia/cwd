@@ -17,7 +17,7 @@
                         outlined color="green" prepend-icon="mdi-account" :error-messages="errors"></v-text-field>
                       </validation-provider>
                       <validation-provider v-slot="{ errors }" name="email" rules="required|email">
-                      <v-text-field v-model="email" label="E-mail" required outlined :error-messages="errors"
+                      <v-text-field v-model="email" label="E-mail" type="email" required outlined :error-messages="errors"
                         color="green" prepend-icon="mdi-account"></v-text-field>
                       </validation-provider>
                       <validation-provider v-slot="{ errors }" name="password" rules="required">
