@@ -10,9 +10,6 @@
           <v-btn dark icon @click="edit = !edit">
             <v-icon>mdi-pencil</v-icon>
           </v-btn>
-          <v-btn dark icon>
-            <v-icon>mdi-dots-vertical</v-icon>
-          </v-btn>
         </v-card-title>
         <v-list v-if="!edit">
           <v-list-item>
@@ -189,7 +186,6 @@ export default {
     UserOrders(){
       this.$axios.get('https://cwdstore.pythonanywhere.com/api/auth/customer/orders')
       .then((response) => {
-        console.log(response.data)
         this.orders= response.data
       })
     },
