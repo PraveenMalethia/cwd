@@ -21,9 +21,14 @@
     auth: false,
     data: () => ({
       items: [
-        { text: 'Household', icon: 'mdi-home', to: '/categories/household', },
-        { text: 'Kitchen', icon: 'mdi-fridge', to: '/categories/kitchen', },
+        { text: 'Acessories', icon: 'mdi-watch-variant', to: '/categories/acessories', },
+        { text: 'Electronics', icon: 'mdi-devices', to: '/categories/electronics', },
         { text: 'Fast Food', icon: 'mdi-food', to: '/categories/fast-food', },
+        { text: 'Furniture', icon: 'mdi-table-furniture', to: '/categories/furniture', },
+        { text: 'Household', icon: 'mdi-home-variant-outline', to: '/categories/household', },
+        { text: 'Kitchen', icon: 'mdi-fridge', to: '/categories/kitchen', },
+        { text: 'Smartphones', icon: 'mdi-cellphone-iphone', to: '/categories/smartphones', },
+        { text: 'Sweets', icon: 'mdi-ice-cream', to: '/categories/sweets', },
       ],
     }),
     created(){
