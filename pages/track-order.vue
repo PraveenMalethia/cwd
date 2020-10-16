@@ -10,9 +10,9 @@
             </v-toolbar>
             <v-card-text>
               <validation-observer ref="observer">
-                <form>
+                <form><br>
                   <validation-provider v-slot="{ errors }" name="Order ID" rules="required|max:17">
-                    <v-text-field v-model="order_id" :counter="17" :error-messages="errors" label="Order ID" required>
+                    <v-text-field outlined v-model="order_id" :counter="17" :error-messages="errors" label="Order ID" required>
                     </v-text-field>
                   </validation-provider>
                 </form>

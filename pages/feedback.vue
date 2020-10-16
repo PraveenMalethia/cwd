@@ -6,11 +6,12 @@
     <v-card-text>
       <validation-observer ref="observer">
     <form>
+      <br>
       <validation-provider v-slot="{ errors }" name="Subject" rules="required|max:50">
-        <v-text-field v-model="subject" :error-messages="errors" label="Subject" required></v-text-field>
+        <v-text-field outlined shaped v-model="subject" :error-messages="errors" label="Subject" required></v-text-field>
       </validation-provider>
       <validation-provider v-slot="{ errors }" name="Details" rules="required|max:2000">
-        <v-text-field v-model="details" :counter="2000" :error-messages="errors" label="Details" required></v-text-field>
+        <v-textarea auto-grow outlined required rows="10" row-height="20" v-model="details" :counter="2000" :error-messages="errors" label="Details" ></v-textarea>
       </validation-provider>
     </form>
   </validation-observer>
