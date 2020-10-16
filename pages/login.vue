@@ -1,7 +1,6 @@
 <template>
   <div>
-    <div v-if="$auth.loggedIn"></div>
-    <div v-else>
+    <div v-if="!$auth.loggedIn">
       <div>
         <v-container class="fill-height" fluid>
           <v-row align="center" justify="center">
