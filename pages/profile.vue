@@ -3,7 +3,7 @@
     <v-layout row wrap>
       <v-flex class="pa-1" xs12 sm6 md6>
         <v-card class="mx-auto" max-width="500">
-        <v-card-title class="cyan darken-1">
+        <v-card-title class="cyan darken-2">
           <span class="headline white--text">Profile</span>
           <v-spacer></v-spacer>
           <v-btn v-if="edit" text @click="UpdateUser()">Update<v-icon right>mdi-update</v-icon></v-btn>
