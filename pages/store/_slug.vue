@@ -7,11 +7,42 @@
       <v-btn router text to="/store">Store
       </v-btn>
       <v-icon>mdi-chevron-right</v-icon>
-      <v-btn router text :to="'/store/'+product.slug">Product Details
+      <v-btn router text :to="'/store/'+product.slug">Product
       </v-btn>
     </v-card>
     <br>
-    <v-card :loading="loading" color="grey darken-4" dark>
+    <div class="hidden-md-and-up">
+            <v-carousel
+              hide-delimiters cycle height="100%"
+              hide-delimiter-background show-arrows-on-hover>
+              <v-carousel-item :src="'https://cwdstore.pythonanywhere.com' + product.featured_image"></v-carousel-item>
+              <v-carousel-item :src="'https://cwdstore.pythonanywhere.com' + product.image1"></v-carousel-item>
+              <v-carousel-item :src="'https://cwdstore.pythonanywhere.com' + product.image2"></v-carousel-item>
+              <v-carousel-item :src="'https://cwdstore.pythonanywhere.com' + product.image3"></v-carousel-item>
+            </v-carousel>
+            <v-card>
+              <v-card-text class="mt-4 ml-4">
+          <h1>{{product.name|capitalize}}</h1><br>
+          <p>{{product.category}}</p>
+          <h1>$ {{product.price}}</h1>
+          <p><br>
+            <v-alert v-if="product.in_stock" dense text type="success"><strong>In Stock</strong></v-alert>
+            <v-alert v-else dense outlined type="error"><strong>Out Of Stock</strong></v-alert>
+          </p>
+          <p><br>
+          <v-btn v-if="product.in_stock" @click="AddtoCart(product.slug)" color="primary">Add to Bag
+            <v-icon right>mdi-cart</v-icon>
+          </v-btn>
+          <v-btn v-else disabled color="primary">Out of stock
+            <v-icon right>mdi-cart</v-icon>
+          </v-btn>
+          </p>
+          <p>{{product.description}}</p>
+          <p>FREE Delivery</p>
+        </v-card-text>
+            </v-card>
+        </div>
+    <v-card :loading="loading" color="grey darken-4" class="hidden-sm-and-down" dark>
       <div class="d-flex flex-no-wrap justify-space-between">
         <div>
           <v-avatar size="500" tile>
