@@ -166,13 +166,11 @@ export default {
   }),
   methods: {
     loadCustomer() {
-      if (this.$auth.loggedIn) {
         this.$axios
           .get('https://cwdstore.pythonanywhere.com/api/auth/customer/')
           .then((response) => {
             this.customer = response.data
           })
-      }
     },
     UserOrders(){
       this.$axios.get('https://cwdstore.pythonanywhere.com/api/auth/customer/orders')
@@ -215,10 +213,10 @@ export default {
   },
   mounted: function () {
     document.title = 'CWD : Profile'
-    this.loadCustomer()
     this.UserOrders()
   },
   created() {
+    this.loadCustomer()
     document.title = 'CWD : Profile'
   },
 }
