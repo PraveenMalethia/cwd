@@ -115,7 +115,7 @@ export default {
     CreateAccount(){
       this.$axios.post('https://cwdstore.pythonanywhere.com/api/auth/registration/',this.user)
       .then((response) =>{
-        console.log(response.data)
+        this.dialog = false
       })
     }
   },
