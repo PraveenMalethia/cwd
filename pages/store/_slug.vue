@@ -44,16 +44,14 @@
     <v-card :loading="loading" color="grey darken-4" class="hidden-sm-and-down" dark>
       <div class="d-flex flex-no-wrap justify-space-between">
         <div>
-          <v-avatar size="500" tile>
             <v-carousel
-              hide-delimiters cycle height="500"
+              hide-delimiters cycle height="100%"
               hide-delimiter-background show-arrows-on-hover>
               <v-carousel-item :src="'https://cwdstore.pythonanywhere.com' + product.featured_image"></v-carousel-item>
               <v-carousel-item :src="'https://cwdstore.pythonanywhere.com' + product.image1"></v-carousel-item>
               <v-carousel-item :src="'https://cwdstore.pythonanywhere.com' + product.image2"></v-carousel-item>
               <v-carousel-item :src="'https://cwdstore.pythonanywhere.com' + product.image3"></v-carousel-item>
             </v-carousel>
-          </v-avatar>
         </div>
         <v-card-text class="mt-4 ml-4">
           <h1>{{product.name|capitalize}}</h1><br>
@@ -71,7 +69,6 @@
             <v-icon right>mdi-cart</v-icon>
           </v-btn>
           </p>
-          <p>{{product.description}}</p>
           <p>FREE Delivery</p>
         </v-card-text>
       </div>
