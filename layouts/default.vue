@@ -51,10 +51,6 @@
       <v-spacer></v-spacer>
       <v-toolbar-title v-text="title" />
       <v-spacer />
-      <v-text-field solo-inverted flat hide-details label="Search" 
-        class="hidden-sm-and-down" prepend-inner-icon="mdi-magnify">
-      </v-text-field>
-      <v-spacer></v-spacer>
       <v-btn v-if="!$auth.loggedIn" text router to="/login" class="hidden-md-and-up">Login
         <v-icon>mdi-login</v-icon>
       </v-btn>
@@ -156,7 +152,7 @@ export default {
         },
       ],
       right: true,
-      title: 'Churi Wala Dhanna Shop',
+      title: 'Friendly Neighbor Store',
     }
   },
   watch: {
