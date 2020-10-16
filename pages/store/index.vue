@@ -38,12 +38,18 @@
             v-if="hover"
             class="d-flex transition-fast-in-fast-out black darken-2 v-card--reveal display-3 white--text"
             style="height: 100%;">
+            <span v-if="!product.discount_price">
             ${{product.price}}
+            </span>
+            <span v-else>
+              ${{product.discount_price}}
+            </span>
           </div>
         </v-expand-transition>
             </v-carousel>
             <router-link class="router-link" :to="'/store/' + product.slug">
               <v-card-title>{{ product.name|capitalize }}</v-card-title>
+               <v-alert v-if="product.discount_price" type="success">Discount.</v-alert>
               <v-card-subtitle class="pb-0">quantity - {{ product.size }}</v-card-subtitle>
               <v-card-text class="text--primary">
                 <p>From - {{product.brand}}</p>

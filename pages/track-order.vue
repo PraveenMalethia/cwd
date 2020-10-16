@@ -6,13 +6,13 @@
           <br />
           <v-card class="mx-auto" max-width="600" shaped hover>
             <v-toolbar color="deep-purple darken-2" dark flat shaped>
-              <v-toolbar-title>Check Order Details</v-toolbar-title>
+              <v-toolbar-title>Track Order with Details</v-toolbar-title>
             </v-toolbar>
             <v-card-text>
               <validation-observer ref="observer">
                 <form><br>
-                  <validation-provider v-slot="{ errors }" name="Order ID" rules="required|max:17">
-                    <v-text-field outlined v-model="order_id" :counter="17" :error-messages="errors" label="Order ID" required>
+                  <validation-provider v-slot="{ errors }" name="Transaction ID" rules="required|max:17">
+                    <v-text-field outlined v-model="order_id" :counter="17" :error-messages="errors" label="Transaction ID" required>
                     </v-text-field>
                   </validation-provider>
                 </form>

@@ -108,35 +108,30 @@
             <v-toolbar-title>Order History</v-toolbar-title>
             <v-spacer></v-spacer>
           </v-toolbar>
-          <v-list>
-            <v-list-group v-for="item in orders" :key="item.id" v-model="item.completed"
-              prepend-icon="mdi-calendar-text" no-action>
-              <template v-slot:activator>
-                <v-list-item-content>
-                  <v-list-item-title v-text="'Order Number: '+item.id"></v-list-item-title>
-
-                </v-list-item-content>
-              </template>
-              <v-list-item>
-                <v-list-item-content>
-                    <v-alert border="left" color="indigo" dark>
-                      Transaction Id : {{item.transaction_id}}<br>
-                      Order Placed : {{item.placed}}<br>
-                      Canceled : {{item.canceled}}<br>
-                      Confirmed : {{item.confirmed}}<br>
-                      On The Way : {{item.on_the_way}}<br>
-                      Delivered from us : {{item.delivered_from_us}}<br>
-                      Delivered to User : {{item.delivered_to_user}}
-                    </v-alert>
-                </v-list-item-content>
-              </v-list-item>
-              <!-- <v-list-item v-for="item in order_items" :key="item.id">
-                <v-list-item-content>
-                  <v-list-item-title v-text="item"></v-list-item-title>
-                </v-list-item-content>
-              </v-list-item> -->
-            </v-list-group>
-          </v-list>
+          <v-expansion-panels popout>
+            <v-expansion-panel
+              v-for="order in orders" :key="order.id">
+              <v-expansion-panel-header>Order ID : {{order.id}}</v-expansion-panel-header>
+              <v-expansion-panel-content>
+                <v-alert class="mt-2" border="left" color="indigo" dark>
+                  <v-row align="center">
+                    <v-col class="grow">
+                      Transaction Id : {{order.transaction_id}}<br>
+                      Order Placed : {{order.placed}}<br>
+                      Canceled : {{order.canceled}}<br>
+                      Confirmed : {{order.confirmed}}<br>
+                      On The Way : {{order.on_the_way}}<br>
+                      Delivered from us : {{order.delivered_from_us}}<br>
+                      Delivered to User : {{order.delivered_to_user}}
+                    <v-col class="shrink">
+                      <v-btn router to="/track-order">Track Order <v-icon right>mdi-map</v-icon></v-btn>
+                    </v-col>
+                    </v-col>
+                  </v-row>
+                </v-alert>
+              </v-expansion-panel-content>
+            </v-expansion-panel>
+          </v-expansion-panels>
         </v-card>
       </v-flex>
     </v-layout>

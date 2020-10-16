@@ -16,11 +16,17 @@
       </v-flex>
     </v-layout>
     <v-container>
-      <v-layout row wrap>
-        <v-flex
-          v-for="product in filteredProducts" :key="product.id" xs12 sm6 md4 lg3 xl2>
+      <v-layout v-if="loading" row wrap>
+        <v-flex v-for="n in 8" :key="n" xs12 sm6 md4 lg3 xl2>
+          <v-skeleton-loader class="pa-1 mb-2 mr-2" height="420"
+            type="image,card-heading ,list-item-three-line, actions">
+          </v-skeleton-loader>
+        </v-flex>
+      </v-layout>
+      <v-layout v-else row wrap>
+        <v-flex v-for="product in filteredProducts" :key="product.id" xs12 sm6 md4 lg3 xl2>
         <v-hover v-slot:default="{ hover }">
-          <v-card class="max-auto pa-1 mb-2 mr-2" max-width="390">
+          <v-card class="max-auto pa-1 mb-2 mr-2" max-width="420">
             <v-carousel delimiter-icon="mdi-minus" :show-arrows="false"
               hide-delimiters cycle height="260" hide-delimiter-background>
               <v-carousel-item :src="'https://cwdstore.pythonanywhere.com' + product.featured_image"></v-carousel-item>
@@ -70,6 +76,7 @@ export default {
   },
   data: () => ({
     query: '',
+    loading: true,
     products: [],
     items: [
       {
@@ -108,7 +115,10 @@ export default {
     document.title = 'NearbyStore : Food & Bevarages'
     this.$axios
       .get('https://cwdstore.pythonanywhere.com/store/fast-food')
-      .then((response) => (this.products = response.data))
+      .then((response) => {
+        this.products = response.data
+        this.loading = false
+      })
   },
   computed: {
     filteredProducts: function () {
