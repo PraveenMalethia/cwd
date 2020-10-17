@@ -26,49 +26,77 @@
             </v-card-text>
             <v-divider class="mx-2"></v-divider>
             <v-card-actions>
-              <v-btn color="deep-purple lighten-1" block to="/cart/checkout" router >Checkout</v-btn>
+              <v-btn
+                color="deep-purple lighten-1"
+                block
+                to="/cart/checkout"
+                router>Checkout</v-btn>
             </v-card-actions>
           </v-card>
         </v-flex>
       </v-layout>
       <v-card small>
         <v-toolbar color="deep-purple darken-1" dark flat>
-          <v-text-field v-model="query"
-            class="mx-4" flat hide-details label="Search" solo-inverted>
+          <v-text-field
+            v-model="query"
+            class="mx-4"
+            flat
+            hide-details
+            label="Search"
+            solo-inverted>
           </v-text-field>
         </v-toolbar>
       </v-card>
       <v-container>
         <v-layout v-if="loading" row wrap>
           <v-flex v-for="n in 8" :key="n" xs12 sm6 md4 lg3 xl2>
-            <v-skeleton-loader class="pa-1 mx-2" height="270" type="image , actions">
+            <v-skeleton-loader
+              class="pa-1 mx-2"
+              height="270"
+              type="image , actions"
+            >
             </v-skeleton-loader>
           </v-flex>
         </v-layout>
         <v-layout v-else row wrap>
-          <v-flex v-for="product in filteredProducts" :key="product.id" xs12 sm6 md4 lg3>
+          <v-flex
+            v-for="product in filteredProducts"
+            :key="product.id" xs12 sm6 md4 lg3>
             <v-card class="max-auto pa-1 mx-1 mb-2" max-width="390">
-              <v-carousel hide-delimiters height="260"
-                hide-delimiter-background :next-icon="false" :prev-icon="false">
+              <v-carousel
+                hide-delimiters
+                height="260"
+                hide-delimiter-background
+                :next-icon="false"
+                :prev-icon="false">
                 <v-carousel-item :src="'http://127.0.0.1:8000' + product.product.featured_image">
                 </v-carousel-item>
               </v-carousel>
-              <router-link class="router-link" :to="'/store/'+product.product.slug">
-              <v-card-title>{{ product.product.name|capitalize }}</v-card-title>
-              <v-card-subtitle class="pb-0">Size - {{ product.product.size }}</v-card-subtitle>
-              <v-card-text class="text--primary">
-                <h2>$ {{ product.product.price }}</h2>
-              </v-card-text>
+              <router-link
+                class="router-link"
+                :to="'/store/' + product.product.slug">
+                <v-card-title>{{
+                  product.product.name | capitalize
+                }}</v-card-title>
+                <v-card-subtitle class="pb-0"
+                  >Size - {{ product.product.size }}</v-card-subtitle>
+                <v-card-text class="text--primary">
+                  <h2>$ {{ product.product.price }}</h2>
+                </v-card-text>
               </router-link>
               <v-card-actions>
-                <v-btn icon color="yellow"
+                <v-btn
+                  icon
+                  color="yellow"
                   @click="DecreaseQuantity(product.product.slug)">
                   <v-icon>mdi-minus</v-icon>
                 </v-btn>
                 <v-btn class="ma-2" outlined disabled small fab color="indigo">
                   <h2>{{ product.quantity }}</h2>
                 </v-btn>
-                <v-btn icon color="green"
+                <v-btn
+                  icon
+                  color="green"
                   @click="IncreaseQuantity(product.product.slug)">
                   <v-icon>mdi-plus</v-icon>
                 </v-btn>
@@ -95,15 +123,15 @@
 <script>
 export default {
   filters: {
-  capitalize: function (value) {
-    if (!value) return ''
-    value = value.toString()
-    return value.charAt(0).toUpperCase() + value.slice(1)
-    }
+    capitalize: function (value) {
+      if (!value) return ''
+      value = value.toString()
+      return value.charAt(0).toUpperCase() + value.slice(1)
+    },
   },
   data() {
     return {
-      cart: {items: null,total: null,},
+      cart: { items: null, total: null },
       query: '',
       products: [],
       loading: true,
@@ -112,13 +140,15 @@ export default {
     }
   },
   activated() {
-      // Call fetch again if last fetch more than .1 sec ago
-      if (this.$fetchState.timestamp <= Date.now() - 5000) {
-        this.$fetch()
-      }
-    },
+    // Call fetch again if last fetch more than .1 sec ago
+    if (this.$fetchState.timestamp <= Date.now() - 5000) {
+      this.$fetch()
+    }
+  },
   async fetch() {
-    await this.$axios.get('http://127.0.0.1:8000/store/cart').then((response)=>(this.products = response.data))
+    await this.$axios
+      .get('http://127.0.0.1:8000/store/cart')
+      .then((response) => (this.products = response.data))
   },
   methods: {
     getCartTotalItems() {
@@ -134,7 +164,10 @@ export default {
             this.cart.total = response.data
           })
         this.cartLoading = false
-      }else{ this.cart.items = 0 ;this.cart.total = 0}
+      } else {
+        this.cart.items = 0
+        this.cart.total = 0
+      }
     },
     getProducts() {
       this.$axios
@@ -156,12 +189,13 @@ export default {
       }
     },
     DecreaseQuantity(slug) {
-      this.$axios.post('http://127.0.0.1:8000/store/remove-cart/' + slug + '/')
-      .then((response) => {
-        this.$toast.success(response.data.detail)
-        this.getProducts()
-        this.getCartTotalItems()
-      })
+      this.$axios
+        .post('http://127.0.0.1:8000/store/remove-cart/' + slug + '/')
+        .then((response) => {
+          this.$toast.success(response.data.detail)
+          this.getProducts()
+          this.getCartTotalItems()
+        })
     },
   },
   mounted() {

@@ -187,8 +187,8 @@ export default {
     order_items:[],
   }),
   activated() {
-      // Call fetch again if last fetch more than .1 sec ago
-      if (this.$fetchState.timestamp <= Date.now() - 5000) {
+      // Call fetch again if last fetch more than 10 sec ago
+      if (this.$fetchState.timestamp <= Date.now() - 10000) {
         this.$fetch()
       }
     },

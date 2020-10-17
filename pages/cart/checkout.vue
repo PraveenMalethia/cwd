@@ -4,19 +4,24 @@
       <v-layout row wrap>
         <v-flex xs12 sm12 md6 lg5>
           <v-card class="mx-auto mb-7" max-width="400" shaped elevation="23">
-              <v-toolbar color="deep-purple darken-2" dark flat shaped>
+            <v-toolbar color="deep-purple darken-2" dark flat shaped>
               <v-toolbar-title>Checkout Details</v-toolbar-title>
             </v-toolbar>
             <v-card-text>
               <div class="font-weight-bold ml-8 mb-2">Today</div>
-              <v-timeline align-top dense>        
+              <v-timeline align-top dense>
                 <v-timeline-item
-                  v-for="message in messages" :key="message.time" :color="message.color" small>
+                  v-for="message in messages"
+                  :key="message.time"
+                  :color="message.color"
+                  small>
                   <div>
                     <div class="font-weight-normal">
                       <strong>{{ message.from }}</strong>
-                      <span v-if="message.id == 1">{{ last_added_item_date }} ago</span>
-                      <span v-else >{{ message.time}}</span>
+                      <span v-if="message.id == 1"
+                        >{{ last_added_item_date }} ago</span
+                      >
+                      <span v-else>{{ message.time }}</span>
                     </div>
                     <div>{{ message.message }}</div>
                   </div>
@@ -31,37 +36,67 @@
               <v-toolbar-title>Checkout Form</v-toolbar-title>
             </v-toolbar>
             <v-card-text class="pa-7">
-              <small class="ml-10">( * ) indicates mandatory fields</small><br><br>
+              <small class="ml-10">( * ) indicates mandatory fields</small
+              ><br /><br />
               <validation-observer ref="observer">
                 <form>
-                  <validation-provider v-slot="{ errors }" name="address" rules="required">
-                    <v-textarea outlined shaped rows="1" auto-grow
-                      v-model="shipping.address" prepend-icon="mdi-map-marker"
-                      :error-messages="errors" label="Address*" required>
+                  <validation-provider
+                    v-slot="{ errors }"
+                    name="address"
+                    rules="required">
+                    <v-textarea
+                      outlined
+                      shaped
+                      rows="1"
+                      auto-grow
+                      v-model="shipping.address"
+                      prepend-icon="mdi-map-marker"
+                      :error-messages="errors"
+                      label="Address*"
+                      required>
                     </v-textarea>
                   </validation-provider>
                   <validation-provider>
-                    <v-text-field outlined
-                      v-model="shipping.housenumber" prepend-icon="mdi-home"
-                      label="House Number (Optional)" required>
+                    <v-text-field
+                      outlined
+                      v-model="shipping.housenumber"
+                      prepend-icon="mdi-home"
+                      label="House Number (Optional)"
+                      required>
                     </v-text-field>
                   </validation-provider>
-                  <validation-provider v-slot="{ errors }" name="Phone Number" rules="required">
-                    <v-text-field type="text" outlined
-                      prepend-icon="mdi-phone" v-model="shipping.phone" :counter="10"
-                      :error-messages="errors" label="Phone Number*" required>
+                  <validation-provider
+                    v-slot="{ errors }"
+                    name="Phone Number"
+                    rules="required">
+                    <v-text-field
+                      type="text"
+                      outlined
+                      prepend-icon="mdi-phone"
+                      v-model="shipping.phone"
+                      :counter="10"
+                      :error-messages="errors"
+                      label="Phone Number*"
+                      required>
                     </v-text-field>
                   </validation-provider>
                   <validation-provider v-slot="{ errors }" name="Village Or City" rules="required">
-                    <v-select outlined v-model="shipping.village_or_city" prepend-icon="mdi-city" :items="villages_or_cities"
-                      :error-messages="errors" label="Select City Or Village*" data-vv-name="select" required>
+                    <v-select
+                      outlined
+                      v-model="shipping.village_or_city"
+                      prepend-icon="mdi-city"
+                      :items="villages_or_cities"
+                      :error-messages="errors"
+                      label="Select City Or Village*"
+                      data-vv-name="select"
+                      required>
                     </v-select>
                   </validation-provider>
                   <validation-provider v-slot="{ errors }" name="Special Instructions" rules="required">
-                  <v-textarea :error-messages="errors" label="Special Instructions*"
-                    v-model="shipping.special_instructions"
-                    auto-grow outlined required rows="3" row-height="25" shaped
-                    prepend-icon="mdi-information"></v-textarea>
+                    <v-textarea
+                      :error-messages="errors" label="Special Instructions*"
+                      v-model="shipping.special_instructions" auto-grow outlined required rows="3" row-height="25" shaped
+                      prepend-icon="mdi-information"></v-textarea>
                   </validation-provider>
                 </form>
               </validation-observer>
@@ -70,7 +105,11 @@
             <v-card-actions>
               <v-spacer></v-spacer>
               <v-btn class="mr-4 mb-4" @click="clear" text> clear </v-btn>
-              <v-btn class="mr-10 mb-4" @click="submit()" color="deep-purple darken-1"> Place Order</v-btn>
+              <v-btn
+                class="mr-10 mb-4"
+                @click="submit()"
+                color="deep-purple darken-1">
+                Place Order</v-btn>
             </v-card-actions>
           </v-card>
         </v-flex>
@@ -85,7 +124,8 @@ import {
   extend,
   ValidationObserver,
   ValidationProvider,
-  setInteractionMode,} from 'vee-validate'
+  setInteractionMode,
+} from 'vee-validate'
 setInteractionMode('eager')
 extend('required', {
   ...required,
@@ -96,21 +136,21 @@ extend('max', {
   message: '{_field_} may not be greater than {length} characters',
 })
 export default {
-  components: { ValidationProvider, ValidationObserver},
+  components: { ValidationProvider, ValidationObserver },
   data: () => ({
-    shipping:{
+    shipping: {
       address: '',
       housenumber: '',
       phone: '',
       village_or_city: null,
       errors: null,
-      special_instructions:'',
+      special_instructions: '',
     },
-    time_after_30_mins:'',
-    last_added_item_date:'',
+    time_after_30_mins: '',
+    last_added_item_date: '',
     messages: [
       {
-        id:1,
+        id: 1,
         from: 'Last Item Added',
         color: 'deep-purple lighten-1',
       },
@@ -122,7 +162,8 @@ export default {
       },
       {
         from: 'Order Arrival',
-        message: 'Most Probably You will get the order within half hour of placement',
+        message:
+          'Most Probably You will get the order within half hour of placement',
         time: '',
         color: 'deep-purple lighten-1',
       },
@@ -132,79 +173,75 @@ export default {
       'Nihal Khera',
       'Danger Kheda',
       'Killian wali',
-      'Bathinda'
+      'Bathinda',
     ],
-    placing:false,
+    placing: false,
     rules: {
       required: (value) => !!value || 'Required.',
     },
   }),
   activated() {
-      // Call fetch again if last fetch more than 3 sec ago
-      if (this.$fetchState.timestamp <= Date.now() - 3000) {
-        this.$fetch()
-      }
-    },
+    // Call fetch again if last fetch more than 3 sec ago
+    if (this.$fetchState.timestamp <= Date.now() - 3000) {
+      this.$fetch()
+    }
+  },
   async fetch() {
     await this.settingDeliveryTime()
     await this.getLastAddedProduct()
-    this.messages[2].time = "at "+ this.time_after_30_mins
+    this.messages[2].time = 'at ' + this.time_after_30_mins
   },
   methods: {
     getLastAddedProduct() {
-      this.$axios
-      .get('http://127.0.0.1:8000/store/cart')
-      .then((response) =>
-      {
-        let total = response.data.length;
-        this.last_added_item_date = response.data[total-1].humanized_date
+      this.$axios.get('http://127.0.0.1:8000/store/cart').then((response) => {
+        let total = response.data.length
+        this.last_added_item_date = response.data[total - 1].humanized_date
       })
     },
-    submit()
-    {
+    submit() {
       this.$refs.observer.validate().then((response) => {
-        if (response == true){
+        if (response == true) {
           this.placing = true
-        this.$axios.post('http://127.0.0.1:8000/store/place-order',this.shipping)
-        .then((response) => {
-          if (response.status== 202){
-            this.$toast.success('Order Placed Successfully')
-            this.clear()
-            this.placing = false
-          }
-          else{
-            this.$toast.error('Please fill the shipping details correctly.')
-          }
-        })
-      }else{
-        this.$toast.error('Please enter the required details.')
+          this.$axios
+            .post('http://127.0.0.1:8000/store/place-order', this.shipping)
+            .then((response) => {
+              if (response.status == 202) {
+                this.$toast.success('Order Placed Successfully')
+                this.clear()
+                this.placing = false
+              } else {
+                this.$toast.error('Please fill the shipping details correctly.')
+              }
+            })
+        } else {
+          this.$toast.error('Please enter the required details.')
+        }
+      })
+    },
+    clear() {
+      this.shipping.address = ''
+      this.shipping.housenumber = ''
+      this.shipping.phone = ''
+      this.shipping.special_instructions = ''
+      this.shipping.village_or_city = null
+      this.$refs.observer.reset()
+    },
+    settingDeliveryTime() {
+      let date = new Date()
+      let hours = date.getHours()
+      let days = date.getDay()
+      let minutes = date.getMinutes() + 30
+      if (minutes >= 60) {
+        hours = hours + 1
+        minutes = minutes - 60
       }
-    })
-  },
-  clear() {
-    this.shipping.address = ''
-    this.shipping.housenumber = ''
-    this.shipping.phone = '' 
-    this.shipping.special_instructions = ''
-    this.shipping.village_or_city = null
-    this.$refs.observer.reset()
-  },
-  settingDeliveryTime(){
-    let date = new Date();
-    let hours = date.getHours();
-    let days = date.getDay(); 
-    let minutes = date.getMinutes()+30;
-    if (minutes>=60){
-      hours = hours +1
-      minutes = minutes - 60
-    }
-    var ampm = hours >= 12 ? 'pm' : 'am';
-    hours = hours % 12;
-    hours = hours ? hours : 12;
-    minutes = minutes < 10 ? '0'+minutes : minutes;
-    var strTime = hours + ':' + minutes+ ' ' + ampm;
-    this.time_after_30_mins = strTime
-  }
+      var ampm = hours >= 12 ? 'pm' : 'am'
+      hours = hours % 12
+      hours = hours ? hours : 12
+      minutes = minutes < 10 ? '0' + minutes : minutes
+      var strTime = hours + ':' + minutes + ' ' + ampm
+      this.time_after_30_mins = strTime
+    },
   },
 }
 </script>
