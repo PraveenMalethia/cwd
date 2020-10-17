@@ -90,15 +90,34 @@
               <v-icon>mdi-image</v-icon>
             </v-list-item-action>
             <v-list-item-content>
-              Upload Profile Image : 
+              Upload Profile Image :
             </v-list-item-content>
             <v-list-item-action>
-              <ProfilePicUpload/>
+              <form>
+                <v-file-input
+                  hide-input type="file" id="file" ref="file" v-on:change="onChangeFileUpload()"
+                  accept="image/png, image/jpeg" prepend-icon="mdi-camera">
+                </v-file-input>
+              </form>
             </v-list-item-action>
           </v-list-item>
         </v-list>
         <div v-if="!edit">
-        <v-img :src="'http://127.0.0.1:8000' + customer.profile_pic" height="100%"></v-img>
+          <span v-if="customer.profile_pic">
+            <v-img :src="'http://127.0.0.1:8000' + customer.profile_pic" height="100%"></v-img>
+          </span>
+          <span v-else>
+            <v-list>
+            <v-list-item>
+              <v-list-item-action>
+                <v-icon>mdi-account-circle</v-icon>
+              </v-list-item-action>
+              <v-list-item-content>
+                Profile Image Not Uploaded
+              </v-list-item-content>
+            </v-list-item>
+            </v-list>
+          </span>
         </div>
       </v-card>
       </v-flex>
@@ -139,7 +158,6 @@
 </template>
 
 <script>
-import ProfilePicUpload from '~/components/ProfilePicUpload'
 
 export default {
   data: () => ({
@@ -155,6 +173,7 @@ export default {
       last_name: null,
     },
     query: '',
+    file: '',
     edit: false,
     orders:[],
     order_items:[],
@@ -205,6 +224,27 @@ export default {
           })
       }
     },
+    onChangeFileUpload(){
+        this.file = this.$refs.file.$refs.input.files[0]
+        let formData = new FormData();
+            formData.append('file', this.file);
+            this.$axios.patch('http://127.0.0.1:8000/api/auth/customer/uplad-profile-pic/',
+                formData,
+                {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+              }
+            ).then((response) =>{
+              this.$toast.success(response.data);
+              this.loadCustomer()
+              this.edit = false
+            })
+            .catch((error)=>{
+              this.$toast.error(error.message)
+              this.edit = false
+            });
+      }
   },
   mounted: function () {
     document.title = 'NearbyStore : Profile'
