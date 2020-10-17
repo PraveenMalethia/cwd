@@ -25,10 +25,10 @@
           <v-carousel
             hide-delimiters cycle height="100%"
             hide-delimiter-background show-arrows-on-hover>
-            <v-carousel-item :src="'https://cwdstore.pythonanywhere.com' + product.featured_image"></v-carousel-item>
-            <v-carousel-item :src="'https://cwdstore.pythonanywhere.com' + product.image1"></v-carousel-item>
-            <v-carousel-item :src="'https://cwdstore.pythonanywhere.com' + product.image2"></v-carousel-item>
-            <v-carousel-item :src="'https://cwdstore.pythonanywhere.com' + product.image3"></v-carousel-item>
+            <v-carousel-item :src="'http://127.0.0.1:8000' + product.featured_image"></v-carousel-item>
+            <v-carousel-item :src="'http://127.0.0.1:8000' + product.image1"></v-carousel-item>
+            <v-carousel-item :src="'http://127.0.0.1:8000' + product.image2"></v-carousel-item>
+            <v-carousel-item :src="'http://127.0.0.1:8000' + product.image3"></v-carousel-item>
           </v-carousel>
           <v-card>
             <v-card-text class="mt-4 ml-1">
@@ -55,12 +55,12 @@
         <div class="d-flex flex-no-wrap justify-space-between">
           <div>
               <v-carousel
-                hide-delimiters cycle height="100%"
+                hide-delimiters cycle height="400px"
                 hide-delimiter-background show-arrows-on-hover>
-                <v-carousel-item :src="'http://127.0.0.1:8000' + product.featured_image"></v-carousel-item>
-                <v-carousel-item :src="'http://127.0.0.1:8000' + product.image1"></v-carousel-item>
-                <v-carousel-item :src="'http://127.0.0.1:8000' + product.image2"></v-carousel-item>
-                <v-carousel-item :src="'http://127.0.0.1:8000' + product.image3"></v-carousel-item>
+                <v-carousel-item width="500px" :src="'http://127.0.0.1:8000' + product.featured_image"></v-carousel-item>
+                <v-carousel-item width="500px" :src="'http://127.0.0.1:8000' + product.image1"></v-carousel-item>
+                <v-carousel-item width="500px" :src="'http://127.0.0.1:8000' + product.image2"></v-carousel-item>
+                <v-carousel-item width="500px" :src="'http://127.0.0.1:8000' + product.image3"></v-carousel-item>
               </v-carousel>
           </div>
           <v-card-text class="mt-4 ml-4">

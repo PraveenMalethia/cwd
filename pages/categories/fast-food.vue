@@ -26,7 +26,7 @@
       <v-layout v-else row wrap>
         <v-flex v-for="product in filteredProducts" :key="product.id" xs12 sm6 md4 lg3 xl2>
         <v-hover v-slot:default="{ hover }">
-          <v-card class="max-auto pa-1 mb-2 mr-2" max-width="420">
+          <v-card class="max-auto pa-1 mb-2 ml-1 mr-1">
             <v-carousel delimiter-icon="mdi-minus" :show-arrows="false"
               hide-delimiters cycle height="260" hide-delimiter-background>
               <v-carousel-item :src="'http://127.0.0.1:8000' + product.featured_image"></v-carousel-item>
@@ -35,7 +35,7 @@
               <v-carousel-item :src="'http://127.0.0.1:8000' + product.image3"></v-carousel-item>
               <v-expand-transition>
               <div v-if="hover"
-                class="d-flex transition-fast-in-http://cwdstore.pythonanywhere.com v-card--reveal display-3 white--text"
+                class="d-flex transition-fast-in-http://cwdstore.pythonanywhere.com v-card--reveal display-2 white--text"
                 style="height: 100%;"> ${{product.price}} </div>
               </v-expand-transition>
             </v-carousel>
@@ -74,6 +74,12 @@ export default {
     return value.charAt(0).toUpperCase() + value.slice(1)
     }
   },
+  activated() {
+      // Call fetch again if last fetch more than 10 sec ago
+      if (this.$fetchState.timestamp <= Date.now() - 10000) {
+        this.$fetch()
+      }
+    },
   async fetch() {
     this.$axios.get('http://127.0.0.1:8000/store/fast-food')
     .then((response) => {
