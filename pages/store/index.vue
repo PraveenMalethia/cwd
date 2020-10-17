@@ -100,11 +100,17 @@ export default {
   },
   filters: {
   capitalize: function (value) {
-    if (!value) return ''
-    value = value.toString()
-    return value.charAt(0).toUpperCase() + value.slice(1)
-  }
-},
+      if (!value) return ''
+      value = value.toString()
+      return value.charAt(0).toUpperCase() + value.slice(1)
+    }
+  },
+  async fetch(){
+    this.$axios.get('http://127.0.0.1:8000/store/').then((response) => {
+    this.products = response.data
+    this.loading = false
+    })
+  },
   methods:{
     AddtoCart(slug) {
       if (this.$auth.loggedIn) {
@@ -120,10 +126,6 @@ export default {
   },
   async mounted(){
     document.title = 'NearbyStore : Store'
-    this.$axios.get('http://127.0.0.1:8000/store/').then((response) => {
-    this.products = response.data
-    this.loading = false
-    })
   },
   created(){
     document.title = 'NearbyStore : Store'

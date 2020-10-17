@@ -124,18 +124,18 @@ export default {
   mounted() {
     document.title = `NearbyStore : ${this.slug}`
   },
-  created() {
-      this.$axios
-      .get('http://127.0.0.1:8000/store/' + this.$route.params.slug)
-      .then((response) => {
-        this.product = response.data
-        this.loaded = true
-      })
-      .catch((response)=>{
-        console.log(response.message)
-        this.$router.push('/store')
-        this.$toast.error("Invalid Product URL")
-      })
+  async fetch() {
+    this.$axios
+    .get('http://127.0.0.1:8000/store/' + this.$route.params.slug)
+    .then((response) => {
+      this.product = response.data
+      this.loaded = true
+    })
+    .catch((response)=>{
+      console.log(response.message)
+      this.$router.push('/store')
+      this.$toast.error("Invalid Product URL")
+    })
   },
   methods: {
     AddtoCart(slug) {

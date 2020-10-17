@@ -72,7 +72,6 @@ import SignUp from '~/components/SignUp.vue'
 import ForgetPassword from '~/components/ForgetPassword.vue'
 export default {
   components: { SignUp ,ValidationProvider, ValidationObserver , ForgetPassword},
-
   validations: {
     username: { required },
     password: { required },
@@ -103,30 +102,26 @@ export default {
   methods: {
     userLogin() {
     this.$refs.observer.validate().then((response) => {
-        if (response == true)
-        {
-              var login = 
-              {
-                    username: this.username,
-                    email: this.email,
-                    password: this.password,
-              }
-              this.$auth.loginWith('local', { data: login })
-              .then((response) => {
-                this.$auth.setUserToken(response.data.key)
-                this.$toast.success('Successfully authenticated')
-                this.dialog = false
-              })
-              .catch(err => {
-                  if (err.response) {
-      // client received an error response (5xx, 4xx)
+    if (response == true){
+      var login = 
+      {
+        username: this.username,
+        email: this.email,
+        password: this.password,
+      }
+      this.$auth.loginWith('local', { data: login })
+      .then((response) => {
+        this.$auth.setUserToken(response.data.key)
+        this.$toast.success('Successfully authenticated')
+        this.dialog = false
+      })
+      .catch(err => {
+      if (err.response) {
     } else if (err.request) {
-      // client never received a response, or request never left
     } else {
-      console.log('error')
     }})
-        }
-        })
+    }
+    })
     },
   },
   mounted() {

@@ -14,7 +14,7 @@
         <v-list v-if="!edit">
           <v-list-item>
             <v-list-item-action>
-              <v-icon>mdi-account-circle</v-icon>
+              <v-icon>mdi-account-box</v-icon>
             </v-list-item-action>
             <v-list-item-content>
               <v-list-item-title>Username : {{ $auth.user.username }}</v-list-item-title>
@@ -23,19 +23,10 @@
           <v-divider inset></v-divider>
           <v-list-item>
             <v-list-item-action>
-              <v-icon>mdi-account-circle</v-icon>
+              <v-icon>mdi-account</v-icon>
             </v-list-item-action>
             <v-list-item-content>
               <v-list-item-title>{{ $auth.user.first_name }} {{$auth.user.last_name}}</v-list-item-title>
-            </v-list-item-content>
-          </v-list-item>
-          <v-divider inset></v-divider>
-          <v-list-item>
-            <v-list-item-action>
-              <v-icon>mdi-phone</v-icon>
-            </v-list-item-action>
-            <v-list-item-content>
-              <v-list-item-title>{{ customer.phone_number }}</v-list-item-title>
             </v-list-item-content>
           </v-list-item>
           <v-divider inset></v-divider>
@@ -45,6 +36,15 @@
             </v-list-item-action>
             <v-list-item-content>
               <v-list-item-title>{{ $auth.user.email }}</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+          <v-divider inset></v-divider>
+          <v-list-item>
+            <v-list-item-action>
+              <v-icon>mdi-phone</v-icon>
+            </v-list-item-action>
+            <v-list-item-content>
+              <v-list-item-title>{{ customer.phone_number }}</v-list-item-title>
             </v-list-item-content>
           </v-list-item>
         </v-list>
@@ -167,7 +167,6 @@
 </template>
 
 <script>
-
 export default {
   data: () => ({
     dialog: false,
@@ -187,19 +186,17 @@ export default {
     orders:[],
     order_items:[],
   }),
+  async fetch(){
+    await this.$axios.get('http://127.0.0.1:8000/api/auth/customer/').then((response) => {this.customer = response.data})
+    await this.$axios.get('http://127.0.0.1:8000/api/auth/customer/orders').then((response) => {this.orders= response.data})
+  },
   methods: {
     loadCustomer() {
-        this.$axios
-          .get('http://127.0.0.1:8000/api/auth/customer/')
-          .then((response) => {
-            this.customer = response.data
-          })
+      this.$axios.get('http://127.0.0.1:8000/api/auth/customer/').then((response) => {this.customer = response.data})
     },
     UserOrders(){
       this.$axios.get('http://127.0.0.1:8000/api/auth/customer/orders')
-      .then((response) => {
-        this.orders= response.data
-      })
+      .then((response) => {this.orders= response.data})
     },
     UpdateUser() {
       if (this.user.username == null) {
@@ -234,30 +231,24 @@ export default {
       }
     },
     onChangeFileUpload(){
-        this.file = this.$refs.file.$refs.input.files[0]
-        let formData = new FormData();
-        formData.append('file', this.file);
-        this.$axios.patch('http://127.0.0.1:8000/api/auth/customer/uplad-profile-pic/',formData,
-          {headers: {'Content-Type': 'multipart/form-data'}}
-        ).then((response) =>{
-          this.$toast.success(response.data);
-          this.loadCustomer()
-          this.edit = false
-        })
-        .catch((error)=>{
-          this.$toast.error(error.message)
-          this.edit = false
-        });
-      }
+      this.file = this.$refs.file.$refs.input.files[0]
+      let formData = new FormData();
+      formData.append('file', this.file);
+      this.$axios.patch('http://127.0.0.1:8000/api/auth/customer/uplad-profile-pic/',formData,
+        {headers: {'Content-Type': 'multipart/form-data'}}
+      ).then((response) =>{
+        this.$toast.success(response.data);
+        this.loadCustomer()
+        this.edit = false
+      })
+      .catch((error)=>{
+        this.$toast.error(error.message)
+        this.edit = false
+      });
+    }
   },
-  mounted: function () {
-    document.title = 'NearbyStore : Profile'
-    this.UserOrders()
-  },
-  created() {
-    this.loadCustomer()
-    document.title = 'NearbyStore : Profile'
-  },
+  mounted: function () { document.title = 'NearbyStore : Profile'
+  }
 }
 </script>
 

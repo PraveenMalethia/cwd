@@ -108,24 +108,24 @@ export default {
     time_after_30_mins:'',
     last_added_item_date:'',
     messages: [
-        {
-          id:1,
-          from: 'Last Item Added',
-          color: 'deep-purple lighten-1',
-        },
-        {
-          from: 'Order Placement',
-          message: 'Maybe Today you want to Place the order ?',
-          time: 'in just a moment',
-          color: 'green',
-        },
-        {
-          from: 'Order Arrival',
-          message: 'Most Probably You will get the order within half hour of placement',
-          time: '',
-          color: 'deep-purple lighten-1',
-        },
-      ],
+      {
+        id:1,
+        from: 'Last Item Added',
+        color: 'deep-purple lighten-1',
+      },
+      {
+        from: 'Order Placement',
+        message: 'Maybe Today you want to Place the order ?',
+        time: 'in just a moment',
+        color: 'green',
+      },
+      {
+        from: 'Order Arrival',
+        message: 'Most Probably You will get the order within half hour of placement',
+        time: '',
+        color: 'deep-purple lighten-1',
+      },
+    ],
     villages: [
       'Churriwala Dhanna',
       'Nihal Khera',
@@ -137,68 +137,65 @@ export default {
       required: (value) => !!value || 'Required.',
     },
   }),
+  async fetch() {
+    await this.settingDeliveryTime()
+    await this.getLastAddedProduct()
+    this.messages[2].time = "at "+ this.time_after_30_mins
+  },
   methods: {
     getLastAddedProduct() {
       this.$axios
-        .get('http://127.0.0.1:8000/store/cart')
-        .then((response) =>
-        {
-          let total = response.data.length;
-          this.last_added_item_date = response.data[total-1].humanized_date
-        })
+      .get('http://127.0.0.1:8000/store/cart')
+      .then((response) =>
+      {
+        let total = response.data.length;
+        this.last_added_item_date = response.data[total-1].humanized_date
+      })
     },
     submit()
     {
       this.$refs.observer.validate().then((response) => {
-        if (response == true)
-        {
-          this.$axios.post('http://127.0.0.1:8000/store/place-order',this.shipping)
-          .then((response) => {
-            if (response.status== 202){
-              this.$toast.success('Order Placed Successfully')
-              this.clear()
-            }
-            else{
-              this.$toast.error('Please fill the shipping details correctly.')
-            }
-          })
-        }
-        else
-        {
-          this.$toast.error('Please enter the required details.')
-        }
-      })
-    },
-    clear() {
-      this.shipping.address , this.shipping.housenumber, this.shipping.phone, this.shipping.special_instructions = ''
-      this.shipping.village = null
-      this.$refs.observer.reset()
-    },
-    settingDeliveryTime(){
-      let date = new Date();
-      let hours = date.getHours();
-      let days = date.getDay(); 
-      let minutes = date.getMinutes()+30;
-      if (minutes>=60){
-        hours = hours +1
-        minutes = minutes - 60
+        if (response == true){
+        this.$axios.post('http://127.0.0.1:8000/store/place-order',this.shipping)
+        .then((response) => {
+          if (response.status== 202){
+            this.$toast.success('Order Placed Successfully')
+            this.clear()
+          }
+          else{
+            this.$toast.error('Please fill the shipping details correctly.')
+          }
+        })
+      }else{
+        this.$toast.error('Please enter the required details.')
       }
-      var ampm = hours >= 12 ? 'pm' : 'am';
-      hours = hours % 12;
-      hours = hours ? hours : 12;
-      minutes = minutes < 10 ? '0'+minutes : minutes;
-      var strTime = hours + ':' + minutes+ ' ' + ampm;
-      this.time_after_30_mins = strTime
-    }
+    })
   },
-  mounted() {
-    document.title = 'NearbyStore : Checkout'
-    this.settingDeliveryTime()
-    this.messages[2].time = "at "+ this.time_after_30_mins
+  clear() {
+    this.shipping.address , this.shipping.housenumber, this.shipping.phone, this.shipping.special_instructions = ''
+    this.shipping.village = null
+    this.$refs.observer.reset()
+  },
+  settingDeliveryTime(){
+    let date = new Date();
+    let hours = date.getHours();
+    let days = date.getDay(); 
+    let minutes = date.getMinutes()+30;
+    if (minutes>=60){
+      hours = hours +1
+      minutes = minutes - 60
+    }
+    var ampm = hours >= 12 ? 'pm' : 'am';
+    hours = hours % 12;
+    hours = hours ? hours : 12;
+    minutes = minutes < 10 ? '0'+minutes : minutes;
+    var strTime = hours + ':' + minutes+ ' ' + ampm;
+    this.time_after_30_mins = strTime
+  }
   },
   created() {
-    this.getLastAddedProduct()
     document.title = 'NearbyStore : Checkout'
-  },
+
+  }
 }
 </script>

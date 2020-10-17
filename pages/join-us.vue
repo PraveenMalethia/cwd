@@ -47,10 +47,7 @@ export default {
     transparent: 'rgba(255, 255, 255, 0)',
   }),
   created() {
-    document.title = 'NearbyStore : Contact Us'
-  },
-  mounted() {
-    document.title = 'NearbyStore : Contact Us'
+    document.title = 'NearbyStore : Join Us'
   },
 }
 </script>
@@ -70,6 +67,4 @@ export default {
 a{
   text-decoration:none;
 }
-</style>>
-
 </style>

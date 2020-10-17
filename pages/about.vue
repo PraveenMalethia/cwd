@@ -18,9 +18,6 @@
 <script>
 export default {
   auth: false,
-  created() {
-    document.title = 'NearbyStore : About Us'
-  },
   mounted() {
     document.title = 'NearbyStore : About Us'
   }

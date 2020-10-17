@@ -243,9 +243,6 @@ export default {
   created() {
     document.title = 'NearbyStore: Tracker'
   },
-  mounted() {
-    document.title = 'NearbyStore: Tracker'
-  },
 }
 </script>
 

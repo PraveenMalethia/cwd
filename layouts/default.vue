@@ -155,6 +155,15 @@ export default {
       title: 'Friendly Neighbor Store',
     }
   },
+  async fetch() {
+    if (this.$auth.loggedIn) {
+      await this.$axios
+        .get('http://127.0.0.1:8000/api/auth/customer/')
+        .then((response) => {
+          this.customer = response.data
+        })
+    }
+  },
   watch: {
     loader() {
       const l = this.loader
@@ -186,21 +195,12 @@ export default {
       this.$vuetify.goTo(0);
     },
   },
-  created(){
+  mounted(){
     document.title = 'NearbyStore'
     const top = window.pageYOffset || 0;
     if (top <= 60) {
       this.color = "transparent";
       this.flat = true;
-    }
-  },
-  mounted() {
-    if (this.$auth.loggedIn) {
-      this.$axios
-        .get('http://127.0.0.1:8000/api/auth/customer/')
-        .then((response) => {
-          this.customer = response.data
-        })
     }
   },
 }

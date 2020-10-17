@@ -25,61 +25,47 @@
 </template>
 
 <script>
-  import { required,max} from 'vee-validate/dist/rules'
-  import { extend, ValidationObserver, ValidationProvider, setInteractionMode } from 'vee-validate'
-
-  setInteractionMode('eager')
-
-  extend('required', {
-    ...required,
-    message: '{_field_} can not be empty',
-  })
-  extend('max', {
-  ...max,
-  message: '{_field_} may not be greater than {length} characters',
-  })
+import { required,max} from 'vee-validate/dist/rules'
+import { extend, ValidationObserver, ValidationProvider, setInteractionMode } from 'vee-validate'
+setInteractionMode('eager')
+extend('required', {
+  ...required,
+  message: '{_field_} can not be empty',
+})
+extend('max', {
+...max,
+message: '{_field_} may not be greater than {length} characters',
+})
 export default {
-  components: {
-      ValidationProvider,
-      ValidationObserver,
-    },
+  components: {ValidationProvider,ValidationObserver,},
   auth: false,
   data: () => ({
-      data:{
-        subject: '',
-        details:'',
-      },
-      errors: null,
-    }),
+    data:{subject: '',details:'',},
+    errors: null,
+  }),
   methods: {
-      submit () {
-        this.$refs.observer.validate().then((response) => {
-          if (response == true){
-            this.$axios.post('http://127.0.0.1:8000/store/feedback',this.data)
-            .then((response) => {
-              this.$toast.success(`Feedback ${response.data.subject} submitted`)
-              this.clear()
-            })
-            .catch((error) => {
-              console.log(error.message)
-            })
-          }
-        })
-      },
-      clear(){
-        this.data.subject = ''
-        this.data.details = ''
-        this.$refs.observer.reset()
-      },
+    submit () {
+      this.$refs.observer.validate().then((response) => {
+        if (response == true){
+          this.$axios.post('http://127.0.0.1:8000/store/feedback',this.data)
+          .then((response) => {
+            this.$toast.success(`Feedback ${response.data.subject} submitted`)
+            this.clear()
+          })
+          .catch((error) => {
+            console.log(error.message)
+          })
+        }
+      })
     },
-  created(){
-    document.title = 'NearbyStore : Feedback'
+    clear(){
+      this.data.subject = ''
+      this.data.details = ''
+      this.$refs.observer.reset()
+    },
   },
-  mounted() {
+  created() {
     document.title = 'NearbyStore : Feedback'
   }
 }
 </script>
-
-<style>
-</style>
