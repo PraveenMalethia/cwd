@@ -88,6 +88,13 @@ export default {
     return value.charAt(0).toUpperCase() + value.slice(1)
     }
   },
+  async fetch() {
+    await this.$axios.get('http://127.0.0.1:8000/store/household')
+      .then((response) => {
+        this.products = response.data
+        this.loading = false
+      })
+  },
   data: () => ({
     query: '',
     loading:true,
@@ -127,12 +134,6 @@ export default {
   },
   mounted(){
     document.title = 'NearByStore : Household'
-    this.$axios
-      .get('http://127.0.0.1:8000/store/household')
-      .then((response) => {
-        this.products = response.data
-        this.loading = false
-        })
   },
   computed:{
     filteredProducts: function () {
@@ -141,9 +142,6 @@ export default {
       })
     },
   },
-  created() {
-    document.title = 'NearByStore : Household'
-  }
 }
 </script>
 

@@ -8,10 +8,8 @@ export default {
       products: [],
     }
   },
+  async fetch() {},
   mounted() {
-    document.title = 'NearbyStore : Food & Bevarages'
-  },
-  created() {
     document.title = 'NearbyStore : Food & Bevarages'
   },
 }

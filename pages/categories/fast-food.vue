@@ -74,6 +74,13 @@ export default {
     return value.charAt(0).toUpperCase() + value.slice(1)
     }
   },
+  async fetch() {
+    this.$axios.get('http://127.0.0.1:8000/store/fast-food')
+    .then((response) => {
+      this.products = response.data
+      this.loading = false
+    })
+  },
   data: () => ({
     query: '',
     loading: true,
@@ -111,15 +118,6 @@ export default {
       }
     },
   },
-  mounted() {
-    document.title = 'NearbyStore : Food & Bevarages'
-    this.$axios
-      .get('http://127.0.0.1:8000/store/fast-food')
-      .then((response) => {
-        this.products = response.data
-        this.loading = false
-      })
-  },
   computed: {
     filteredProducts: function () {
       return this.products.filter((product) => {
@@ -127,7 +125,7 @@ export default {
       })
     },
   },
-  created() {
+  mounted() {
     document.title = 'NearbyStore : Food & Bevarages'
   }
 }

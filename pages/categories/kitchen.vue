@@ -67,11 +67,18 @@
 export default {
   auth: false,
   filters: {
-  capitalize: function (value) {
-    if (!value) return ''
+    capitalize: function (value) {
+      if (!value) return ''
     value = value.toString()
     return value.charAt(0).toUpperCase() + value.slice(1)
     }
+  },
+  async fetch() {
+    await this.$axios.get('http://127.0.0.1:8000/store/kitchen')
+    .then((response) => {
+      this.products = response.data
+      this.loading = false
+    })
   },
   data: () => ({
     query: '',
@@ -112,12 +119,6 @@ export default {
   },
   mounted() {
     document.title = 'NearByStore : Kitchen'
-    this.$axios
-      .get('http://127.0.0.1:8000/store/kitchen')
-      .then((response) => {
-        this.products = response.data
-        this.loading = false
-      })
   },
   computed: {
     filteredProducts: function () {
@@ -125,9 +126,6 @@ export default {
         return product.name.toLowerCase().match(this.query)
       })
     },
-  },
-  created(){
-    document.title = 'NearByStore : Kitchen'
   },
 }
 </script>
