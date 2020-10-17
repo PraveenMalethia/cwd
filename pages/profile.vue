@@ -128,8 +128,8 @@
             <v-spacer></v-spacer>
           </v-toolbar>
           <v-expansion-panels popout>
-            <v-expansion-panel
-              v-for="order in orders" :key="order.id">
+            <div v-if="orders.length > 0">
+            <v-expansion-panel v-for="order in orders" :key="order.id">
               <v-expansion-panel-header>Order ID : {{order.id}}</v-expansion-panel-header>
               <v-expansion-panel-content>
                 <v-alert class="mt-2" border="left" color="indigo" dark>
@@ -150,6 +150,15 @@
                 </v-alert>
               </v-expansion-panel-content>
             </v-expansion-panel>
+            </div>
+            <div v-else>
+              <v-expansion-panel>
+                <v-expansion-panel-header>No Orders Have Been Placed yet . </v-expansion-panel-header>
+                <v-expansion-panel-content>
+                  <v-btn block router to="/store" outlined>Let's Have Some Products <v-icon right>mdi-cart</v-icon></v-btn>
+                </v-expansion-panel-content>
+              </v-expansion-panel>
+            </div>
           </v-expansion-panels>
         </v-card>
       </v-flex>
