@@ -66,6 +66,7 @@
                 </form>
               </validation-observer>
             </v-card-text>
+            <v-progress-linear v-if="placing" indeterminate color="green"></v-progress-linear>
             <v-card-actions>
               <v-spacer></v-spacer>
               <v-btn class="mr-4 mb-4" @click="clear" text> clear </v-btn>
@@ -133,6 +134,7 @@ export default {
       'Killian wali',
       'Bathinda'
     ],
+    placing:false,
     rules: {
       required: (value) => !!value || 'Required.',
     },
@@ -156,11 +158,13 @@ export default {
     {
       this.$refs.observer.validate().then((response) => {
         if (response == true){
+          this.placing = true
         this.$axios.post('http://127.0.0.1:8000/store/place-order',this.shipping)
         .then((response) => {
           if (response.status== 202){
             this.$toast.success('Order Placed Successfully')
             this.clear()
+            this.placing = false
           }
           else{
             this.$toast.error('Please fill the shipping details correctly.')
@@ -172,7 +176,10 @@ export default {
     })
   },
   clear() {
-    this.shipping.address , this.shipping.housenumber, this.shipping.phone, this.shipping.special_instructions = ''
+    this.shipping.address = ''
+    this.shipping.housenumber = ''
+    this.shipping.phone = '' 
+    this.shipping.special_instructions = ''
     this.shipping.village_or_city = null
     this.$refs.observer.reset()
   },
