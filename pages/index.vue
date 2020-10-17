@@ -71,8 +71,5 @@ export default {
       ],
     }
   },
-  mounted() {
-    document.title = 'NearbyStore : Home'
-  }
 }
 </script>

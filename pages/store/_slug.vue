@@ -121,9 +121,6 @@ export default {
       slug: this.$route.params.slug,
     }
   },
-  mounted() {
-    document.title = `NearbyStore : ${this.slug}`
-  },
   async fetch() {
     this.$axios
     .get('http://127.0.0.1:8000/store/' + this.$route.params.slug)

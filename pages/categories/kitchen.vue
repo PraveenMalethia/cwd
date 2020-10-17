@@ -117,9 +117,6 @@ export default {
       }
     },
   },
-  mounted() {
-    document.title = 'NearByStore : Kitchen'
-  },
   computed: {
     filteredProducts: function () {
       return this.products.filter((product) => {

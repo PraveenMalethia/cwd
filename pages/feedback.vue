@@ -64,8 +64,5 @@ export default {
       this.$refs.observer.reset()
     },
   },
-  created() {
-    document.title = 'NearbyStore : Feedback'
-  }
 }
 </script>

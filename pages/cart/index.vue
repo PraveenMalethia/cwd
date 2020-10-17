@@ -159,7 +159,6 @@ export default {
     },
   },
   mounted() {
-    document.title = 'NearbyStore : Cart'
     this.$axios.get('http://127.0.0.1:8000/store/cart').then((response) => {
       this.products = response.data
       this.loading = false
@@ -172,9 +171,6 @@ export default {
         return product.product.name.toLowerCase().match(this.query)
       })
     },
-  },
-  created() {
-    document.title = 'NearbyStore : Cart'
   },
 }
 </script>

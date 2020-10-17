@@ -31,8 +31,5 @@
         { text: 'Sweets', icon: 'mdi-ice-cream', to: '/categories/sweets', },
       ],
     }),
-    mounted(){
-      document.title = 'NearByStore : Categories'
-    }
   }
 </script>

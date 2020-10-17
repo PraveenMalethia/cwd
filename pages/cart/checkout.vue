@@ -193,9 +193,5 @@ export default {
     this.time_after_30_mins = strTime
   }
   },
-  created() {
-    document.title = 'NearbyStore : Checkout'
-
-  }
 }
 </script>

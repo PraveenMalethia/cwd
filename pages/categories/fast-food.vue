@@ -125,9 +125,6 @@ export default {
       })
     },
   },
-  mounted() {
-    document.title = 'NearbyStore : Food & Bevarages'
-  }
 }
 </script>
 

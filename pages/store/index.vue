@@ -124,12 +124,6 @@ export default {
       }
     },
   },
-  async mounted(){
-    document.title = 'NearbyStore : Store'
-  },
-  created(){
-    document.title = 'NearbyStore : Store'
-  },
   computed:{
     filteredProducts: function () {
       return this.products.filter((product) => {

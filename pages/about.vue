@@ -18,8 +18,5 @@
 <script>
 export default {
   auth: false,
-  mounted() {
-    document.title = 'NearbyStore : About Us'
-  }
 }
 </script>

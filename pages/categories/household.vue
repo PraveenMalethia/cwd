@@ -132,9 +132,6 @@ export default {
       }
     },
   },
-  mounted(){
-    document.title = 'NearByStore : Household'
-  },
   computed:{
     filteredProducts: function () {
       return this.products.filter((product) => {

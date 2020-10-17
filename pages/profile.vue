@@ -247,8 +247,6 @@ export default {
       });
     }
   },
-  mounted: function () { document.title = 'NearbyStore : Profile'
-  }
 }
 </script>
 

@@ -46,9 +46,6 @@ export default {
     ],
     transparent: 'rgba(255, 255, 255, 0)',
   }),
-  created() {
-    document.title = 'NearbyStore : Join Us'
-  },
 }
 </script>
 

@@ -9,9 +9,6 @@ export default {
     }
   },
   async fetch() {},
-  mounted() {
-    document.title = 'NearbyStore : Food & Bevarages'
-  },
 }
 </script>
 
