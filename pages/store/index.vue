@@ -105,6 +105,12 @@ export default {
       return value.charAt(0).toUpperCase() + value.slice(1)
     }
   },
+  activated() {
+      // Call fetch again if last fetch more than .1 sec ago
+      if (this.$fetchState.timestamp <= Date.now() - 20000) {
+        this.$fetch()
+      }
+    },
   async fetch(){
     this.$axios.get('http://127.0.0.1:8000/store/').then((response) => {
     this.products = response.data

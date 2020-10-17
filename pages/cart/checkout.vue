@@ -139,6 +139,12 @@ export default {
       required: (value) => !!value || 'Required.',
     },
   }),
+  activated() {
+      // Call fetch again if last fetch more than 3 sec ago
+      if (this.$fetchState.timestamp <= Date.now() - 3000) {
+        this.$fetch()
+      }
+    },
   async fetch() {
     await this.settingDeliveryTime()
     await this.getLastAddedProduct()

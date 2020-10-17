@@ -111,6 +111,12 @@ export default {
       selection: 1,
     }
   },
+  activated() {
+      // Call fetch again if last fetch more than .1 sec ago
+      if (this.$fetchState.timestamp <= Date.now() - 5000) {
+        this.$fetch()
+      }
+    },
   async fetch() {
     await this.$axios.get('http://127.0.0.1:8000/store/cart').then((response)=>(this.products = response.data))
   },

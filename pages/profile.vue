@@ -186,6 +186,12 @@ export default {
     orders:[],
     order_items:[],
   }),
+  activated() {
+      // Call fetch again if last fetch more than .1 sec ago
+      if (this.$fetchState.timestamp <= Date.now() - 5000) {
+        this.$fetch()
+      }
+    },
   async fetch(){
     await this.$axios.get('http://127.0.0.1:8000/api/auth/customer/').then((response) => {this.customer = response.data})
     await this.$axios.get('http://127.0.0.1:8000/api/auth/customer/orders').then((response) => {this.orders= response.data})

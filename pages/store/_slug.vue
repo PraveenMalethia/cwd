@@ -121,6 +121,12 @@ export default {
       slug: this.$route.params.slug,
     }
   },
+  activated() {
+      // Call fetch again if last fetch more than 10 sec ago
+      if (this.$fetchState.timestamp <= Date.now() - 10000) {
+        this.$fetch()
+      }
+    },
   async fetch() {
     this.$axios
     .get('http://127.0.0.1:8000/store/' + this.$route.params.slug)
