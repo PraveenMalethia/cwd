@@ -28,10 +28,10 @@
           <v-hover v-slot:default="{ hover }">
           <v-card class="max-auto pa-1 mb-2 mr-2" max-width="390">
             <v-carousel hide-delimiters delimiter-icon="mdi-minus" :show-arrows="false" cycle height="260" hide-delimiter-background show-arrows-on-hover>
-              <v-carousel-item :src="'https://cwdstore.pythonanywhere.com' + product.featured_image"></v-carousel-item>
-              <v-carousel-item :src="'https://cwdstore.pythonanywhere.com' + product.image1"></v-carousel-item>
-              <v-carousel-item :src="'https://cwdstore.pythonanywhere.com' + product.image2"></v-carousel-item>
-              <v-carousel-item :src="'https://cwdstore.pythonanywhere.com' + product.image3"></v-carousel-item>
+              <v-carousel-item :src="'http://127.0.0.1:8000' + product.featured_image"></v-carousel-item>
+              <v-carousel-item :src="'http://127.0.0.1:8000' + product.image1"></v-carousel-item>
+              <v-carousel-item :src="'http://127.0.0.1:8000' + product.image2"></v-carousel-item>
+              <v-carousel-item :src="'http://127.0.0.1:8000' + product.image3"></v-carousel-item>
               <v-expand-transition>
               <div v-if="hover"
                 class="d-flex transition-fast-in-fast-out black darken-2 v-card--reveal display-3 white--text"
