@@ -98,7 +98,7 @@
           </v-list-item>
         </v-list>
         <div v-if="!edit">
-        <v-img :src="'https://cwdstore.pythonanywhere.com' + customer.profile_pic" height="100%"></v-img>
+        <v-img :src="'http://127.0.0.1:8000' + customer.profile_pic" height="100%"></v-img>
         </div>
       </v-card>
       </v-flex>
@@ -162,13 +162,13 @@ export default {
   methods: {
     loadCustomer() {
         this.$axios
-          .get('https://cwdstore.pythonanywhere.com/api/auth/customer/')
+          .get('http://127.0.0.1:8000/api/auth/customer/')
           .then((response) => {
             this.customer = response.data
           })
     },
     UserOrders(){
-      this.$axios.get('https://cwdstore.pythonanywhere.com/api/auth/customer/orders')
+      this.$axios.get('http://127.0.0.1:8000/api/auth/customer/orders')
       .then((response) => {
         this.orders= response.data
       })
@@ -184,7 +184,7 @@ export default {
         this.user.last_name = this.$auth.user.last_name
       }
       this.$axios
-        .put('https://cwdstore.pythonanywhere.com/api/auth/user/', this.user)
+        .put('http://127.0.0.1:8000/api/auth/user/', this.user)
         .then((response) => {
           this.$toast.success(`Profile of ${response.data.username} Updated`)
           this.$auth.fetchUser()
@@ -196,7 +196,7 @@ export default {
       if (this.UpdateCustomer.phone_number != null) {
         this.$axios
           .put(
-            'https://cwdstore.pythonanywhere.com/api/auth/customer/',
+            'http://127.0.0.1:8000/api/auth/customer/',
             this.UpdateCustomer
           )
           .then((response) => {

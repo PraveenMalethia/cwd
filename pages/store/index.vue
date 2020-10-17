@@ -94,7 +94,7 @@ export default {
     AddtoCart(slug) {
       if (this.$auth.loggedIn) {
         this.$axios
-          .post('https://cwdstore.pythonanywhere.com/store/add-to-cart/' + slug + '/', {slug: slug,})
+          .post('http://127.0.0.1:8000/store/add-to-cart/' + slug + '/', {slug: slug,})
           .then((response) => {
             this.$toast.success(response.data.detail)
           })
@@ -105,7 +105,7 @@ export default {
   },
   async mounted(){
     document.title = 'NearbyStore : Store'
-    this.$axios.get('https://cwdstore.pythonanywhere.com/store/').then((response) => {
+    this.$axios.get('http://127.0.0.1:8000/store/').then((response) => {
     this.products = response.data
     this.loading = false
     })

@@ -57,10 +57,10 @@
               <v-carousel
                 hide-delimiters cycle height="100%"
                 hide-delimiter-background show-arrows-on-hover>
-                <v-carousel-item :src="'https://cwdstore.pythonanywhere.com' + product.featured_image"></v-carousel-item>
-                <v-carousel-item :src="'https://cwdstore.pythonanywhere.com' + product.image1"></v-carousel-item>
-                <v-carousel-item :src="'https://cwdstore.pythonanywhere.com' + product.image2"></v-carousel-item>
-                <v-carousel-item :src="'https://cwdstore.pythonanywhere.com' + product.image3"></v-carousel-item>
+                <v-carousel-item :src="'http://127.0.0.1:8000' + product.featured_image"></v-carousel-item>
+                <v-carousel-item :src="'http://127.0.0.1:8000' + product.image1"></v-carousel-item>
+                <v-carousel-item :src="'http://127.0.0.1:8000' + product.image2"></v-carousel-item>
+                <v-carousel-item :src="'http://127.0.0.1:8000' + product.image3"></v-carousel-item>
               </v-carousel>
           </div>
           <v-card-text class="mt-4 ml-4">
@@ -126,7 +126,7 @@ export default {
   },
   created() {
       this.$axios
-      .get('https://cwdstore.pythonanywhere.com/store/' + this.$route.params.slug)
+      .get('http://127.0.0.1:8000/store/' + this.$route.params.slug)
       .then((response) => {
         this.product = response.data
         this.loaded = true
@@ -142,7 +142,7 @@ export default {
       this.loading = true
       if (this.$auth.loggedIn) {
         this.$axios
-          .post('https://cwdstore.pythonanywhere.com/store/add-to-cart/' + slug + '/', {
+          .post('http://127.0.0.1:8000/store/add-to-cart/' + slug + '/', {
             slug: slug,
           })
           .then((response) => {

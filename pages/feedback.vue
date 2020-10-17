@@ -55,7 +55,7 @@ export default {
       submit () {
         this.$refs.observer.validate().then((response) => {
           if (response == true){
-            this.$axios.post('https://cwdstore.pythonanywhere.com/store/feedback/',this.data)
+            this.$axios.post('http://127.0.0.1:8000/store/feedback/',this.data)
             .then((response) => {
               console.log(response.data)
             })

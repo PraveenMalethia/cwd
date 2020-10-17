@@ -114,7 +114,7 @@ export default {
     AddtoCart(slug) {
       if (this.$auth.loggedIn) {
         this.$axios
-          .post('https://cwdstore.pythonanywhere.com/store/add-to-cart/' + slug + '/', {
+          .post('http://127.0.0.1:8000/store/add-to-cart/' + slug + '/', {
             slug: slug,
           })
           .then((response) => {
@@ -128,7 +128,7 @@ export default {
   mounted(){
     document.title = 'NearByStore : Household'
     this.$axios
-      .get('https://cwdstore.pythonanywhere.com/store/household')
+      .get('http://127.0.0.1:8000/store/household')
       .then((response) => {
         this.products = response.data
         this.loading = false

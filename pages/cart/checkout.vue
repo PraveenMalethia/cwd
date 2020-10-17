@@ -140,7 +140,7 @@ export default {
   methods: {
     getLastAddedProduct() {
       this.$axios
-        .get('https://cwdstore.pythonanywhere.com/store/cart')
+        .get('http://127.0.0.1:8000/store/cart')
         .then((response) =>
         {
           let total = response.data.length;
@@ -152,7 +152,7 @@ export default {
       this.$refs.observer.validate().then((response) => {
         if (response == true)
         {
-          this.$axios.post('https://cwdstore.pythonanywhere.com/store/place-order',this.shipping)
+          this.$axios.post('http://127.0.0.1:8000/store/place-order',this.shipping)
           .then((response) => {
             if (response.status== 202){
               this.$toast.success('Order Placed Successfully')
