@@ -222,15 +222,15 @@ export default {
             .catch((error) =>{
             if (error.response.status == 404)
             {
+              this.$toast.error("Invalid Order ID")
               this.loading = false
               this.clear()
-              this.$toast.error("Invalid Order ID")
-              this.$router.push({name:'error'})
             }
             })
           this.order = true
         } else {
           this.$toast.error('Please fill the details correctly')
+          this.loading = false
         }
       })
     },

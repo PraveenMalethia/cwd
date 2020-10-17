@@ -72,7 +72,22 @@
     </v-container>
   </div>
 </template>
-
+<style>
+a {
+  text-decoration: none;
+}
+.v-card__title {
+  color: white;
+}
+.v-card--reveal {
+  align-items: center;
+  bottom: 0;
+  justify-content: center;
+  opacity: .7;
+  position: absolute;
+  width: 100%;
+}
+</style>
 <script>
 export default {
   auth:false,
@@ -122,19 +137,3 @@ export default {
   },
 }
 </script>
-<style>
-a {
-  text-decoration: none;
-}
-.v-card__title {
-  color: white;
-}
-.v-card--reveal {
-  align-items: center;
-  bottom: 0;
-  justify-content: center;
-  opacity: .7;
-  position: absolute;
-  width: 100%;
-}
-</style>
