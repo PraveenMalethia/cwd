@@ -53,7 +53,7 @@
                     </v-text-field>
                   </validation-provider>
                   <validation-provider v-slot="{ errors }" name="Village Or City" rules="required">
-                    <v-select outlined v-model="shipping.village" prepend-icon="mdi-city" :items="villages"
+                    <v-select outlined v-model="shipping.village_or_city" prepend-icon="mdi-city" :items="villages_or_cities"
                       :error-messages="errors" label="Select City Or Village*" data-vv-name="select" required>
                     </v-select>
                   </validation-provider>
@@ -101,7 +101,7 @@ export default {
       address: '',
       housenumber: '',
       phone: '',
-      village: null,
+      village_or_city: null,
       errors: null,
       special_instructions:'',
     },
@@ -126,7 +126,7 @@ export default {
         color: 'deep-purple lighten-1',
       },
     ],
-    villages: [
+    villages_or_cities: [
       'Churriwala Dhanna',
       'Nihal Khera',
       'Danger Kheda',
@@ -173,7 +173,7 @@ export default {
   },
   clear() {
     this.shipping.address , this.shipping.housenumber, this.shipping.phone, this.shipping.special_instructions = ''
-    this.shipping.village = null
+    this.shipping.village_or_city = null
     this.$refs.observer.reset()
   },
   settingDeliveryTime(){
