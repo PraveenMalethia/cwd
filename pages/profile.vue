@@ -227,23 +227,18 @@ export default {
     onChangeFileUpload(){
         this.file = this.$refs.file.$refs.input.files[0]
         let formData = new FormData();
-            formData.append('file', this.file);
-            this.$axios.patch('http://127.0.0.1:8000/api/auth/customer/uplad-profile-pic/',
-                formData,
-                {
-                headers: {
-                    'Content-Type': 'multipart/form-data'
-                }
-              }
-            ).then((response) =>{
-              this.$toast.success(response.data);
-              this.loadCustomer()
-              this.edit = false
-            })
-            .catch((error)=>{
-              this.$toast.error(error.message)
-              this.edit = false
-            });
+        formData.append('file', this.file);
+        this.$axios.patch('http://127.0.0.1:8000/api/auth/customer/uplad-profile-pic/',formData,
+          {headers: {'Content-Type': 'multipart/form-data'}}
+        ).then((response) =>{
+          this.$toast.success(response.data);
+          this.loadCustomer()
+          this.edit = false
+        })
+        .catch((error)=>{
+          this.$toast.error(error.message)
+          this.edit = false
+        });
       }
   },
   mounted: function () {
