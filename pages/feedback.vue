@@ -55,21 +55,20 @@ export default {
       submit () {
         this.$refs.observer.validate().then((response) => {
           if (response == true){
-            this.$axios.post('http://127.0.0.1:8000/store/feedback/',this.data)
+            this.$axios.post('http://127.0.0.1:8000/store/feedback',this.data)
             .then((response) => {
-              console.log(response.data)
+              this.$toast.success(`Feedback ${response.data.subject} submitted`)
+              this.clear()
             })
             .catch((error) => {
               console.log(error.message)
             })
-            this.$toast.success("Feedback submitted")
-            this.clear()
           }
         })
       },
-      clear () {
-        this.subject = ''
-        this.details = ''
+      clear(){
+        this.data.subject = ''
+        this.data.details = ''
         this.$refs.observer.reset()
       },
     },
