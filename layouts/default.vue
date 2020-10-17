@@ -74,7 +74,7 @@
         bottom right v-bind="attrs" v-on="on" color="deep-purple darken-1" @click="toTop">
         <v-icon>mdi-arrow-up</v-icon>
       </v-btn>
-            </template>
+      </template>
       <span>Top</span>
     </v-tooltip>
     </v-scale-transition>
@@ -155,6 +155,12 @@ export default {
       title: 'Friendly Neighbor Store',
     }
   },
+  activated() {
+      // Call fetch again if last fetch more than 30 sec ago
+      if (this.$fetchState.timestamp <= Date.now() - 30000) {
+        this.$fetch()
+      }
+    },
   async fetch() {
     if (this.$auth.loggedIn) {
       await this.$axios
