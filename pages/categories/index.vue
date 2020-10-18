@@ -1,4 +1,10 @@
 <template>
+<div>
+  <v-card class="mb-3">
+    <v-btn router text color="dark" retain-focus-on-click to="/">Home </v-btn>
+    <v-icon>mdi-chevron-right</v-icon>
+    <v-btn router text to="/categories">Categories</v-btn>
+    </v-card>
   <v-card class="mx-auto" max-width="500" tile>
     <v-list rounded>
       <v-subheader>CATEGORIES</v-subheader>
@@ -14,6 +20,7 @@
       </v-list-item-group>
     </v-list>
   </v-card>
+</div>
 </template>
 
 <script>

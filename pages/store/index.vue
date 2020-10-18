@@ -1,5 +1,5 @@
 <template>
-  <div class="mt-3">
+  <div>
     <v-card>
       <v-btn router text color="dark" retain-focus-on-click to="/">Home </v-btn>
       <v-icon>mdi-chevron-right</v-icon>
