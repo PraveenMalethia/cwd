@@ -44,10 +44,9 @@
       <v-card-actions>
         <v-spacer></v-spacer>
         <v-btn class="mr-4 ml-4 mb-4" text
-          @click="dialog = false">
-          <v-icon left dark>mdi-chevron-left</v-icon>Close
+          @click="dialog = false">Cancel
         </v-btn>
-        <v-btn class="mr-4 mb-4" color="green darken-2" @click="CreateAccount()">Reset my password<v-icon right dark>mdi-lock-reset</v-icon>
+        <v-btn class="mr-4 mb-4" color="green darken-2" @click="CreateAccount()">Reset password<v-icon right dark>mdi-lock-reset</v-icon>
         </v-btn>
       </v-card-actions>
     </v-card>
