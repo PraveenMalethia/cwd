@@ -192,7 +192,7 @@ export default {
     },
     CreateAccount() {
       this.$axios
-        .post('http://127.0.0.1:8000/api/auth/registration/', this.user)
+        .post('/api/auth/registration/', this.user)
         .then((response) => {
           this.dialog = false
         })

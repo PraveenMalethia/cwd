@@ -83,7 +83,7 @@ export default {
       }
     },
   async fetch() {
-    this.$axios.get('http://127.0.0.1:8000/store/fast-food')
+    this.$axios.get('/store/fast-food')
     .then((response) => {
       this.products = response.data
       this.loading = false
@@ -115,7 +115,7 @@ export default {
     AddtoCart(slug) {
       if (this.$auth.loggedIn) {
         this.$axios
-          .post('http://127.0.0.1:8000/store/add-to-cart/' + slug + '/', {
+          .post('/store/add-to-cart/' + slug + '/', {
             slug: slug,
           })
           .then((response) => {

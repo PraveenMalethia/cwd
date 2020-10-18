@@ -201,17 +201,17 @@ export default {
       }
     },
   async fetch(){
-    await this.$axios.get('http://127.0.0.1:8000/api/auth/customer/').then((response) => {this.customer = response.data})
-    await this.$axios.get('http://127.0.0.1:8000/api/auth/customer/orders').then((response) => {
+    await this.$axios.get('/api/auth/customer/').then((response) => {this.customer = response.data})
+    await this.$axios.get('/api/auth/customer/orders').then((response) => {
       this.orders= response.data
       })
   },
   methods: {
     loadCustomer() {
-      this.$axios.get('http://127.0.0.1:8000/api/auth/customer/').then((response) => {this.customer = response.data})
+      this.$axios.get('/api/auth/customer/').then((response) => {this.customer = response.data})
     },
     UserOrders(){
-      this.$axios.get('http://127.0.0.1:8000/api/auth/customer/orders')
+      this.$axios.get('/api/auth/customer/orders')
       .then((response) => {this.orders= response.data})
     },
     UpdateUser() {
@@ -225,7 +225,7 @@ export default {
         this.user.last_name = this.$auth.user.last_name
       }
       this.$axios
-        .put('http://127.0.0.1:8000/api/auth/user/', this.user)
+        .put('/api/auth/user/', this.user)
         .then((response) => {
           this.$toast.success(`Profile of ${response.data.username} Updated`)
           this.$auth.fetchUser()
@@ -237,7 +237,7 @@ export default {
       if (this.UpdateCustomer.phone_number != null) {
         this.$axios
           .put(
-            'http://127.0.0.1:8000/api/auth/customer/',
+            '/api/auth/customer/',
             this.UpdateCustomer
           )
           .then((response) => {
@@ -250,7 +250,7 @@ export default {
       this.file = this.$refs.file.$refs.input.files[0]
       let formData = new FormData();
       formData.append('file', this.file);
-      this.$axios.patch('http://127.0.0.1:8000/api/auth/customer/uplad-profile-pic/',formData,
+      this.$axios.patch('/api/auth/customer/uplad-profile-pic/',formData,
         {headers: {'Content-Type': 'multipart/form-data'}}
       ).then((response) =>{
         this.$toast.success(response.data);

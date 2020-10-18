@@ -137,7 +137,7 @@ export default {
   },
   async fetch() {
     this.$axios
-      .get('http://127.0.0.1:8000/store/' + this.$route.params.slug)
+      .get('/store/' + this.$route.params.slug)
       .then((response) => {
         this.product = response.data
         this.loaded = true
@@ -153,7 +153,7 @@ export default {
       this.loading = true
       if (this.$auth.loggedIn) {
         this.$axios
-          .post('http://127.0.0.1:8000/store/add-to-cart/' + slug + '/', {
+          .post('/store/add-to-cart/' + slug + '/', {
             slug: slug,
           })
           .then((response) => {

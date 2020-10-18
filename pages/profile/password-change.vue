@@ -116,7 +116,7 @@ export default {
           if(this.passwords.new_password1 == this.passwords.new_password2){
             this.$axios
             .post(
-              'http://127.0.0.1:8000/api/auth/password/change/',
+              '/api/auth/password/change/',
               this.passwords
             )
             .then((response) => {
@@ -124,7 +124,7 @@ export default {
               this.clear()
             })
             .catch((error)=>{
-              this.$toast.error(error.message)
+              this.$toast.error('Please Try again with valid credentials')
             })
           }
           else{

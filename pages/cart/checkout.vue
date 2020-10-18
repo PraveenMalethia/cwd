@@ -200,7 +200,7 @@ export default {
   },
   methods: {
     getLastAddedProduct() {
-      this.$axios.get('http://127.0.0.1:8000/store/cart').then((response) => {
+      this.$axios.get('/store/cart').then((response) => {
         let total = response.data.length
         this.last_added_item_date = response.data[total - 1].humanized_date
       })
@@ -210,7 +210,7 @@ export default {
         if (response == true) {
           this.placing = true
           this.$axios
-            .post('http://127.0.0.1:8000/store/place-order', this.shipping)
+            .post('/store/place-order', this.shipping)
             .then((response) => {
               if (response.status == 202) {
                 this.$toast.success('Order Placed Successfully')

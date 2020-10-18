@@ -123,7 +123,7 @@ export default {
     }
   },
   async fetch() {
-    this.$axios.get('http://127.0.0.1:8000/store/').then((response) => {
+    this.$axios.get('/store').then((response) => {
       this.products = response.data
       this.loading = false
     })

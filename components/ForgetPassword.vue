@@ -76,7 +76,7 @@ export default {
   },
   methods: {
     CreateAccount(){
-      this.$axios.post('http://127.0.0.1:8000/api/auth/registration/',this.user)
+      this.$axios.post('/api/auth/registration/',this.user)
       .then((response) =>{
         console.log(response.data)
       })

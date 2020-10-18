@@ -164,7 +164,7 @@ export default {
   async fetch() {
     if (this.$auth.loggedIn) {
       await this.$axios
-        .get('http://127.0.0.1:8000/api/auth/customer/')
+        .get('/api/auth/customer/')
         .then((response) => {
           this.customer = response.data
         })
