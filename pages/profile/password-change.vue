@@ -113,7 +113,8 @@ export default {
     submit() {
       this.$refs.observer.validate().then((response) => {
         if (response == true) {
-          this.$axios
+          if(this.passwords.new_password1 == this.passwords.new_password2){
+            this.$axios
             .post(
               'http://127.0.0.1:8000/api/auth/password/change/',
               this.passwords
@@ -122,6 +123,13 @@ export default {
               this.$toast.success(response.data.detail)
               this.clear()
             })
+            .catch((error)=>{
+              this.$toast.error(error.message)
+            })
+          }
+          else{
+            this.$toast.error("Both password aren't equal")
+          }
         }
       })
     },

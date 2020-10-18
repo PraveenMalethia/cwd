@@ -15,8 +15,7 @@
               flat
               hide-details
               label="Search"
-              solo-inverted
-            >
+              solo-inverted>
             </v-text-field>
           </v-toolbar>
         </v-card>
