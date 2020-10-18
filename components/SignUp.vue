@@ -24,27 +24,42 @@
         <v-toolbar-title>Create Account form</v-toolbar-title>
       </v-toolbar>
       <v-card-text>
+        <validation-observer
+    ref="observer">
+        <form>
         <v-container>
           <v-row>
             <v-col cols="12" sm="6" md="6">
+              <validation-provider
+                v-slot="{ errors }"
+                name="Username"
+                rules="required">
               <v-text-field
                 prepend-icon="mdi-account-circle"
                 outlined
+                :error-messages="errors"
                 v-model="user.username"
                 color="green"
+                :rules="[rules.required]"
                 label="Username*"
               ></v-text-field>
+              </validation-provider>
             </v-col>
             <v-col cols="12" sm="6" md="6">
+              <validation-provider
+                v-slot="{ errors }"
+                name="email"
+                rules="required|email">
               <v-text-field
                 prepend-icon="mdi-email"
-                outlined
+                outlined :error-messages="errors"
                 v-model="user.email"
                 color="green"
                 type="email"
                 label="Email*"
                 required
               ></v-text-field>
+              </validation-provider>
             </v-col>
             <v-col cols="12" sm="6" md="6">
               <v-text-field
@@ -57,13 +72,12 @@
                 :append-icon="showpassword ? 'mdi-eye' : 'mdi-eye-off'"
                 :type="showpassword ? 'text' : 'password'"
                 @click:append="showpassword = !showpassword"
-                required
-              ></v-text-field>
+                required></v-text-field>
             </v-col>
             <v-col cols="12" sm="6" md="6">
               <v-text-field
                 prepend-icon="mdi-lock"
-                outlined
+                outlined :error-messages="errors"
                 v-model="user.password2"
                 color="green"
                 label="Confirm Password*"
@@ -74,8 +88,23 @@
                 required
               ></v-text-field>
             </v-col>
+              <v-col cols="12" sm="12" md="6">
+              <TermsAndConditions/>
+              </v-col>
+              <v-col cols="12" sm="12" md="3">
+              <validation-provider rules="required" name="checkbox">
+                <v-checkbox
+                  v-model="checkbox"
+                  :error-messages="errors"
+                  label="Accept"
+                  type="checkbox"
+                  required></v-checkbox>
+              </validation-provider>
+              </v-col>
           </v-row>
         </v-container>
+        </form>
+        </validation-observer>
       </v-card-text>
       <v-card-actions>
         <v-spacer></v-spacer>
@@ -83,7 +112,7 @@
           @click="dialog = false">
           <v-icon left dark>mdi-chevron-left</v-icon>Close
         </v-btn>
-        <v-btn class="mr-4 mb-4" color="green darken-2" @click="CreateAccount()">Create<v-icon right dark>mdi-plus</v-icon>
+        <v-btn class="mr-4 mb-4" color="green darken-2" @click="submit()">Create<v-icon right dark>mdi-plus</v-icon>
         </v-btn>
       </v-card-actions>
     </v-card>
@@ -91,33 +120,83 @@
 </template>
 
 <script>
+import { required, email, max } from 'vee-validate/dist/rules'
+import {
+  extend,
+  ValidationObserver,
+  ValidationProvider,
+  setInteractionMode,
+} from 'vee-validate'
+
+setInteractionMode('eager')
+
+extend('required', {
+  ...required,
+  message: '{_field_} can not be empty',
+})
+
+extend('max', {
+  ...max,
+  message: '{_field_} may not be greater than {length} characters',
+})
+
+extend('email', {
+  ...email,
+  message: 'Email must be valid',
+})
+import TermsAndConditions from './TermsAndConditions'
 export default {
+  components: {
+    TermsAndConditions,
+  },
   name: 'Login',
+  components: {
+    ValidationProvider,
+    ValidationObserver,
+  },
   data() {
     return {
-      user:{
-          email: '',
-          username:'',
-          password1: '',
-          password2: '',
+      user: {
+        email: '',
+        username: '',
+        password1: '',
+        password2: '',
       },
       loader: null,
+      errors: null,
+      checkbox: true,
       loading: false,
       dialog: false,
       showpassword: false,
       rules: {
-          required: value => !!value || 'Required.',
-          min: v => v.length >= 10 || 'Min 10 characters',
-        },
+        required: (value) => !!value || 'Required.',
+        min: (v) => v.length >= 10 || 'Min 10 characters',
+      },
     }
   },
   methods: {
-    CreateAccount(){
-      this.$axios.post('http://127.0.0.1:8000/api/auth/registration/',this.user)
-      .then((response) =>{
-        this.dialog = false
+    submit() {
+      this.$refs.observer.validate().then((response) => {
+        if (response == true) {
+          if (this.user.password1 == this.user.password2) {
+            this.CreateAccount()
+            console.log("I am here")
+
+          }
+          else{
+            console.log("I am here")
+            this.$toast.error("Both password doesn't match")
+          }
+        }
       })
-    }
+    },
+    CreateAccount() {
+      this.$axios
+        .post('http://127.0.0.1:8000/api/auth/registration/', this.user)
+        .then((response) => {
+          this.dialog = false
+        })
+    },
   },
   watch: {
     loader() {

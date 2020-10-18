@@ -1,10 +1,9 @@
 <template>
 <div>
-
     <v-card class="mb-3">
     <v-btn router text color="dark" retain-focus-on-click to="/">Home </v-btn>
       <v-icon>mdi-chevron-right</v-icon>
-      <v-btn router text to="/profile">Profile </v-btn>
+      <v-btn router small text to="/profile">Profile </v-btn>
     </v-card>
     <v-layout row wrap>
       <v-flex class="pa-1" xs12 sm6 md6>

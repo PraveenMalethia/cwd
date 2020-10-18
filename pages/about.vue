@@ -3,7 +3,7 @@
   <v-card>
       <v-btn router text color="dark" retain-focus-on-click to="/">Home </v-btn>
       <v-icon>mdi-chevron-right</v-icon>
-      <v-btn router text to="/about">About </v-btn>
+      <v-btn router small text to="/about">About </v-btn>
     </v-card>
   <v-layout>
     <v-flex class="text-center">

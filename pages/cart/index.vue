@@ -1,6 +1,11 @@
 <template>
   <div>
     <div v-if="products.length">
+    <v-card class="mb-3">
+    <v-btn router text color="dark" retain-focus-on-click to="/">Home </v-btn>
+      <v-icon>mdi-chevron-right</v-icon>
+      <v-btn router small text to="/cart">Cart </v-btn>
+    </v-card>
       <v-layout v-if="cartLoading" row wrap>
         <v-flex xs12 sm12 md12 lg12>
           <v-skeleton-loader
@@ -35,18 +40,6 @@
           </v-card>
         </v-flex>
       </v-layout>
-      <v-card small>
-        <v-toolbar color="deep-purple darken-1" dark flat>
-          <v-text-field
-            v-model="query"
-            class="mx-4"
-            flat
-            hide-details
-            label="Search"
-            solo-inverted>
-          </v-text-field>
-        </v-toolbar>
-      </v-card>
       <v-container>
         <v-layout v-if="loading" row wrap>
           <v-flex v-for="n in 8" :key="n" xs12 sm6 md4 lg3 xl2>

@@ -1,5 +1,12 @@
 <template>
   <div>
+    <v-card class="mb-3">
+    <v-btn router text color="dark" retain-focus-on-click to="/">Home </v-btn>
+      <v-icon>mdi-chevron-right</v-icon>
+      <v-btn router small text to="/cart">Cart </v-btn>
+      <v-icon>mdi-chevron-right</v-icon>
+      <v-btn router small text to="/cart/checkout">Checkout </v-btn>
+    </v-card>
     <v-container>
       <v-layout row wrap>
         <v-flex xs12 sm12 md6 lg5>

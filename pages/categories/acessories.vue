@@ -3,9 +3,9 @@
     <v-card class="mb-3">
       <v-btn router text color="dark" retain-focus-on-click to="/">Home </v-btn>
       <v-icon>mdi-chevron-right</v-icon>
-      <v-btn router text to="/categories">Categories</v-btn>
+      <v-btn router small text to="/categories">Categories</v-btn>
       <v-icon>mdi-chevron-right</v-icon>
-      <v-btn router text to="/categories/acessories">Acessories </v-btn>
+      <v-btn router small text to="/categories/acessories">Acessories </v-btn>
     </v-card>
     <v-layout>
       <v-flex xs12>
@@ -136,4 +136,11 @@ export default {
 </script>
 
 <style>
+a {
+  text-decoration: none;
+  color:white;
+}
+.v-card__title {
+  color: white;
+}
 </style>

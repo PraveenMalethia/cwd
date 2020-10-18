@@ -3,9 +3,9 @@
     <v-card>
       <v-btn router text to="/">Home </v-btn>
       <v-icon>mdi-chevron-right</v-icon>
-      <v-btn router text to="/store">Store </v-btn>
+      <v-btn router small text to="/store">Store </v-btn>
       <v-icon>mdi-chevron-right</v-icon>
-      <v-btn router text :to="'/store/' + product.slug">Product </v-btn>
+      <v-btn router small text :to="'/store/' + product.slug">Product </v-btn>
     </v-card>
     <div v-if="!loaded">
       <br />
@@ -16,7 +16,7 @@
     <div v-else>
       <br />
       <div class="hidden-md-and-up">
-        <v-carousel hide-delimiters cycle height="100%" hide-delimiter-background show-arrows-on-hover>
+        <v-carousel hide-delimiters cycle height="400px" hide-delimiter-background show-arrows-on-hover>
           <v-carousel-item :src="'http://127.0.0.1:8000' + product.featured_image"></v-carousel-item>
           <v-carousel-item :src="'http://127.0.0.1:8000' + product.image1"></v-carousel-item>
           <v-carousel-item :src="'http://127.0.0.1:8000' + product.image2"></v-carousel-item>

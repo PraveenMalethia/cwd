@@ -3,9 +3,9 @@
     <v-card class="mb-3">
     <v-btn router text color="dark" retain-focus-on-click to="/">Home </v-btn>
       <v-icon>mdi-chevron-right</v-icon>
-      <v-btn router text to="/profile">Profile</v-btn>
+      <v-btn router small text to="/profile">Profile</v-btn>
       <v-icon>mdi-chevron-right</v-icon>
-      <v-btn router text to="/profile/password-change">Change Password</v-btn>
+      <v-btn router small text to="/profile/password-change">Change Password</v-btn>
     </v-card>
   <v-card class="mx-auto" max-width="344" outlined>
     <v-list-item three-line>

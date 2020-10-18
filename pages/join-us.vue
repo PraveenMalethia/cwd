@@ -3,7 +3,7 @@
   <v-card class="mb-3">
     <v-btn router text color="dark" retain-focus-on-click to="/">Home </v-btn>
       <v-icon>mdi-chevron-right</v-icon>
-      <v-btn router text to="/join-us">Join us </v-btn>
+      <v-btn router small text to="/join-us">Join us </v-btn>
     </v-card>
   <v-container class="pa-4 text-center">
     <v-row align="center" justify="space-around">
