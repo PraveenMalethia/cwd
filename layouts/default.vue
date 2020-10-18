@@ -79,7 +79,7 @@
     </v-tooltip>
     </v-scale-transition>
       <v-container>
-        <nuxt keep-alive/>
+        <nuxt/>
       </v-container>
     </v-main>
     <Footer />
