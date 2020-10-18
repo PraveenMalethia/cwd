@@ -1,4 +1,10 @@
 <template>
+<div>
+  <v-card class="mb-3">
+    <v-btn router text color="dark" retain-focus-on-click to="/">Home </v-btn>
+      <v-icon>mdi-chevron-right</v-icon>
+      <v-btn router text to="/feedback">Feedback </v-btn>
+    </v-card>
   <v-card shaped class="mx-auto" max-width="500">
     <v-toolbar color="deep-purple darken-2" dark flat shaped>
       <v-toolbar-title>Feedback Or Report Bug</v-toolbar-title>
@@ -22,6 +28,7 @@
       <v-btn class="mr-10 mb-4" @click="submit" color="deep-purple darken-2"> submit</v-btn>
     </v-card-actions>
   </v-card>
+</div>
 </template>
 
 <script>

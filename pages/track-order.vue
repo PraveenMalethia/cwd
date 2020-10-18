@@ -1,5 +1,10 @@
 <template>
   <div>
+    <v-card>
+    <v-btn router text color="dark" retain-focus-on-click to="/">Home </v-btn>
+      <v-icon>mdi-chevron-right</v-icon>
+      <v-btn router text to="/track-order">Track Order</v-btn>
+    </v-card>
     <div>
       <v-layout>
         <v-flex xs12>

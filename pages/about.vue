@@ -1,4 +1,10 @@
 <template>
+<div>
+  <v-card>
+      <v-btn router text color="dark" retain-focus-on-click to="/">Home </v-btn>
+      <v-icon>mdi-chevron-right</v-icon>
+      <v-btn router text to="/about">About </v-btn>
+    </v-card>
   <v-layout>
     <v-flex class="text-center">
       <blockquote class="blockquote">
@@ -14,6 +20,7 @@
       </blockquote>
     </v-flex>
   </v-layout>
+</div>
 </template>
 <script>
 export default {
