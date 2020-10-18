@@ -214,3 +214,12 @@ export default {
   },
 }
 </script>
+<style>
+a {
+  text-decoration: none;
+  color:white;
+}
+.v-card__title {
+  color: white;
+}
+</style>

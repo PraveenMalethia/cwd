@@ -3,7 +3,7 @@
     <v-card flat tile class="deep-purple darken-1 white--text text-center">
       <v-card-text>
         <span v-for="social in socials" :key="social.id">
-        <a :href="social.href" target="_blank">
+        <a class="footer_links" :href="social.href" target="_blank">
         <v-btn class="mx-4 white--text" icon>
           <v-icon size="24px">{{ social.icon }}</v-icon>
         </v-btn>
@@ -55,5 +55,8 @@ export default {
 <style>
 .v-card--flat{
   width:100%;
+}
+.footer_links{
+  text-decoration: none;
 }
 </style>

@@ -7,8 +7,11 @@
           <span class="headline white--text">Profile</span>
           <v-spacer></v-spacer>
           <v-btn v-if="edit" text @click="UpdateUser()">Update<v-icon right>mdi-update</v-icon></v-btn>
-          <v-btn dark icon @click="edit = !edit">
-            <v-icon>mdi-pencil</v-icon>
+          <v-btn dark text @click="edit = !edit">Profile
+            <v-icon right>mdi-pencil</v-icon>
+          </v-btn>
+          <v-btn dark router text to="/profile/password-change">Password
+            <v-icon right>mdi-cog</v-icon>
           </v-btn>
         </v-card-title>
         <v-list v-if="!edit">
@@ -127,22 +130,20 @@
             <v-toolbar-title>Order History</v-toolbar-title>
             <v-spacer></v-spacer>
           </v-toolbar>
-          <v-expansion-panels popout>
             <div v-if="orders.length > 0">
+          <v-expansion-panels popout>
             <v-expansion-panel v-for="order in orders" :key="order.id">
               <v-expansion-panel-header>Order ID : {{order.id}}</v-expansion-panel-header>
               <v-expansion-panel-content>
                 <v-alert class="mt-2" border="left" color="indigo" dark>
                   <v-row align="center">
                     <v-col class="grow">
+                      <h3>Order {{order.id}} Details</h3>
                       Transaction Id : {{order.transaction_id}}<br>
                       Order Placed : {{order.placed}}<br>
                       Canceled : {{order.canceled}}<br>
-                      Confirmed : {{order.confirmed}}<br>
-                      On The Way : {{order.on_the_way}}<br>
-                      Delivered from us : {{order.delivered_from_us}}<br>
                       Delivered to User : {{order.delivered_to_user}}
-                    <v-col class="shrink">
+                    <v-col v-if="!order.delivered_to_user" class="shrink">
                       <v-btn router to="/track-order">Track Order <v-icon right>mdi-map</v-icon></v-btn>
                     </v-col>
                     </v-col>
@@ -150,16 +151,18 @@
                 </v-alert>
               </v-expansion-panel-content>
             </v-expansion-panel>
-            </div>
+          </v-expansion-panels>
+          </div>
             <div v-else>
+          <v-expansion-panels popout>
               <v-expansion-panel>
                 <v-expansion-panel-header>No Orders Have Been Placed yet . </v-expansion-panel-header>
                 <v-expansion-panel-content>
                   <v-btn block router to="/store" outlined>Let's Have Some Products <v-icon right>mdi-cart</v-icon></v-btn>
                 </v-expansion-panel-content>
               </v-expansion-panel>
-            </div>
           </v-expansion-panels>
+            </div>
         </v-card>
       </v-flex>
     </v-layout>
@@ -194,7 +197,9 @@ export default {
     },
   async fetch(){
     await this.$axios.get('http://127.0.0.1:8000/api/auth/customer/').then((response) => {this.customer = response.data})
-    await this.$axios.get('http://127.0.0.1:8000/api/auth/customer/orders').then((response) => {this.orders= response.data})
+    await this.$axios.get('http://127.0.0.1:8000/api/auth/customer/orders').then((response) => {
+      this.orders= response.data
+      })
   },
   methods: {
     loadCustomer() {
