@@ -32,7 +32,7 @@
                 <v-card-actions>
                   <SignUp />
                   <v-spacer></v-spacer>
-                  <v-btn @click="userLogin" class="mr-2" color="deep-purple darken-3" >Login
+                  <v-btn @click="userLogin" class="mr-6 mb-5" color="deep-purple darken-3" >Login
                     <v-icon right>mdi-login</v-icon>
                   </v-btn>
                 </v-card-actions>
