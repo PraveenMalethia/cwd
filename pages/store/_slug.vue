@@ -162,6 +162,7 @@ export default {
         setTimeout(() => (this.loading = false), 1000)
       } else {
         this.$toast.error('Please login to add products to cart')
+        this.$router.push('/login')
         setTimeout(() => (this.loading = false), 1000)
       }
     },

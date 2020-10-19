@@ -122,6 +122,7 @@ export default {
           })
       } else {
         this.$toast.error('Please login to add products to cart')
+        this.$router.push('/login')
       }
     },
   },
