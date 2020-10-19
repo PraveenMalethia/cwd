@@ -85,7 +85,7 @@
                   <v-icon>mdi-minus</v-icon>
                 </v-btn>
                   <h2>
-                    <Roller class="text-center" :text="product.quantity"/>
+                    <Roller :isNumberFormat="true" :text="`${product.quantity}`"/>
                   </h2>
                 <v-btn
                   icon
