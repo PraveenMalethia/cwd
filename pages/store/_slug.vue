@@ -11,7 +11,7 @@
       <br />
       <v-skeleton-loader class="mx-auto" max-width="1000" type="card,list-item-three-line,actions"></v-skeleton-loader>
       <br />
-      <v-skeleton-loader v-bind="attrs" type="article, list-item-three-line"></v-skeleton-loader>
+      <v-skeleton-loader type="article, list-item-three-line"></v-skeleton-loader>
     </div>
     <div v-else>
       <br />
