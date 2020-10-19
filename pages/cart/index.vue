@@ -62,7 +62,7 @@
                 hide-delimiter-background
                 :next-icon="false"
                 :prev-icon="false">
-                <v-carousel-item :src="'http://127.0.0.1:8000' + product.product.featured_image">
+                <v-carousel-item :src="'https://cwdstore.pythonanywhere.com/' + product.product.featured_image">
                 </v-carousel-item>
               </v-carousel>
               <router-link

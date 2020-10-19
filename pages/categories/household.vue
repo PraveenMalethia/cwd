@@ -40,10 +40,10 @@
               hide-delimiters cycle height="260"
               delimiter-icon="mdi-minus" :show-arrows="false"
               hide-delimiter-background>
-              <v-carousel-item :src="'http://127.0.0.1:8000' + product.featured_image"></v-carousel-item>
-              <v-carousel-item :src="'http://127.0.0.1:8000' + product.image1"></v-carousel-item>
-              <v-carousel-item :src="'http://127.0.0.1:8000' + product.image2"></v-carousel-item>
-              <v-carousel-item :src="'http://127.0.0.1:8000' + product.image3"></v-carousel-item>
+              <v-carousel-item :src="'https://cwdstore.pythonanywhere.com' + product.featured_image"></v-carousel-item>
+              <v-carousel-item :src="'https://cwdstore.pythonanywhere.com' + product.image1"></v-carousel-item>
+              <v-carousel-item :src="'https://cwdstore.pythonanywhere.com' + product.image2"></v-carousel-item>
+              <v-carousel-item :src="'https://cwdstore.pythonanywhere.com' + product.image3"></v-carousel-item>
               <v-expand-transition>
           <div
             v-if="hover"

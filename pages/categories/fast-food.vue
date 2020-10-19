@@ -31,10 +31,10 @@
           <v-card class="max-auto pa-1 mb-2 ml-1 mr-1">
             <v-carousel delimiter-icon="mdi-minus" :show-arrows="false"
               hide-delimiters cycle height="260" hide-delimiter-background>
-              <v-carousel-item :src="'http://127.0.0.1:8000' + product.featured_image"></v-carousel-item>
-              <v-carousel-item :src="'http://127.0.0.1:8000' + product.image1"></v-carousel-item>
-              <v-carousel-item :src="'http://127.0.0.1:8000' + product.image2"></v-carousel-item>
-              <v-carousel-item :src="'http://127.0.0.1:8000' + product.image3"></v-carousel-item>
+              <v-carousel-item :src="'https://cwdstore.pythonanywhere.com' + product.featured_image"></v-carousel-item>
+              <v-carousel-item :src="'https://cwdstore.pythonanywhere.com' + product.image1"></v-carousel-item>
+              <v-carousel-item :src="'https://cwdstore.pythonanywhere.com' + product.image2"></v-carousel-item>
+              <v-carousel-item :src="'https://cwdstore.pythonanywhere.com' + product.image3"></v-carousel-item>
               <v-expand-transition>
               <div v-if="hover"
                 class="d-flex transition-fast-in-http://cwdstore.pythonanywhere.com v-card--reveal display-2 white--text"

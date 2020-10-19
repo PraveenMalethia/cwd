@@ -10,7 +10,7 @@
                 overlap color="green accent-4" dot offset-x="10" offset-y="10">
                 <v-avatar size="40">
                   <v-img v-if="customer.profile_pic"
-                    :src="'http://127.0.0.1:8000' + customer.profile_pic"></v-img>
+                    :src="'https://cwdstore.pythonanywhere.com' + customer.profile_pic"></v-img>
                   <v-img v-else
                     src="https://moonvillageassociation.org/wp-content/uploads/2018/06/default-profile-picture1.jpg">
                   </v-img>

@@ -112,7 +112,7 @@
         </v-list>
         <div v-if="!edit">
           <span v-if="customer.profile_pic">
-            <v-img :src="'http://127.0.0.1:8000' + customer.profile_pic" height="100%"></v-img>
+            <v-img :src="'https://cwdstore.pythonanywhere.com' + customer.profile_pic" height="100%"></v-img>
           </span>
           <span v-else>
             <v-list>
