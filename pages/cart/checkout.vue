@@ -196,16 +196,16 @@ export default {
   async fetch() {
     await this.settingDeliveryTime()
     await this.$axios
-          .get('/store/cart-total-items')
-          .then((response) => {
-            if (response.data < 1){
-              this.$toast.error("No Products in Cart")
-              this.$router.push('/cart')
-            }
-            else{
-              this.getLastAddedProduct()
-            }
-          })
+      .get('/store/cart-total-items')
+      .then((response) => {
+        if (response.data < 1){
+          this.$toast.error("No Products in Cart")
+          this.$router.push('/cart')
+        }
+        else{
+          this.getLastAddedProduct()
+        }
+      })
     this.messages[2].time = 'at ' + this.time_after_30_mins
   },
   methods: {
