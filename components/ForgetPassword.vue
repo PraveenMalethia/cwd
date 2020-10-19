@@ -34,7 +34,7 @@
                 <div class="ml-9 font-weight-bold">
                     if you don't receive an email, first, check your spam folder. If that doesnt work, 
                     it may be because you never confirmed your email address, tsk tsk. Send us an email (from the address you registered with), to 
-                    <a href="mailto:developerbuilds@gmail.com"> devloperbuilds@gmail.com</a> ,
+                    <a href="mailto:developerbuilds7@gmail.com"> devloperbuilds@gmail.com</a> ,
                     including your username and we will try and locate it for you.
                 </div>
             </v-col>
