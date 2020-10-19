@@ -106,7 +106,6 @@ export default {
     return {
       loading: true,
       query: '',
-      page: 1,
       products: [],
     }
   },
