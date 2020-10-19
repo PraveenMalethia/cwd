@@ -2,6 +2,7 @@ import colors from 'vuetify/es5/util/colors'
 
 export default {
   css: ['~/assets/main.css'],
+  transition: 'test',
   middleware: 'auth',
   router: {
     middleware: ['auth']

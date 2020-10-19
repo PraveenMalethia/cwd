@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div v-if="products.length">
+    <div v-if="products.length > 0">
     <v-card class="mb-3">
     <v-btn router text color="dark" retain-focus-on-click to="/">Home </v-btn>
       <v-icon>mdi-chevron-right</v-icon>
@@ -139,9 +139,26 @@ export default {
     }
   },
   async fetch() {
-    await this.$axios
-      .get('/store/cart')
-      .then((response) => (this.products = response.data))
+    await this.$axios.get('/store/cart').then((response) => {
+      this.products = response.data
+      this.loading = false
+    })
+    if (this.$auth.loggedIn) {
+        this.$axios
+          .get('/store/cart-total-items')
+          .then((response) => {
+            this.cart.items = response.data
+          })
+        this.$axios
+          .get('/store/cart-total')
+          .then((response) => {
+            this.cart.total = response.data
+          })
+        this.cartLoading = false
+      } else {
+        this.cart.items = 0
+        this.cart.total = 0
+      }
   },
   methods: {
     getCartTotalItems() {
@@ -190,13 +207,6 @@ export default {
           this.getCartTotalItems()
         })
     },
-  },
-  mounted() {
-    this.$axios.get('/store/cart').then((response) => {
-      this.products = response.data
-      this.loading = false
-    })
-    this.getCartTotalItems()
   },
   computed: {
     filteredProducts: function () {

@@ -1,10 +1,10 @@
 .page-enter-active,
 .page-leave-active {
-  transition: opacity 1.5s;
+  transition: opacity 0.5s;
 }
 .page-enter,
 .page-leave-to {
-  opacity: 2;
+  opacity: 0;
 }
 
 .test-enter-active,
