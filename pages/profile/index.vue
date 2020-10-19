@@ -144,10 +144,15 @@
                   <v-row align="center">
                     <v-col class="grow">
                       <h3>Order {{order.id}} Details</h3>
-                      Transaction Id : {{order.transaction_id}}<br>
-                      Order Placed : {{order.placed}}<br>
-                      Canceled : {{order.canceled}}<br>
-                      Delivered to User : {{order.delivered_to_user}}
+                      <span>
+                      <v-icon left color="green">mdi-map-marker</v-icon> Tracking Id : {{order.transaction_id}}<br>
+                      </span>
+                      <span v-if="order.canceled">
+                      Canceled : Your order was cancelled due to some reasons<br>
+                      </span>
+                      <span v-if="order.delivered_to_user">
+                      <v-icon left color="green">mdi-check</v-icon> This Order Has Been Delivered to User
+                      </span>
                     <v-col v-if="!order.delivered_to_user" class="shrink">
                       <v-btn router to="/track-order">Track Order <v-icon right>mdi-map</v-icon></v-btn>
                     </v-col>
