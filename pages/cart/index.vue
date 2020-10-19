@@ -24,8 +24,8 @@
                   Total Items : {{ cart.items }}
                 </div>
                 <v-spacer></v-spacer>
-                <div class="my-2 subtitle-1">
-                  Total Amount : ${{ cart.total }}
+                <div class="mr-2 subtitle-1">
+                  Total Amount : ${{cart.total}}
                 </div>
               </v-row>
             </v-card-text>
@@ -84,11 +84,12 @@
                   @click="DecreaseQuantity(product.product.slug)">
                   <v-icon>mdi-minus</v-icon>
                 </v-btn>
-                <v-btn class="ma-2" outlined disabled small fab color="indigo">
-                  <h2>{{ product.quantity }}</h2>
-                </v-btn>
+                  <h2>
+                    <Roller class="text-center" :text="product.quantity"/>
+                  </h2>
                 <v-btn
                   icon
+                  class="ml-5"
                   color="green"
                   @click="IncreaseQuantity(product.product.slug)">
                   <v-icon>mdi-plus</v-icon>
@@ -114,7 +115,9 @@
 </template>
 
 <script>
+import Roller from "vue-roller";
 export default {
+  components: {Roller},
   filters: {
     capitalize: function (value) {
       if (!value) return ''

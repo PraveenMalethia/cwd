@@ -17,6 +17,7 @@
     "nuxt": "^2.14.0",
     "vee-validate": "^3.4.0",
     "vue-glitch": "^1.0.1",
+    "vue-roller": "^1.12.4",
     "vuelidate": "^0.7.5"
   },
   "devDependencies": {
