@@ -78,7 +78,7 @@
     </v-tooltip>
     </v-scale-transition>
       <v-container>
-        <nuxt/>
+        <nuxt keep-alive/>
       </v-container>
     </v-main>
     <Footer />
