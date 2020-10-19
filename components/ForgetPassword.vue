@@ -30,7 +30,7 @@
           <v-row>
             <v-col cols="12">
               <v-text-field prepend-icon="mdi-email" outlined
-                v-model="user.email" color="green" type="email" label="Email*" required></v-text-field>
+                v-model="user_data.email" color="green" type="email" label="Email*" required></v-text-field>
                 <div class="ml-9 font-weight-bold">
                     if you don't receive an email, first, check your spam folder. If that doesnt work, 
                     it may be because you never confirmed your email address, tsk tsk. Send us an email (from the address you registered with), to 
@@ -46,7 +46,8 @@
         <v-btn class="mr-4 ml-4 mb-4" text
           @click="dialog = false">Cancel
         </v-btn>
-        <v-btn class="mr-4 mb-4" color="green darken-2" @click="CreateAccount()">Reset password<v-icon right dark>mdi-lock-reset</v-icon>
+        <v-btn class="mr-4 mb-4" color="green darken-2" :loading="sending_mail"
+        :disabled="sending_mail" @click="ResetPassword()">Reset password<v-icon right dark>mdi-lock-reset</v-icon>
         </v-btn>
       </v-card-actions>
     </v-card>
@@ -58,27 +59,28 @@ export default {
   name: 'ForgetPassword',
   data() {
     return {
-      user:{
-          email: '',
-          username:'',
-          password1: '',
-          password2: '',
+      user_data:{
+        email:'',
       },
       loader: null,
+      sending_mail:false,
       loading: false,
       dialog: false,
-      showpassword: false,
-      rules: {
-          required: value => !!value || 'Required.',
-          min: v => v.length >= 10 || 'Min 10 characters',
-        },
     }
   },
   methods: {
-    CreateAccount(){
-      this.$axios.post('/api/auth/registration/',this.user)
+    ResetPassword(){
+      this.sending_mail = true
+      this.$axios.post('/api/auth/password/reset/',this.user_data)
       .then((response) =>{
-        console.log(response.data)
+        this.$toast.success(response.data.detail)
+        this.sending_mail = false
+        this.dialog = false
+        this.user_data.email = ''
+      })
+      .catch((error) =>{
+        this.sending_mail = false
+        this.dialog = false
       })
     }
   },
