@@ -14,10 +14,10 @@
     <form>
       <br>
       <validation-provider v-slot="{ errors }" name="Subject" rules="required|max:50">
-        <v-text-field outlined shaped v-model="data.subject" :error-messages="errors" label="Subject" required></v-text-field>
+        <v-text-field color="green" prepend-icon="mdi-shield-bug" outlined shaped v-model="data.subject" :error-messages="errors" label="Subject" required></v-text-field>
       </validation-provider>
       <validation-provider v-slot="{ errors }" name="Details" rules="required|max:2000">
-        <v-textarea auto-grow outlined required rows="10" row-height="20" v-model="data.details" :counter="2000" :error-messages="errors" label="Details" ></v-textarea>
+        <v-textarea color="green" prepend-icon="mdi-menu" auto-grow outlined required rows="10" row-height="20" v-model="data.details" :counter="2000" :error-messages="errors" label="Details" ></v-textarea>
       </validation-provider>
     </form>
   </validation-observer>
