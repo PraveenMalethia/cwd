@@ -107,7 +107,10 @@
     <div v-else>
       <v-container>
         <v-layout row wrap>
-          <h2>No items in your cart</h2>
+          <v-flex class="text-center mt-10">
+            <h2>No items in Your Cart <v-icon right>mdi-cart</v-icon></h2><br>
+            <v-btn rounded outlined router to="/store">Okay ! Let's Add Some</v-btn>
+          </v-flex>
         </v-layout>
       </v-container>
     </div>
