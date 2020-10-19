@@ -260,7 +260,5 @@ export default {
       this.time_after_30_mins = strTime
     },
   },
-  mounted(){
-  }
 }
 </script>
