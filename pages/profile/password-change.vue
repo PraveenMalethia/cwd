@@ -122,6 +122,7 @@ export default {
             .then((response) => {
               this.$toast.success(response.data.detail)
               this.clear()
+              this.$router.push('/profile')
             })
             .catch((error)=>{
               this.$toast.error('Please Try again with valid credentials')
