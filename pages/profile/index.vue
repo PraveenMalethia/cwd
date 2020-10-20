@@ -34,7 +34,8 @@
               <v-icon>mdi-account</v-icon>
             </v-list-item-action>
             <v-list-item-content>
-              <v-list-item-title>{{ $auth.user.first_name }} {{$auth.user.last_name}}</v-list-item-title>
+              <v-list-item-title v-if="$auth.user.first_name && $auth.user.last_name">{{ $auth.user.first_name }} {{$auth.user.last_name}}</v-list-item-title>
+              <v-list-item-title v-else>Click <v-icon>mdi-pencil</v-icon> to Add Your First & Last Name</v-list-item-title>
             </v-list-item-content>
           </v-list-item>
           <v-divider inset></v-divider>
@@ -52,9 +53,11 @@
               <v-icon>mdi-phone</v-icon>
             </v-list-item-action>
             <v-list-item-content>
-              <v-list-item-title>{{ customer.phone_number }}</v-list-item-title>
+              <v-list-item-title v-if="customer.phone_number">{{ customer.phone_number }}</v-list-item-title>
+              <v-list-item-title v-else>Add Phone Number</v-list-item-title>
             </v-list-item-content>
           </v-list-item>
+          <v-divider inset></v-divider>
         </v-list>
         <v-list v-else>
           <v-list-item>

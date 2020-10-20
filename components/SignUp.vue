@@ -186,6 +186,7 @@ export default {
             this.$axios
               .post('/api/auth/registration/', this.user_info)
               .then((response) => {
+                this.$auth.setUserToken(response.data.key)
                 this.$toast.success('Account created successfully')
                 this.creating = false
                 this.dialog = false
@@ -193,6 +194,13 @@ export default {
               .catch((error) => {
                 this.creating = false
                 this.dialog = false
+                if (error.response) {
+                  console.log(error.response)
+              } else if (error.request) {
+                console.log(error.request)
+              } else {
+                console.log(error)
+              }
               })
           }
           else{
