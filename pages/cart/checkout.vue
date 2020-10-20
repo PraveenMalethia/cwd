@@ -82,6 +82,7 @@
                       prepend-icon="mdi-phone"
                       v-model="shipping.phone"
                       :counter="10"
+                      hide-controls
                       :error-messages="errors"
                       label="Phone Number*"
                       required>
@@ -271,3 +272,10 @@ export default {
   },
 }
 </script>
+<style>
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+</style>
