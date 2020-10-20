@@ -112,7 +112,8 @@
           @click="dialog = false">
           <v-icon left dark>mdi-chevron-left</v-icon>Close
         </v-btn>
-        <v-btn class="mr-4 mb-4" color="green darken-2" @click="submit()">Create<v-icon right dark>mdi-plus</v-icon>
+        <v-btn class="mr-4 mb-4" color="green darken-2" :loading="creating"
+          :disabled="creating" @click="submit()">Create<v-icon right dark>mdi-plus</v-icon>
         </v-btn>
       </v-card-actions>
     </v-card>
@@ -167,6 +168,7 @@ export default {
       checkbox: true,
       loading: false,
       dialog: false,
+      creating:false,
       showpassword: false,
       rules: {
         required: (value) => !!value || 'Required.',
@@ -179,21 +181,25 @@ export default {
       this.$refs.observer.validate().then((response) => {
         if (response == true) {
           if (this.user.password1 == this.user.password2) {
-            this.CreateAccount()
+            this.creating = true
+            this.$axios
+              .post('/api/auth/registration/', this.user)
+              .then((response) => {
+                this.$toast.success('Account created successfully')
+                this.creating = false
+                this.dialog = false
+              })
+              .catch((error) => {
+                this.creating = false
+                this.$toast.error("Please try again with different username or email")
+                this.dialog = false
+              })
           }
           else{
             this.$toast.error("Both password doesn't match")
           }
         }
       })
-    },
-    CreateAccount() {
-      this.$axios
-        .post('/api/auth/registration/', this.user)
-        .then((response) => {
-          this.dialog = false
-          this.$toast.success('Account created successfully')
-        })
     },
   },
   watch: {
