@@ -92,12 +92,6 @@ export default {
     ValidationProvider,
     ValidationObserver,
   },
-  activated() {
-    // Call fetch again if last fetch more than 1 sec ago
-    if (this.$fetchState.timestamp <= Date.now() - 1000) {
-      this.$fetch()
-    }
-  },
   data: () => ({
       show_old:false,
     show: false,

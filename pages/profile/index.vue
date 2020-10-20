@@ -7,96 +7,75 @@
     </v-card>
     <v-layout row wrap>
       <v-flex class="pa-1" xs12 sm6 md6>
-        <v-card class="mx-auto" max-width="500">
-        <v-card-title class="cyan darken-2">
-          <span class="headline white--text">Profile</span>
-          <v-spacer></v-spacer>
-          <v-btn v-if="edit" text @click="UpdateUser()">Update<v-icon right>mdi-update</v-icon></v-btn>
-          <v-btn dark text @click="edit = !edit">Profile
-            <v-icon right>mdi-pencil</v-icon>
-          </v-btn>
-          <v-btn dark router text to="/profile/password-change">Password
-            <v-icon right>mdi-cog</v-icon>
-          </v-btn>
-        </v-card-title>
-        <v-list v-if="!edit">
-          <v-list-item>
-            <v-list-item-action>
-              <v-icon>mdi-account-box</v-icon>
-            </v-list-item-action>
-            <v-list-item-content>
-              <v-list-item-title>Username : {{ $auth.user.username }}</v-list-item-title>
-            </v-list-item-content>
-          </v-list-item>
-          <v-divider inset></v-divider>
-          <v-list-item>
-            <v-list-item-action>
-              <v-icon>mdi-account</v-icon>
-            </v-list-item-action>
-            <v-list-item-content>
-              <v-list-item-title v-if="$auth.user.first_name && $auth.user.last_name">{{ $auth.user.first_name }} {{$auth.user.last_name}}</v-list-item-title>
-              <v-list-item-title v-else>Click <v-icon>mdi-pencil</v-icon> to Add Your First & Last Name</v-list-item-title>
-            </v-list-item-content>
-          </v-list-item>
-          <v-divider inset></v-divider>
-          <v-list-item>
-            <v-list-item-action>
-              <v-icon>mdi-gmail</v-icon>
-            </v-list-item-action>
-            <v-list-item-content>
-              <v-list-item-title>{{ $auth.user.email }}</v-list-item-title>
-            </v-list-item-content>
-          </v-list-item>
-          <v-divider inset></v-divider>
-          <v-list-item>
-            <v-list-item-action>
-              <v-icon>mdi-phone</v-icon>
-            </v-list-item-action>
-            <v-list-item-content>
-              <v-list-item-title v-if="customer.phone_number">{{ customer.phone_number }}</v-list-item-title>
-              <v-list-item-title v-else>Add Phone Number</v-list-item-title>
-            </v-list-item-content>
-          </v-list-item>
-          <v-divider inset></v-divider>
-        </v-list>
-        <v-list v-else>
-          <v-list-item>
-            <v-list-item-action>
-              <v-icon>mdi-account-circle</v-icon>
-            </v-list-item-action>
-            <v-list-item-content>
-              <v-text-field v-model="user.username" filled label="Username"
-                  :placeholder="this.$auth.user.username"></v-text-field>
-            </v-list-item-content>
-          </v-list-item>
-          <v-list-item>
-            <v-list-item-action>
-              <v-icon>mdi-account-circle</v-icon>
-            </v-list-item-action>
-            <v-list-item-content>
-              <v-text-field v-model="user.first_name" filled label="First Name"
-                  :placeholder="this.$auth.user.first_name"></v-text-field>
-            </v-list-item-content>
-          </v-list-item>
-          <v-list-item>
-            <v-list-item-action>
-              <v-icon>mdi-account-circle</v-icon>
-            </v-list-item-action>
-            <v-list-item-content>
-              <v-text-field v-model="user.last_name" filled label="Last Name"
-                  :placeholder="this.$auth.user.last_name"></v-text-field>
-            </v-list-item-content>
-          </v-list-item>
-          <v-list-item>
-            <v-list-item-action>
-              <v-icon>mdi-phone</v-icon>
-            </v-list-item-action>
-            <v-list-item-content>
-              <v-text-field filled v-model="UpdateCustomer.phone_number" label="Contact"
-                  :placeholder="customer.phone_number"></v-text-field>
-            </v-list-item-content>
-          </v-list-item>
-          <v-list-item>
+        <v-card max-width="375" class="mx-auto">
+          <v-img :src="'https://cwdstore.pythonanywhere.com' + customer.profile_pic" height="300px" dark>
+            <v-row class="">
+              <v-card-title>
+                <v-btn dark icon router to="/">
+                  <v-icon>mdi-chevron-left</v-icon>
+                </v-btn>
+                <v-spacer></v-spacer>
+                <v-btn v-if="!edit" dark icon @click="edit = !edit" class="mr-4">
+                  <v-icon >mdi-pencil</v-icon>
+                </v-btn>
+                <v-btn v-else dark text class="mr-4" @click="UpdateUser()">Update
+                  <v-icon right>mdi-upload</v-icon>
+                </v-btn>
+                <v-btn dark icon router to="/profile/password-change">
+                  <v-icon>mdi-cog</v-icon>
+                </v-btn>
+              </v-card-title>
+              <v-spacer></v-spacer>
+              <v-card-title class="white--text pl-12 pt-12">
+                <div class="display-1 pl-12 pt-12">
+                </div>
+              </v-card-title>
+            </v-row>
+          </v-img>
+          <v-list v-if="!edit" two-line>
+            <v-list-item>
+              <v-list-item-icon>
+                <v-icon color="indigo">
+                  mdi-account-circle
+                </v-icon>
+              </v-list-item-icon>
+              <v-list-item-content>
+                <v-list-item-title>@{{$auth.user.username}}</v-list-item-title>
+                <v-list-item-subtitle
+                v-if="$auth.user.first_name && $auth.user.last_name">{{$auth.user.first_name}} {{$auth.user.last_name}}</v-list-item-subtitle>
+                <v-list-item-subtitle v-else>Click <v-icon>mdi-pencil</v-icon> to Add Your First & Last Name</v-list-item-subtitle>
+              </v-list-item-content>
+            </v-list-item>
+            <v-divider inset></v-divider>
+            <v-list-item>
+              <v-list-item-icon>
+                <v-icon color="indigo">
+                  mdi-phone
+                </v-icon>
+              </v-list-item-icon>
+              <v-list-item-content>
+                <v-list-item-title v-if="customer.phone_number">{{ customer.phone_number }}</v-list-item-title>
+                <v-list-item-subtitle>Mobile</v-list-item-subtitle>
+              </v-list-item-content>
+              <v-list-item-icon>
+                <v-icon>mdi-message-text</v-icon>
+              </v-list-item-icon>
+            </v-list-item>
+            <v-divider inset></v-divider>
+            <v-list-item>
+              <v-list-item-icon>
+                <v-icon color="indigo">
+                  mdi-email
+                </v-icon>
+              </v-list-item-icon>
+              <v-list-item-content>
+                <v-list-item-title>{{$auth.user.email}}</v-list-item-title>
+                <v-list-item-subtitle>Personal</v-list-item-subtitle>
+              </v-list-item-content>
+            </v-list-item>
+          </v-list>
+          <v-list v-else>
+            <v-list-item>
             <v-list-item-action>
               <v-icon>mdi-image</v-icon>
             </v-list-item-action>
@@ -112,12 +91,45 @@
               </form>
             </v-list-item-action>
           </v-list-item>
+          <v-list-item>
+            <v-list-item-action>
+              <v-icon>mdi-account-circle</v-icon>
+            </v-list-item-action>
+            <v-list-item-content>
+              <v-text-field v-model="user.username" color="green" label="Username"
+                  :placeholder="this.$auth.user.username"></v-text-field>
+            </v-list-item-content>
+          </v-list-item>
+          <v-list-item>
+            <v-list-item-action>
+              <v-icon>mdi-account-circle</v-icon>
+            </v-list-item-action>
+            <v-list-item-content>
+              <v-text-field v-model="user.first_name" color="green" label="First Name"
+                  :placeholder="this.$auth.user.first_name"></v-text-field>
+            </v-list-item-content>
+          </v-list-item>
+          <v-list-item>
+            <v-list-item-action>
+              <v-icon>mdi-account-circle</v-icon>
+            </v-list-item-action>
+            <v-list-item-content>
+              <v-text-field v-model="user.last_name" color="green" label="Last Name"
+                  :placeholder="this.$auth.user.last_name"></v-text-field>
+            </v-list-item-content>
+          </v-list-item>
+          <v-list-item>
+            <v-list-item-action>
+              <v-icon>mdi-phone</v-icon>
+            </v-list-item-action>
+            <v-list-item-content>
+              <v-text-field color="green"  v-model="UpdateCustomer.phone_number" label="Contact"
+                  :placeholder="customer.phone_number"></v-text-field>
+            </v-list-item-content>
+          </v-list-item>
         </v-list>
-        <div v-if="!edit">
-          <span  v-if="customer.profile_pic">
-            <v-img style="border-radius:50%" :src="'https://cwdstore.pythonanywhere.com' + customer.profile_pic" width="320px" height="320px"></v-img>
-          </span>
-          <span v-else>
+        </v-card>
+          <span v-if="!customer.profile_pic">
             <v-list>
             <v-list-item>
               <v-list-item-action>
@@ -129,8 +141,6 @@
             </v-list-item>
             </v-list>
           </span>
-        </div>
-      </v-card>
       </v-flex>
       <v-flex class="pa-1" xs12 sm6 md6>
         <v-card class="mx-auto" max-width="500">
@@ -171,7 +181,7 @@
               <v-expansion-panel>
                 <v-expansion-panel-header>No Orders Have Been Placed yet . </v-expansion-panel-header>
                 <v-expansion-panel-content>
-                  <v-btn block router to="/store" outlined>Let's Have Some Products <v-icon right>mdi-cart</v-icon></v-btn>
+                  <v-btn block router to="/store" rounded outlined>Let's Have Some Products <v-icon right>mdi-cart</v-icon></v-btn>
                 </v-expansion-panel-content>
               </v-expansion-panel>
           </v-expansion-panels>
@@ -263,8 +273,8 @@ export default {
         .put('/api/auth/user/', this.user)
         .then((response) => {
           this.$toast.success(`Profile of ${response.data.username} Updated`)
-          this.$auth.fetchUser()
           this.edit = false
+          this.$auth.fetchUser()
           this.user.username = null
           this.user.first_name = null
           this.user.last_name = null
