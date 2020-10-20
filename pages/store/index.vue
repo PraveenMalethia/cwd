@@ -127,6 +127,15 @@ export default {
       this.products = response.data
       this.loading = false
     })
+    .catch((error)=>{
+      if (error.response) {
+      // client received an error response (5xx, 4xx)
+      } else if (error.request) {
+        // client never received a response, or request never left
+      } else {
+        // anything else
+      }
+    })
   },
   methods: {
     AddtoCart(slug) {
@@ -137,6 +146,15 @@ export default {
           })
           .then((response) => {
             this.$toast.success(response.data.detail)
+          })
+          .catch((error) => {
+            if (error.response) {
+            // client received an error response (5xx, 4xx)
+            } else if (error.request) {
+              // client never received a response, or request never left
+            } else {
+              // anything else
+            }
           })
       } else {
         this.$toast.error('Please login to add products to cart')

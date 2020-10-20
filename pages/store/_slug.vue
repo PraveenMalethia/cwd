@@ -143,9 +143,15 @@ export default {
         this.loaded = true
       })
       .catch((response) => {
-        console.log(response.message)
         this.$router.push('/store')
         this.$toast.error('Invalid Product URL')
+        if (error.response) {
+        // client received an error response (5xx, 4xx)
+        } else if (error.request) {
+          // client never received a response, or request never left
+        } else {
+          // anything else
+        }
       })
   },
   methods: {
@@ -158,6 +164,15 @@ export default {
           })
           .then((response) => {
             this.$toast.success(response.data.detail)
+          })
+          .catch((error) => {
+            if (error.response) {
+            // client received an error response (5xx, 4xx)
+            } else if (error.request) {
+              // client never received a response, or request never left
+            } else {
+              // anything else
+            }
           })
         setTimeout(() => (this.loading = false), 1000)
       } else {

@@ -100,7 +100,13 @@ export default {
           this.$router.push('/login')
         })
         .catch((error) => {
-          console.log(error.message)
+          if (error.response) {
+            // client received an error response (5xx, 4xx)
+            } else if (error.request) {
+              // client never received a response, or request never left
+            } else {
+              // anything else
+            }
         })
     },
     submit() {

@@ -219,7 +219,6 @@ export default {
               order_id: this.order_id,
             })
             .then((response) => {
-              console.log(response.data)
                 this.order_details = response.data
                 this.fetched = true
                 this.loading = false
@@ -230,6 +229,13 @@ export default {
               this.$toast.error("Invalid Order ID")
               this.loading = false
               this.clear()
+            }
+            if (error.response) {
+            // client received an error response (5xx, 4xx)
+            } else if (error.request) {
+              // client never received a response, or request never left
+            } else {
+              // anything else
             }
             })
           this.order = true

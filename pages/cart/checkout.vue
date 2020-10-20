@@ -230,6 +230,15 @@ export default {
                 this.$toast.error('Please fill the shipping details correctly.')
               }
             })
+            .catch((error)=>{
+              if (error.response) {
+            // client received an error response (5xx, 4xx)
+            } else if (error.request) {
+              // client never received a response, or request never left
+            } else {
+              // anything else
+            }
+            })
         } else {
           this.$toast.error('Please enter the required details.')
         }

@@ -210,14 +210,41 @@ export default {
     await this.$axios.get('/api/auth/customer/orders').then((response) => {
       this.orders= response.data
       })
+      .catch((error)=>{
+        if (error.response) {
+            // client received an error response (5xx, 4xx)
+            } else if (error.request) {
+              // client never received a response, or request never left
+            } else {
+              // anything else
+            }
+      })
   },
   methods: {
     loadCustomer() {
-      this.$axios.get('/api/auth/customer/').then((response) => {this.customer = response.data})
+      this.$axios.get('/api/auth/customer/').then((response) => {this.customer = response.data}).catch((error) =>
+      {
+        if (error.response) {
+        // client received an error response (5xx, 4xx)
+        } else if (error.request) {
+          // client never received a response, or request never left
+        } else {
+          // anything else
+        }
+      })
     },
     UserOrders(){
       this.$axios.get('/api/auth/customer/orders')
       .then((response) => {this.orders= response.data})
+      .catch((error)=>{
+        if (error.response) {
+            // client received an error response (5xx, 4xx)
+            } else if (error.request) {
+              // client never received a response, or request never left
+            } else {
+              // anything else
+            }
+      })
     },
     UpdateUser() {
       if (this.user.username == null) {
@@ -248,6 +275,15 @@ export default {
           .then((response) => {
             this.loadCustomer()
             this.UpdateCustomer.phone_number = null
+          })
+          .catch((error)=>{
+            if (error.response) {
+            // client received an error response (5xx, 4xx)
+            } else if (error.request) {
+              // client never received a response, or request never left
+            } else {
+              // anything else
+            }
           })
       }
     },

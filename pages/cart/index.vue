@@ -155,10 +155,28 @@ export default {
           .then((response) => {
             this.cart.items = response.data
           })
+          .catch((error) => {
+            if (error.response) {
+            // client received an error response (5xx, 4xx)
+            } else if (error.request) {
+              // client never received a response, or request never left
+            } else {
+              // anything else
+            }
+          })
         this.$axios
           .get('/store/cart-total')
           .then((response) => {
             this.cart.total = response.data
+          })
+          .catch((error) =>{
+            if (error.response) {
+            // client received an error response (5xx, 4xx)
+            } else if (error.request) {
+              // client never received a response, or request never left
+            } else {
+              // anything else
+            }
           })
         this.cartLoading = false
       } else {
@@ -189,6 +207,15 @@ export default {
       this.$axios
         .get('/store/cart')
         .then((response) => (this.products = response.data))
+        .catch((error)=>{
+          if (error.response) {
+            // client received an error response (5xx, 4xx)
+            } else if (error.request) {
+              // client never received a response, or request never left
+            } else {
+              // anything else
+            }
+        })
     },
     IncreaseQuantity(slug) {
       if (this.$auth.loggedIn) {
@@ -199,6 +226,15 @@ export default {
           .then((response) => {
             this.getProducts()
             this.getCartTotalItems()
+          })
+          .catch((error) => {
+            if (error.response) {
+            // client received an error response (5xx, 4xx)
+            } else if (error.request) {
+              // client never received a response, or request never left
+            } else {
+              // anything else
+            }
           })
       } else {
         this.$toast.error('Please login to add products to cart')
@@ -211,6 +247,15 @@ export default {
           this.$toast.success(response.data.detail)
           this.getProducts()
           this.getCartTotalItems()
+        })
+        .catch((error) => {
+          if (error.response) {
+            // client received an error response (5xx, 4xx)
+            } else if (error.request) {
+              // client never received a response, or request never left
+            } else {
+              // anything else
+            }
         })
     },
   },
