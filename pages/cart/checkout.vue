@@ -77,7 +77,7 @@
                     name="Phone Number"
                     rules="required">
                     <v-text-field
-                      type="text"
+                      type="number"
                       outlined
                       prepend-icon="mdi-phone"
                       v-model="shipping.phone"
