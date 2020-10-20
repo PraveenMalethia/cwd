@@ -8,7 +8,7 @@
     <v-layout row wrap>
       <v-flex class="pa-1" xs12 sm6 md6>
         <v-card max-width="375" class="mx-auto">
-          <v-img :src="'https://cwdstore.pythonanywhere.com' + customer.profile_pic" height="300px" dark>
+          <v-img v-if="customer.profile_pic" :src="'https://cwdstore.pythonanywhere.com' + customer.profile_pic" height="300px" dark>
             <v-row class="">
               <v-card-title>
                 <v-btn dark icon router to="/">
