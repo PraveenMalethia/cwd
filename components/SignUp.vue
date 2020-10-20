@@ -180,11 +180,9 @@ export default {
         if (response == true) {
           if (this.user.password1 == this.user.password2) {
             this.CreateAccount()
-            console.log("I am here")
-
+            this.dialog = false
           }
           else{
-            console.log("I am here")
             this.$toast.error("Both password doesn't match")
           }
         }
@@ -195,6 +193,7 @@ export default {
         .post('/api/auth/registration/', this.user)
         .then((response) => {
           this.dialog = false
+          this.$toast.success('Account created successfully')
         })
     },
   },
