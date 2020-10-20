@@ -147,6 +147,7 @@ extend('email', {
 })
 import TermsAndConditions from './TermsAndConditions'
 export default {
+  auth: false,
   components: {
     TermsAndConditions,
   },
@@ -179,7 +180,7 @@ export default {
   methods: {
     submit() {
       this.$refs.observer.validate().then((response) => {
-        if (response == true) {
+        if (response == true){
           if (this.user.password1 == this.user.password2) {
             this.creating = true
             this.$axios
@@ -190,6 +191,7 @@ export default {
                 this.dialog = false
               })
               .catch((error) => {
+                console.log(error.message)
                 this.creating = false
                 this.$toast.error("Please try again with different username or email")
                 this.dialog = false

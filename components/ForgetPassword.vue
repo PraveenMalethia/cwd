@@ -56,6 +56,7 @@
 
 <script>
 export default {
+  auth: false,
   name: 'ForgetPassword',
   data() {
     return {

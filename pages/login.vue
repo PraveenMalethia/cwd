@@ -46,11 +46,11 @@
     </div>
     <div v-else>
       <v-container class="fill-height" fluid>
-        <v-row align="center" justify="center">
-          <v-col cols="12">
+        <v-layout>
+          <v-flex class="text-center mt-15">
             <v-btn outlined router to="/store">Cool , Let's Dive in !</v-btn>
-          </v-col>
-        </v-row>
+          </v-flex>
+        </v-layout>
       </v-container>
     </div>
   </div>
@@ -76,12 +76,12 @@ extend('email', {
 import SignUp from '~/components/SignUp.vue'
 import ForgetPassword from '~/components/ForgetPassword.vue'
 export default {
+  auth: false,
   components: {
     SignUp,
     ValidationProvider,
     ValidationObserver,
-    ForgetPassword,
-  },
+    ForgetPassword,},
   validations: {
     username: { required },
     password: { required },
