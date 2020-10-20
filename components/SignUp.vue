@@ -2,7 +2,7 @@
   <v-dialog v-model="dialog" persistent max-width="600px">
     <template v-slot:activator="{ on, attrs }">
       <v-btn
-        class="ma-2 ml-7"
+        class="ml-7 mb-5"
         :loading="loading"
         :disabled="loading"
         text
