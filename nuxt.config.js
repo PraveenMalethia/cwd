@@ -83,16 +83,16 @@ export default {
       local: {
         endpoints: {
           login: {
-            url: 'http://cwdstore.pythonanywhere.com/api/auth/login/',
+            url: 'https://cwdstore.pythonanywhere.com/api/auth/login/',
             method: 'POST',
             propertyName: 'key'
           },
           logout: {
-            url: 'http://cwdstore.pythonanywhere.com/api/auth/logout/',
+            url: 'https://cwdstore.pythonanywhere.com/api/auth/logout/',
             method: 'get'
           },
           user: {
-            url: 'http://cwdstore.pythonanywhere.com/api/auth/user/',
+            url: 'https://cwdstore.pythonanywhere.com/api/auth/user/',
             method: 'get',
             propertyName: false
           }
@@ -109,7 +109,7 @@ export default {
    ** See https://axios.nuxtjs.org/options
    */
   axios: {
-    baseURL:'http://cwdstore.pythonanywhere.com',
+    baseURL:'https://cwdstore.pythonanywhere.com',
   },
   /*
    ** Content module configuration
