@@ -32,7 +32,9 @@
                 <v-card-actions>
                   <SignUp />
                   <v-spacer></v-spacer>
-                  <v-btn @click="userLogin" class="mr-6 mb-5" color="deep-purple darken-3" >Login
+                  <v-btn :loading="loading" :disabled="loading"
+                  @click="userLogin" class="mr-6 mb-5" 
+                  color="deep-purple darken-3" >Login
                     <v-icon right>mdi-login</v-icon>
                   </v-btn>
                 </v-card-actions>
@@ -111,6 +113,7 @@ export default {
     userLogin() {
       this.$refs.observer.validate().then((response) => {
         if (response == true) {
+          this.loading = true
           var login = {
             username: this.username,
             email: this.email,
@@ -121,6 +124,7 @@ export default {
             .then((response) => {
               this.$auth.setUserToken(response.data.key)
               this.$toast.success('Successfully authenticated')
+              this.loading = false
               this.dialog = false
             })
             .catch((err) => {
