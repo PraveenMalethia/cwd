@@ -114,8 +114,8 @@
           </v-list-item>
         </v-list>
         <div v-if="!edit">
-          <span v-if="customer.profile_pic">
-            <v-img :src="'https://cwdstore.pythonanywhere.com' + customer.profile_pic" height="100%"></v-img>
+          <span  v-if="customer.profile_pic">
+            <v-img style="border-radius:50%" :src="'https://cwdstore.pythonanywhere.com' + customer.profile_pic" width="320px" height="320px"></v-img>
           </span>
           <span v-else>
             <v-list>
