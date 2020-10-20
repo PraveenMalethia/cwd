@@ -158,7 +158,7 @@ export default {
   },
   data() {
     return {
-      user: {
+      user_info: {
         email: '',
         username: '',
         password1: '',
@@ -184,16 +184,14 @@ export default {
           if (this.user.password1 == this.user.password2) {
             this.creating = true
             this.$axios
-              .post('/api/auth/registration/', this.user)
+              .post('/api/auth/registration/', this.user_info)
               .then((response) => {
                 this.$toast.success('Account created successfully')
                 this.creating = false
                 this.dialog = false
               })
               .catch((error) => {
-                console.log(error.message)
                 this.creating = false
-                this.$toast.error("Please try again with different username or email")
                 this.dialog = false
               })
           }
