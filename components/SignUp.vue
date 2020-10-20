@@ -180,7 +180,6 @@ export default {
         if (response == true) {
           if (this.user.password1 == this.user.password2) {
             this.CreateAccount()
-            this.dialog = false
           }
           else{
             this.$toast.error("Both password doesn't match")
