@@ -38,7 +38,7 @@
                 prepend-icon="mdi-account-circle"
                 outlined
                 :error-messages="errors"
-                v-model="user.username"
+                v-model="user_info.username"
                 color="green"
                 :rules="[rules.required]"
                 label="Username*"
@@ -53,7 +53,7 @@
               <v-text-field
                 prepend-icon="mdi-email"
                 outlined :error-messages="errors"
-                v-model="user.email"
+                v-model="user_info.email"
                 color="green"
                 type="email"
                 label="Email*"
@@ -65,7 +65,7 @@
               <v-text-field
                 prepend-icon="mdi-lock"
                 outlined
-                v-model="user.password1"
+                v-model="user_info.password1"
                 color="green"
                 label="Password*"
                 :rules="[rules.required, rules.min]"
@@ -78,7 +78,7 @@
               <v-text-field
                 prepend-icon="mdi-lock"
                 outlined :error-messages="errors"
-                v-model="user.password2"
+                v-model="user_info.password2"
                 color="green"
                 label="Confirm Password*"
                 :rules="[rules.required, rules.min]"
@@ -181,7 +181,7 @@ export default {
     submit() {
       this.$refs.observer.validate().then((response) => {
         if (response == true){
-          if (this.user.password1 == this.user.password2) {
+          if (this.user_info.password1 == this.user_info.password2) {
             this.creating = true
             this.$axios
               .post('/api/auth/registration/', this.user_info)
