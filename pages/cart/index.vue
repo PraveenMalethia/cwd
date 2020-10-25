@@ -8,6 +8,13 @@
             type="card-heading , list-item-three-line">
           </v-skeleton-loader>
         </v-flex>
+        <v-flex v-for="n in 8" :key="n" xs12 sm6 md4 lg3 xl2>
+          <v-skeleton-loader
+            class="pa-1 mb-2 mr-2"
+            height="420"
+            type="image,card-heading ,list-item-three-line, actions">
+          </v-skeleton-loader>
+        </v-flex>
       </v-layout>
       <div v-if="products.length > 0">
     <v-card class="mb-3">

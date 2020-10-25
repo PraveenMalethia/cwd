@@ -39,7 +39,6 @@
                 </div>
               </v-card-title>
             </v-row>
-          </v-img>
           <v-list v-if="!edit" two-line>
             <v-list-item>
               <v-list-item-icon>
