@@ -70,7 +70,7 @@
               </v-list-item-icon>
               <v-list-item-content>
                 <v-list-item-title>{{$auth.user.email}}</v-list-item-title>
-                <v-list-item-subtitle>Personal</v-list-item-subtitle>
+                <v-list-item-subtitle></v-list-item-subtitle>
               </v-list-item-content>
             </v-list-item>
           </v-list>
