@@ -29,6 +29,7 @@
                 <v-btn v-else dark text class="mr-4" @click="UpdateUser()">Update
                   <v-icon right>mdi-upload</v-icon>
                 </v-btn>
+                <v-btn v-if="edit" text @click="edit = !edit">Cancel</v-btn>
                 <v-btn dark icon router to="/profile/password-change">
                   <v-icon>mdi-cog</v-icon>
                 </v-btn>
