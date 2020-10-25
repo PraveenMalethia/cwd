@@ -6,8 +6,6 @@
         <div v-if="$auth.loggedIn">
           <v-list-item two-line :class="miniVariant && 'px-0'">
             <v-list-item-avatar>
-              <v-badge bordered bottom
-                overlap color="green accent-4" dot offset-x="10" offset-y="10">
                 <v-avatar size="40">
                   <v-img v-if="customer.profile_pic"
                     :src="'https://cwdstore.pythonanywhere.com' + customer.profile_pic"></v-img>
@@ -15,7 +13,6 @@
                     src="https://moonvillageassociation.org/wp-content/uploads/2018/06/default-profile-picture1.jpg">
                   </v-img>
                 </v-avatar>
-              </v-badge>
             </v-list-item-avatar>
             <v-list-item-content>
               <div v-if="this.$auth.loggedIn">

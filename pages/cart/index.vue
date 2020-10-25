@@ -1,6 +1,15 @@
 <template>
   <div>
-    <div v-if="products.length > 0">
+    <div>
+      <v-layout v-if="cartLoading" row wrap>
+        <v-flex xs12 sm12 md12 lg12>
+          <v-skeleton-loader
+            class="max-auto my-2 pa-2 mb-2 mr-4 ml-4"
+            type="card-heading , list-item-three-line">
+          </v-skeleton-loader>
+        </v-flex>
+      </v-layout>
+      <div v-if="products.length > 0">
     <v-card class="mb-3">
     <v-btn router text color="dark" retain-focus-on-click to="/">Home </v-btn>
       <v-icon>mdi-chevron-right</v-icon>
@@ -105,7 +114,7 @@
       </v-container>
     </div>
     <div v-else>
-      <v-container>
+      <v-container v-if="!cartLoading">
         <v-layout row wrap>
           <v-flex class="text-center mt-10">
             <h2>No items in Your Cart <v-icon right>mdi-cart</v-icon></h2><br>
@@ -113,6 +122,7 @@
           </v-flex>
         </v-layout>
       </v-container>
+    </div>
     </div>
   </div>
 </template>

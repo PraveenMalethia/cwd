@@ -8,7 +8,15 @@
     <v-layout row wrap>
       <v-flex class="pa-1" xs12 sm6 md6>
         <v-card max-width="375" class="mx-auto">
-          <v-img v-if="customer.profile_pic" :src="'https://cwdstore.pythonanywhere.com' + customer.profile_pic" height="300px" dark>
+          <span v-if="!customerLoading">
+            <v-img v-if="customer.profile_pic" :src="'https://cwdstore.pythonanywhere.com' + customer.profile_pic" height="300px" dark></v-img>
+            <v-img v-else 
+            src="https://avataaars.io/?avatarStyle=Transparent&topType=ShortHairShortCurly&accessoriesType=Prescription02&hairColor=Black&facialHairType=Blank&clotheType=Hoodie&clotheColor=White&eyeType=Default&eyebrowType=DefaultNatural&mouthType=Default&skinColor=Light"
+            ></v-img>
+          </span>
+          <span v-else>
+            <v-skeleton-loader v-bind="attrs" type="image"></v-skeleton-loader>
+          </span>
             <v-row class="">
               <v-card-title>
                 <v-btn dark icon router to="/">
@@ -43,7 +51,7 @@
                 <v-list-item-title>@{{$auth.user.username}}</v-list-item-title>
                 <v-list-item-subtitle
                 v-if="$auth.user.first_name && $auth.user.last_name">{{$auth.user.first_name}} {{$auth.user.last_name}}</v-list-item-subtitle>
-                <v-list-item-subtitle v-else>Click <v-icon>mdi-pencil</v-icon> to Add Your First & Last Name</v-list-item-subtitle>
+                <v-list-item-subtitle v-else></v-list-item-subtitle>
               </v-list-item-content>
             </v-list-item>
             <v-divider inset></v-divider>
@@ -54,8 +62,17 @@
                 </v-icon>
               </v-list-item-icon>
               <v-list-item-content>
+                <span v-if="customerLoading">
+                   <v-skeleton-loader
+                    v-bind="attrs"
+                    type="list-item-two-line"
+                  ></v-skeleton-loader>
+                </span>
+                <span v-else>
                 <v-list-item-title v-if="customer.phone_number">{{ customer.phone_number }}</v-list-item-title>
-                <v-list-item-subtitle>Mobile</v-list-item-subtitle>
+                <v-list-item-title v-else>Phone Number not uploaded</v-list-item-title>
+                <v-list-item-subtitle v-if="customer.phone_number">Mobile</v-list-item-subtitle>
+                </span>
               </v-list-item-content>
               <v-list-item-icon>
                 <v-icon>mdi-message-text</v-icon>
@@ -129,18 +146,6 @@
           </v-list-item>
         </v-list>
         </v-card>
-          <span v-if="!customer.profile_pic">
-            <v-list>
-            <v-list-item>
-              <v-list-item-action>
-                <v-icon>mdi-account-circle</v-icon>
-              </v-list-item-action>
-              <v-list-item-content>
-                Profile Image Not Uploaded
-              </v-list-item-content>
-            </v-list-item>
-            </v-list>
-          </span>
       </v-flex>
       <v-flex class="pa-1" xs12 sm6 md6>
         <v-card class="mx-auto" max-width="500">
@@ -197,6 +202,7 @@ export default {
   data: () => ({
     dialog: false,
     customer: {},
+    customerLoading:true,
     UpdateCustomer: {
       phone_number: null,
     },
@@ -219,7 +225,10 @@ export default {
       }
     },
   async fetch(){
-    await this.$axios.get('/api/auth/customer/').then((response) => {this.customer = response.data})
+    await this.$axios.get('/api/auth/customer/').then((response) => {
+      this.customer = response.data
+      this.customerLoading = false
+      })
     await this.$axios.get('/api/auth/customer/orders').then((response) => {
       this.orders= response.data
       })
@@ -235,8 +244,11 @@ export default {
   },
   methods: {
     loadCustomer() {
-      this.$axios.get('/api/auth/customer/').then((response) => {this.customer = response.data}).catch((error) =>
-      {
+      this.$axios.get('/api/auth/customer/').then((response) => {
+        this.customer = response.data
+        this.customerLoading = false
+        })
+      .catch((error) =>{
         if (error.response) {
         // client received an error response (5xx, 4xx)
         } else if (error.request) {
